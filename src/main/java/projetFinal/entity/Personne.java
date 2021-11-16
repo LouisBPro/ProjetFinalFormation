@@ -14,7 +14,6 @@ import javax.validation.constraints.NotEmpty;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Personne {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPersonne")
 	private Long id;
 	@Column(name = "personne_prenom", length = 200)
 	@NotBlank

@@ -27,20 +27,20 @@ public class Commande {
 	@NotNull
 	@Column(name = "commande_client_id", nullable = false)
 	private Client client;
-	// @Column(name = "commande_plat_id" ,nullable = false)
-	// private Set<Plat> plats;
+	@Column(name = "commande_plat_id", nullable = false)
+	private Set<Plat> plats;
 	@Column(name = "commande_date", nullable = false)
 	private LocalDate date = LocalDate.now();
 	@Column(name = "commande_ligne", nullable = false)
 	private Set<LigneCommande> ligneCommandes;
-	// @Column(name = "commande_restaurant_id", nullable = false)
-	// private Restaurant resto;
+	@Column(name = "commande_restaurant_id", nullable = false)
+	private Restaurant resto;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "commande_statut")
 	private Statut statut = Statut.Validated;
 	@Version
 	private int version;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -88,7 +88,7 @@ public class Commande {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -99,6 +99,30 @@ public class Commande {
 			return false;
 		Commande other = (Commande) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public Set<Plat> getPlats() {
+		return plats;
+	}
+
+	public void setPlats(Set<Plat> plats) {
+		this.plats = plats;
+	}
+
+	public Restaurant getResto() {
+		return resto;
+	}
+
+	public void setResto(Restaurant resto) {
+		this.resto = resto;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }

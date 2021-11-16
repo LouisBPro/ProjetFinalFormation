@@ -8,9 +8,14 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -34,11 +39,14 @@ public class Restaurant {
 			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	private Adresse adresse;
-	@Column(name = "restaurant_carte_id")
+	@OneToOne
+	@JoinColumn(name="restaurant_carte_id",foreignKey = @ForeignKey(name="restaurant_carte_id_fk"))
 	private Carte carte;
-	@Column(name = "restaurant_gerant_id")
+	@ManyToOne
+	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
 	private Gerant gerant;
-	@Column(name = "restaurant_cuisinier_id")
+	@ManyToOne
+	@JoinColumn(name = "restaurant_cuisinier_id", foreignKey = @ForeignKey(name = "restaurant_cuisinier_id_fk"))
 	private Set<Cuisinier> cuisiniers;
 
 	public Long getId() {
@@ -109,4 +117,15 @@ public class Restaurant {
 	public Restaurant() {
 	}
 
+	public void rejetCommande(Commande commande) {
+		//TODO
+	}
+	
+	public void addCuisinier(Cuisinier cuisinier) {
+		cuisiniers.add(cuisinier);
+	}
+	public void removeCuisinier(Cuisinier cuisinier) {
+		cuisiniers.remove(cuisinier);
+	}
+	
 }
