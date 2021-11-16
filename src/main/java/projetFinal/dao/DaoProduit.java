@@ -1,7 +1,7 @@
 package projetFinal.dao;
 
-import projetFinal.entity.Produit;
+import projetFinal.entity.Plat;
 
-public interface DaoProduit extends DaoGeneric<Produit, Long> {
+public interface DaoProduit extends DaoGeneric<Plat, Long> {
 
 }

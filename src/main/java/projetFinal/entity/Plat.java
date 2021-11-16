@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "plat")
 @SequenceGenerator(name = "seqPlat", sequenceName = "seq_plat", allocationSize = 1)
-public class Produit {
+public class Plat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPlat")
 	@Column(name = "plat_id")
@@ -31,16 +31,16 @@ public class Produit {
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommandes;
 
-	public Produit() {
+	public Plat() {
 
 	}
 
-	public Produit(String nom, String description) {
+	public Plat(String nom, String description) {
 		this.nom = nom;
 		this.description = description;
 	}
 
-	public Produit(String nom, String description, byte[] photo) {
+	public Plat(String nom, String description, byte[] photo) {
 		this.nom = nom;
 		this.description = description;
 		this.photo = photo;
@@ -102,7 +102,7 @@ public class Produit {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produit other = (Produit) obj;
+		Plat other = (Plat) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
