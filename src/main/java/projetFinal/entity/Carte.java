@@ -18,6 +18,21 @@ public class Carte {
 	@Column(name = "carte_plats")
 	private Set<Plat> plats;
 	
+	public Carte() {
+		super();
+	}
+	
+	public Carte(Restaurant restaurant) {
+		super();
+		this.restaurant = restaurant;
+	}
+
+	public Carte(Restaurant restaurant, Set<Plat> plats) {
+		super();
+		this.restaurant = restaurant;
+		this.plats = plats;
+	}
+
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
