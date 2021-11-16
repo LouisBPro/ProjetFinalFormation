@@ -89,6 +89,7 @@ public class Plat {
 	public void setLignesCommandes(Set<LigneCommande> lignesCommandes) {
 		this.lignesCommandes = lignesCommandes;
 	}
+	
 
 	@Override
 	public int hashCode() {

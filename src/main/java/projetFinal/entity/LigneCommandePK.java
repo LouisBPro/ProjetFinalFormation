@@ -13,16 +13,16 @@ public class LigneCommandePK implements Serializable {
 	@JoinColumn(name = "ligne_commande_commande_id", foreignKey = @ForeignKey(name = "ligne_commande_commande_id_fk"))
 	private Commande commande;
 	@ManyToOne
-	@JoinColumn(name = "ligne_commande_produit_id", foreignKey = @ForeignKey(name = "ligne_commande_produit_id_fk"))
-	private Plat produit;
+	@JoinColumn(name = "ligne_commande_plat_id", foreignKey = @ForeignKey(name = "ligne_commande_plat_id_fk"))
+	private Plat plat;
 
 	public LigneCommandePK() {
 
 	}
 
-	public LigneCommandePK(Commande commande, Plat produit) {
+	public LigneCommandePK(Commande commande, Plat plat) {
 		this.commande = commande;
-		this.produit = produit;
+		this.plat = plat;
 	}
 
 	public Commande getCommande() {
@@ -34,11 +34,11 @@ public class LigneCommandePK implements Serializable {
 	}
 
 	public Plat getProduit() {
-		return produit;
+		return plat;
 	}
 
-	public void setProduit(Plat produit) {
-		this.produit = produit;
+	public void setProduit(Plat plat) {
+		this.plat = plat;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class LigneCommandePK implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((commande == null) ? 0 : commande.hashCode());
-		result = prime * result + ((produit == null) ? 0 : produit.hashCode());
+		result = prime * result + ((plat == null) ? 0 : plat.hashCode());
 		return result;
 	}
 
@@ -64,10 +64,10 @@ public class LigneCommandePK implements Serializable {
 				return false;
 		} else if (!commande.equals(other.commande))
 			return false;
-		if (produit == null) {
-			if (other.produit != null)
+		if (plat == null) {
+			if (other.plat != null)
 				return false;
-		} else if (!produit.equals(other.produit))
+		} else if (!plat.equals(other.plat))
 			return false;
 		return true;
 	}
