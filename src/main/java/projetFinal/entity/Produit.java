@@ -28,7 +28,7 @@ public class Produit {
 	@Lob
 	@Column(name = "produit_photo")
 	private byte[] photo;
-	@OneToMany(mappedBy = "id.produit")
+	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommandes;
 
 	public Produit() {
