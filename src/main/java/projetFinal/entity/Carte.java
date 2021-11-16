@@ -9,9 +9,9 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "carte")
-
 public class Carte {
 	@Column(name = "carte_restaurant_id")
 	private Restaurant restaurant;
@@ -45,6 +45,10 @@ public class Carte {
 		Carte other = (Carte) obj;
 		return Objects.equals(plats, other.plats) && Objects.equals(restaurant, other.restaurant);
 	}
-	
-
+	public void AddPlat(Plat plat) {
+		this.plats.add(plat);
+	}
+	public void removePlat(Plat plat) {
+		this.plats.remove(plat);
+	}
 }

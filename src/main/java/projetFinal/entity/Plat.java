@@ -35,8 +35,16 @@ public class Plat {
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommandes;
 
+	
+
 	public Plat() {
 
+	}
+	public Plat(String nom, int prix, String description) {
+		super();
+		this.nom = nom;
+		this.prix = prix;
+		this.description = description;
 	}
 
 	public Plat(String nom, String description) {
@@ -90,6 +98,22 @@ public class Plat {
 		this.lignesCommandes = lignesCommandes;
 	}
 	
+
+	public int getPrix() {
+		return prix;
+	}
+
+	public void setPrix(int prix) {
+		this.prix = prix;
+	}
+
+	public Boolean getDispo() {
+		return dispo;
+	}
+
+	public void setDispo(Boolean dispo) {
+		this.dispo = dispo;
+	}
 
 	@Override
 	public int hashCode() {
