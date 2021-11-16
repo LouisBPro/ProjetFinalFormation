@@ -1,48 +1,35 @@
 package projetFinal.entity;
 
-import java.time.LocalDate;
-
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
-//@MappedSuperclass
 @Entity
-//@Table(name = "personne")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING,length = 10)
-//@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_personne", allocationSize = 1, initialValue = 100)
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPersonne")
-//	@Column(name = "personne_id")
 	private Long id;
 	@Column(name = "personne_prenom", length = 200)
+	@NotBlank
+	@NotEmpty
 	private String prenom;
 	@Column(name = "personne_nom", length = 200)
+	@NotBlank
+	@NotEmpty
 	private String nom;
-	@Column(name = "personne_date_naissance")
-	private LocalDate dateNaissance;
 	@Column(name = "personne_email", length = 200)
 	private String email;
-	@Column(name = "personne_telephone", length = 20)
-	@Pattern(regexp = "^(0|\\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$")
-	private String telephone;
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "personne_numero")),
-			@AttributeOverride(name = "rue", column = @Column(name = "personne_rue")),
-			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
-			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
-	private Adresse adresse;
+	@Column(name = "personne_login", length = 30)
+	private String login;
+	@Column(name = "personne_password", length = 30)
+	private String password;
 
 	public Personne() {
 
@@ -72,14 +59,6 @@ public abstract class Personne {
 		this.nom = nom;
 	}
 
-	public LocalDate getDateNaissance() {
-		return dateNaissance;
-	}
-
-	public void setDateNaissance(LocalDate dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -88,20 +67,24 @@ public abstract class Personne {
 		this.email = email;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public Adresse getAdresse() {
-		return adresse;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void Connection() {
+		// TODO
 	}
 
 	@Override
