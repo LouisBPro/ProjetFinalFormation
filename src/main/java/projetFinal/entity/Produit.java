@@ -22,11 +22,15 @@ public class Produit {
 	private Long id;
 	@Column(name = "plat_nom", nullable = false, length = 200)
 	private String nom;
+	@Column(name = "plat_prix")
+	private int prix;
+	@Column(name = "plat_dispo")
+	private Boolean dispo;
 	@Lob
 	@Column(name = "plat_description")
 	private String description;
 	@Lob
-	@Column(name = "produit_photo")
+	@Column(name = "plat_photo")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommandes;
