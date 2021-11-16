@@ -7,29 +7,29 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import projetFinal.Context;
-import projetFinal.entity.Produit;
+import projetFinal.entity.Plat;
 
 public class DaoProduitJpaImpl implements DaoProduit {
 
 	@Override
-	public List<Produit> findAll() {
+	public List<Plat> findAll() {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		TypedQuery<Produit> query = em.createQuery("from Produit o", Produit.class);
-		List<Produit> list = query.getResultList();
+		TypedQuery<Plat> query = em.createQuery("from Produit o", Plat.class);
+		List<Plat> list = query.getResultList();
 		em.close();
 		return list;
 	}
 
 	@Override
-	public Produit findByKey(Long key) {
+	public Plat findByKey(Long key) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		Produit obj = em.find(Produit.class, key);
+		Plat obj = em.find(Plat.class, key);
 		em.close();
 		return obj;
 	}
 
 	@Override
-	public void insert(Produit obj) {
+	public void insert(Plat obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -40,7 +40,7 @@ public class DaoProduitJpaImpl implements DaoProduit {
 	}
 
 	@Override
-	public Produit update(Produit obj) {
+	public Plat update(Plat obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -51,7 +51,7 @@ public class DaoProduitJpaImpl implements DaoProduit {
 	}
 
 	@Override
-	public void delete(Produit obj) {
+	public void delete(Plat obj) {
 		deleteByKey(obj.getId());
 	}
 
@@ -60,7 +60,7 @@ public class DaoProduitJpaImpl implements DaoProduit {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Produit produit = em.find(Produit.class, key);
+		Plat produit = em.find(Plat.class, key);
 		produit.getLignesCommandes().forEach(lc -> {
 			em.remove(lc);
 		});

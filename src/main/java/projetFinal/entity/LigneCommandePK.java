@@ -14,13 +14,13 @@ public class LigneCommandePK implements Serializable {
 	private Commande commande;
 	@ManyToOne
 	@JoinColumn(name = "ligne_commande_produit_id", foreignKey = @ForeignKey(name = "ligne_commande_produit_id_fk"))
-	private Produit produit;
+	private Plat produit;
 
 	public LigneCommandePK() {
 
 	}
 
-	public LigneCommandePK(Commande commande, Produit produit) {
+	public LigneCommandePK(Commande commande, Plat produit) {
 		this.commande = commande;
 		this.produit = produit;
 	}
@@ -33,11 +33,11 @@ public class LigneCommandePK implements Serializable {
 		this.commande = commande;
 	}
 
-	public Produit getProduit() {
+	public Plat getProduit() {
 		return produit;
 	}
 
-	public void setProduit(Produit produit) {
+	public void setProduit(Plat produit) {
 		this.produit = produit;
 	}
 
