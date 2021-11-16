@@ -13,17 +13,17 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "produit")
-@SequenceGenerator(name = "seqProduit", sequenceName = "seq_produit", allocationSize = 1)
+@Table(name = "plat")
+@SequenceGenerator(name = "seqPlat", sequenceName = "seq_plat", allocationSize = 1)
 public class Produit {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqProduit")
-	@Column(name = "produit_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPlat")
+	@Column(name = "plat_id")
 	private Long id;
-	@Column(name = "produit_nom", nullable = false, length = 200)
+	@Column(name = "plat_nom", nullable = false, length = 200)
 	private String nom;
 	@Lob
-	@Column(name = "produit_description")
+	@Column(name = "plat_description")
 	private String description;
 	@Lob
 	@Column(name = "produit_photo")
