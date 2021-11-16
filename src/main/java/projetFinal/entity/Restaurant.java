@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,7 +46,7 @@ public class Restaurant {
 	@ManyToOne
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
 	private Gerant gerant;
-	@ManyToOne
+	@OneToMany(mappedBy="restaurant")
 	@JoinColumn(name = "restaurant_cuisinier_id", foreignKey = @ForeignKey(name = "restaurant_cuisinier_id_fk"))
 	private Set<Cuisinier> cuisiniers;
 

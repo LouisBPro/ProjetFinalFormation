@@ -1,6 +1,8 @@
 package projetFinal.entity;
 
 
+import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -25,9 +28,8 @@ public class Client extends Personne {
 			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	private Adresse adresse;
-	@OneToOne
-	@JoinColumn(name="client_commande_id", foreignKey=@ForeignKey(name="client_commande_id_fk"))
-	private Commande commande;
+	@OneToMany(mappedBy="client")
+	private Set<Commande> commandes;
 	@Version
 	@Column(name = "client_version")
 	private int version;
@@ -51,11 +53,19 @@ public class Client extends Personne {
 		this.adresse = adresse;
 	}
 
-	public Commande getCommande() {
-		return commande;
+	public Set<Commande> getCommandes() {
+		return commandes;
 	}
 
-	public void setCommande(Commande commande) {
-		this.commande = commande;
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
+
+	public void addCommande(Commande commande){
+		commandes.add(commande);
+	}
+
+	public void removeCommande(Commande commande){
+		commandes.remove(commande);
 	}
 }

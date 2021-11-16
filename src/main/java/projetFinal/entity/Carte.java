@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "carte")
 public class Carte {
-	@OneToOne
-	@JoinColumn(name = "carte_restaurant_id",foreignKey =@ForeignKey(name = "carte_restaurant_id_fk") )
+	@OneToOne(mappedBy="carte")
 	private Restaurant restaurant;
 	@OneToMany
 	@JoinColumn(name = "carte_plat_id",foreignKey =@ForeignKey(name = "carte_restaurant_id_fk") )

@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,23 +30,24 @@ public class Commande {
 	@GeneratedValue(generator = "seqCommande", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@NotNull
-	@OneToOne(mappedBy = "commande")
+	@ManyToOne
 	@JoinColumn(name="commande_client_id", foreignKey = @ForeignKey(name="commande_client_id_fk"))
 	private Client client;
 	@Column(name = "commande_plat_id", nullable = false)
 	private Set<Plat> plats;
 	@Column(name = "commande_date", nullable = false)
 	private LocalDate date = LocalDate.now();
-	@Column(name = "commande_ligne", nullable = false)
+	@OneToMany(mappedBy="id.commande")
 	private Set<LigneCommande> ligneCommandes;
-	@Column(name = "commande_restaurant_id", nullable = false)
-	private Restaurant resto;
+	@OneToOne
+	@JoinColumn(name="commande_restaurant_id", foreignKey = @ForeignKey(name="commande_restaurant_id_fk"))
+	private Restaurant restaurant;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "commande_statut")
 	private Statut statut = Statut.Validated;
 	@Version
 	private int version;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -113,12 +116,12 @@ public class Commande {
 		this.plats = plats;
 	}
 
-	public Restaurant getResto() {
-		return resto;
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 
-	public void setResto(Restaurant resto) {
-		this.resto = resto;
+	public void setResto(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	public int getVersion() {
