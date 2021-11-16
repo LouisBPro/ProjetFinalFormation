@@ -8,14 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "carte")
 public class Carte {
-	@Column(name = "carte_restaurant_id")
+	@OneToOne
+	@JoinColumn(name = "carte_restaurant_id",foreignKey =@ForeignKey(name = "carte_restaurant_id_fk") )
 	private Restaurant restaurant;
-	@Column(name = "carte_plats")
+	@OneToMany
+	@JoinColumn(name = "carte_plat_id",foreignKey =@ForeignKey(name = "carte_restaurant_id_fk") )
 	private Set<Plat> plats;
 	
 	public Carte() {
