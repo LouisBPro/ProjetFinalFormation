@@ -8,9 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -25,7 +28,8 @@ public class Commande {
 	@GeneratedValue(generator = "seqCommande", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@NotNull
-	@Column(name = "commande_client_id", nullable = false)
+	@OneToOne(mappedBy = "commande")
+	@JoinColumn(name="commande_client_id", foreignKey = @ForeignKey(name="commande_client_id_fk"))
 	private Client client;
 	@Column(name = "commande_plat_id", nullable = false)
 	private Set<Plat> plats;

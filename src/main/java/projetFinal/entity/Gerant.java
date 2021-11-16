@@ -1,10 +1,13 @@
 package projetFinal.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -13,9 +16,8 @@ import javax.persistence.Version;
 @Table(name = "gerant")
 @SequenceGenerator(name = "seqGerant", sequenceName = "seq_gerant", initialValue = 200, allocationSize = 1)
 public class Gerant extends Personne {
-    // @OneToOne(mappedBy = "client")
-    // @Column
-    private Restaurant restaurant;
+    @OneToMany(mappedBy="gerant")
+    private Set<Restaurant> restaurants;
     @Version
     @Column(name = "gerant_version")
     private int version;
@@ -31,12 +33,20 @@ public class Gerant extends Personne {
         return super.getId();
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurants(Set<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        restaurants.add(restaurant);
+    }
+
+    public void removeRestaurants(Restaurant restaurant){
+        restaurants.remove(restaurant);
     }
 
     public void creationCptRestau(){

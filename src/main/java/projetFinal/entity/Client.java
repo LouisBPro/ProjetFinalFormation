@@ -6,9 +6,12 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -22,8 +25,8 @@ public class Client extends Personne {
 			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	private Adresse adresse;
-	// @OneToOne(mappedBy = "client")
-	// @Column
+	@OneToOne
+	@JoinColumn(name="client_commande_id", foreignKey=@ForeignKey(name="client_commande_id_fk"))
 	private Commande commande;
 	@Version
 	@Column(name = "client_version")
