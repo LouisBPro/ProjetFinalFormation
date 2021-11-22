@@ -26,23 +26,29 @@ import projetFinal.services.CuisinierService;
 import projetFinal.services.GerantService;
 import projetFinal.services.PlatService;
 import projetFinal.services.RestaurantService;
-//@Rollback
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
-@Rollback
+//@Rollback
 public class RestaurantServiceTest {
 
     @Autowired
-    static RestaurantService restaurantService;
+    RestaurantService restaurantService;
     @Autowired
-    static PlatService platService;
+    PlatService platService;
     @Autowired
-    static CuisinierService cuisinierService;
+    CuisinierService cuisinierService;
     @Autowired 
-    static GerantService gerantService;
+    GerantService gerantService;
 
-    @BeforeClass
-    public static void startTest(){
+    // @BeforeClass
+    // public static void startTest(){
+    // }
+
+    @Test
+    public void remplissageBdd(){
+        
+
         Cuisinier cuistot1 = new Cuisinier();
         cuistot1.setNom("Baron");
         cuistot1.setPrenom("Louis");
@@ -66,7 +72,7 @@ public class RestaurantServiceTest {
         plat2.setDescription("C'est un super mauvais plat !");
         plat2.setNom("Poulet confit au sang de caille ");
         plat2.setPrix(18.50f);
-        
+
 		Restaurant resto1 = new Restaurant();
         Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
         resto1.setNom("Restaurant - Saint Anne");
@@ -83,30 +89,31 @@ public class RestaurantServiceTest {
         ligneCarte2.setDisponibilite(true);
 
         Set<LigneCarte> setLignesCarte = new HashSet<LigneCarte>();
-        setLignesCarte.add(ligneCarte1);
-        setLignesCarte.add(ligneCarte2);
+        // ID nulls
+        System.out.println(setLignesCarte.add(ligneCarte1));
+        System.out.println(setLignesCarte.add(ligneCarte2));
         resto1.setLignesCarte(setLignesCarte);
 
         resto1.setGerant(gerant1);
         Set<Cuisinier> cuisinierSet = new HashSet<Cuisinier>();
         cuisinierSet.add(cuistot1);
-        resto1.setCuisiniers(cuisinierSet);
 
         cuistot1.setRestaurant(resto1);
-        gerant1.addRestaurant(resto1);
-
-        cuisinierService.save(cuistot1);
+        
         gerantService.save(gerant1);
         platService.save(plat1);
         platService.save(plat2);
         restaurantService.save(resto1);
+        cuisinierService.save(cuistot1);
+
     }
 
 	@Test
 	public void testInsert() {
         List<Restaurant> resto = restaurantService.byVille("Rennes");
         System.out.println(resto);
-        assertNotNull(resto);
+        assertFalse(resto.isEmpty());
+        // TOUS MES ID SONT NULL TANT QUILS SONT PAS DANS LA BDD?
 	}
 
 }

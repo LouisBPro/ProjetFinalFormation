@@ -44,7 +44,11 @@ public class LigneCartePk implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(plat, restaurant);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((plat == null) ? 0 : plat.hashCode());
+		result = prime * result + ((restaurant == null) ? 0 : restaurant.hashCode());
+		return result;
 	}
 
 	@Override
@@ -56,7 +60,19 @@ public class LigneCartePk implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		LigneCartePk other = (LigneCartePk) obj;
-		return Objects.equals(plat, other.plat) && Objects.equals(restaurant, other.restaurant);
+		if (plat == null) {
+			if (other.plat != null)
+				return false;
+		} else if (!plat.equals(other.plat))
+			return false;
+		if (restaurant == null) {
+			if (other.restaurant != null)
+				return false;
+		} else if (!restaurant.equals(other.restaurant))
+			return false;
+		return true;
 	}
+
+	
 
 }

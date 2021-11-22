@@ -7,6 +7,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import projetFinal.entity.Plat;
 import projetFinal.exceptions.PlatException;
@@ -14,6 +15,7 @@ import projetFinal.repositories.LigneCarteRepository;
 import projetFinal.repositories.LigneCommandeRepository;
 import projetFinal.repositories.PlatRepository;
 
+@Service
 public class PlatService {
 	@Autowired
 	private PlatRepository platRepository;
