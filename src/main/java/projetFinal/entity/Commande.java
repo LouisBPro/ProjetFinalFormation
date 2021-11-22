@@ -38,7 +38,7 @@ public class Commande {
 	@Column(name = "commande_date", nullable = false)
 	private LocalDate date = LocalDate.now();
 	@OneToMany(mappedBy="id.commande")
-	private Set<LigneCommande> ligneCommandes;
+	private Set<LigneCommande> lignesCommande;
 	@OneToOne
 	@JoinColumn(name="commande_restaurant_id", foreignKey = @ForeignKey(name="commande_restaurant_id_fk"))
 	private Restaurant restaurant;
@@ -73,11 +73,11 @@ public class Commande {
 	}
 
 	public Set<LigneCommande> getLigneCommandes() {
-		return ligneCommandes;
+		return lignesCommande;
 	}
 
 	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
-		this.ligneCommandes = ligneCommandes;
+		this.lignesCommande = ligneCommandes;
 	}
 
 	public Statut getStatut() {

@@ -1,0 +1,61 @@
+package projetFinal.entity;
+
+import java.util.Objects;
+
+import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
+public class LigneCartePk {
+	@ManyToOne
+	@JoinColumn(name = "ligne_carte_plat_id", foreignKey = @ForeignKey(name = "ligne_carte_plat_id_fk"))
+	private Plat plat;
+	@ManyToOne
+	@JoinColumn(name = "ligne_carte_restaurant_id", foreignKey = @ForeignKey(name = "ligne_carte_restaurant_id_fk"))
+	private Restaurant restaurant;
+
+	public LigneCartePk() {
+	}
+
+	public LigneCartePk(Plat plat, Restaurant restaurant) {
+		super();
+		this.plat = plat;
+		this.restaurant = restaurant;
+	}
+
+	public Plat getPlat() {
+		return plat;
+	}
+
+	public void setPlat(Plat plat) {
+		this.plat = plat;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(plat, restaurant);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LigneCartePk other = (LigneCartePk) obj;
+		return Objects.equals(plat, other.plat) && Objects.equals(restaurant, other.restaurant);
+	}
+
+}

@@ -40,13 +40,13 @@ public class Restaurant {
 			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	private Adresse adresse;
-	@OneToOne
-	@JoinColumn(name="restaurant_carte_id",foreignKey = @ForeignKey(name="restaurant_carte_id_fk"))
-	private Carte carte;
+	@OneToMany(mappedBy = "id.restaurant")
+	private Set<LigneCarte> lignesCarte;
+
 	@ManyToOne
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
 	private Gerant gerant;
-	@OneToMany(mappedBy="restaurant")
+	@OneToMany(mappedBy = "restaurant")
 	@JoinColumn(name = "restaurant_cuisinier_id", foreignKey = @ForeignKey(name = "restaurant_cuisinier_id_fk"))
 	private Set<Cuisinier> cuisiniers;
 
@@ -74,14 +74,6 @@ public class Restaurant {
 		this.adresse = adresse;
 	}
 
-	public Carte getCarte() {
-		return carte;
-	}
-
-	public void setCarte(Carte carte) {
-		this.carte = carte;
-	}
-
 	public Gerant getGerant() {
 		return gerant;
 	}
@@ -96,6 +88,14 @@ public class Restaurant {
 
 	public void setCuisiniers(Set<Cuisinier> cuisiniers) {
 		this.cuisiniers = cuisiniers;
+	}
+
+	public Set<LigneCarte> getLignesCarte() {
+		return lignesCarte;
+	}
+
+	public void setLignesCarte(Set<LigneCarte> lignesCarte) {
+		this.lignesCarte = lignesCarte;
 	}
 
 	@Override
@@ -119,14 +119,15 @@ public class Restaurant {
 	}
 
 	public void rejetCommande(Commande commande) {
-		//TODO
+		// TODO
 	}
-	
+
 	public void addCuisinier(Cuisinier cuisinier) {
 		cuisiniers.add(cuisinier);
 	}
+
 	public void removeCuisinier(Cuisinier cuisinier) {
 		cuisiniers.remove(cuisinier);
 	}
-	
+
 }

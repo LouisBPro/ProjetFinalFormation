@@ -22,10 +22,6 @@ public class Plat {
 	private Long id;
 	@Column(name = "plat_nom", nullable = false, length = 200)
 	private String nom;
-	@Column(name = "plat_prix")
-	private int prix;
-	@Column(name = "plat_dispo")
-	private Boolean dispo;
 	@Lob
 	@Column(name = "plat_description")
 	private String description;
@@ -33,21 +29,17 @@ public class Plat {
 	@Column(name = "plat_photo")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.plat")
-	private Set<LigneCommande> lignesCommandes;
+	private Set<LigneCommande> lignesCommande;
+	@OneToMany(mappedBy = "id.plat")
+	private Set<LigneCarte> lignesCarte;
 
 	
 
 	public Plat() {
 
 	}
-	public Plat(String nom, int prix, String description) {
-		super();
-		this.nom = nom;
-		this.prix = prix;
-		this.description = description;
-	}
-
 	public Plat(String nom, String description) {
+		super();
 		this.nom = nom;
 		this.description = description;
 	}
@@ -91,28 +83,11 @@ public class Plat {
 	}
 
 	public Set<LigneCommande> getLignesCommandes() {
-		return lignesCommandes;
+		return lignesCommande;
 	}
 
 	public void setLignesCommandes(Set<LigneCommande> lignesCommandes) {
-		this.lignesCommandes = lignesCommandes;
-	}
-	
-
-	public int getPrix() {
-		return prix;
-	}
-
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
-
-	public Boolean getDispo() {
-		return dispo;
-	}
-
-	public void setDispo(Boolean dispo) {
-		this.dispo = dispo;
+		this.lignesCommande = lignesCommandes;
 	}
 
 	@Override
