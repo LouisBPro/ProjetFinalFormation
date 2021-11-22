@@ -9,10 +9,8 @@ import org.springframework.data.repository.query.Param;
 import projetFinal.entity.Gerant;
 
 public interface GerantRepository extends JpaRepository<Gerant, Long>{
-	@Query("select g from Gerant g left join fetch g.commandes where g.id=:id")
-	Optional<Gerant> findByIdWithCommandes(@Param("id") Long id);
 	
-	@Query("select g form Gerant g where g.login=:login or g.email=:login")
+	@Query("select g from Gerant g where g.login=:login or g.email=:login")
 	Optional<Gerant> findByLoginOrEmail(@Param("login") String login);
 
 }

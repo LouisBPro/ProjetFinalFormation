@@ -1,5 +1,6 @@
 package projetFinal.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
@@ -8,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class LigneCartePk {
+public class LigneCartePk implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ligne_carte_plat_id", foreignKey = @ForeignKey(name = "ligne_carte_plat_id_fk"))
 	private Plat plat;

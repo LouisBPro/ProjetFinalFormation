@@ -2,16 +2,22 @@ package projetFinal.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_personne", initialValue = 200, allocationSize = 1)
 public abstract class Personne {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqPersonne")
 	private Long id;
 	@Column(name = "personne_prenom", length = 200)
 	@NotBlank
@@ -27,6 +33,9 @@ public abstract class Personne {
 	private String login;
 	@Column(name = "personne_password", length = 30)
 	private String password;
+	@Version
+	@Column(name = "personne_version")
+	private int version;
 
 	public Personne() {
 

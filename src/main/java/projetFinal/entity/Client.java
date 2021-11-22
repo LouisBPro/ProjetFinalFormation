@@ -27,20 +27,13 @@ public class Client extends Personne {
 	private Adresse adresse;
 	@OneToMany(mappedBy="client")
 	private Set<Commande> commandes;
-	@Version
-	@Column(name = "client_version")
-	private int version;
+	
 
 	public Client() {
 
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
-	@Override
-	public Long getId() {
-		return super.getId();
-	}
+	
 
 	public Adresse getAdresse() {
 		return adresse;

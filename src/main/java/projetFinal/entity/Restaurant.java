@@ -45,7 +45,6 @@ public class Restaurant {
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
 	private Gerant gerant;
 	@OneToMany(mappedBy = "restaurant")
-	@JoinColumn(name = "restaurant_cuisinier_id", foreignKey = @ForeignKey(name = "restaurant_cuisinier_id_fk"))
 	private Set<Cuisinier> cuisiniers;
 
 	public Long getId() {

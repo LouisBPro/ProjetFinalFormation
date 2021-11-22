@@ -16,14 +16,14 @@ import projetFinal.entity.Statut;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	
-	@Query("select c from Commande left join fetch c.lignesCommande where c.client=:client")
+	@Query("select c from Commande c left join fetch c.lignesCommande where c.client=:client")
 	List<Commande> findByClientWithLignesCommande(@Param("client") Client client);
 	
 	List<Commande> findByRestaurant(Restaurant restaurant);
 	
 	List<Commande> findByRestaurantAndStatut(Restaurant restaurant, Statut statut);
 	
-	@Query("select c from Commande left join fetch c.lignesCommande where c.id =:id")
+	@Query("select c from Commande c left join fetch c.lignesCommande where c.id =:id")
 	Optional<Commande> findByIdWithLignesCommande(@Param("id")Long id);
 	
 	@Transactional

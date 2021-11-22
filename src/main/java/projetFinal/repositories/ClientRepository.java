@@ -13,7 +13,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	@Query("select c from Client c left join fetch c.commandes where c.id=:id")
 	Optional<Client> findByIdWithCommandes(@Param("id") Long id);
 	
-	@Query("select c form Client c where c.login=:login or c.email=:login")
+	@Query("select c from Client c where c.login=:login or c.email=:login")
 	Optional<Client> findByLoginOrEmail(@Param("login") String login);
 
 }

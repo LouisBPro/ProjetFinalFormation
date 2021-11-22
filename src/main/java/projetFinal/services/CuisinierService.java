@@ -35,7 +35,7 @@ public class CuisinierService {
 	}
 
 	public Cuisinier byId(Long id) {
-		return cuisinierRepository.findByIdWithCommandes(id).orElseThrow(CuisinierException::new);
+		return cuisinierRepository.findById(id).orElseThrow(CuisinierException::new);
 	}
 	
 	public Cuisinier byLoginOrEmail(String login) {

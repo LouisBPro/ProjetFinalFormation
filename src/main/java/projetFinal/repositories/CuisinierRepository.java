@@ -9,10 +9,10 @@ import org.springframework.data.repository.query.Param;
 import projetFinal.entity.Cuisinier;
 
 public interface CuisinierRepository extends JpaRepository<Cuisinier, Long>{
-	@Query("select c from Cuisinier c left join fetch c.commandes where c.id=:id")
-	Optional<Cuisinier> findByIdWithCommandes(@Param("id") Long id);
+
+	Cuisinier findById();
 	
-	@Query("select c form Cuisinier c where c.login=:login or c.email=:login")
+	@Query("select c from Cuisinier c where c.login=:login or c.email=:login")
 	Optional<Cuisinier> findByLoginOrEmail(@Param("login") String login);
 
 }

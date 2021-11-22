@@ -44,7 +44,7 @@ public class AppConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(BasicDataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource);
-		emf.setPackagesToScan("pojetFinal.entity");
+		emf.setPackagesToScan("projetFinal.entity");
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		emf.setJpaProperties(hibernateProperties());
 		return emf;
@@ -52,7 +52,7 @@ public class AppConfig {
 
 	private Properties hibernateProperties() {
 		Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
 		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		hibernateProperties.setProperty("hibernate.format_sql", "true");

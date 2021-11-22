@@ -19,21 +19,13 @@ public class Cuisinier extends Personne {
 	@ManyToOne
 	@JoinColumn(name = "cuisinier_restaurant_id", foreignKey = @ForeignKey(name = "cuisinier_restaurant_id_fk"))
     private Restaurant restaurant;
-    @Version
-    @Column(name = "gerant_version")
-    private int version;
+  
 
     public Cuisinier() {
 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGerant")
-    @Override
-    public Long getId() {
-        return super.getId();
-    }
-
+    
     public Restaurant getRestaurant() {
         return restaurant;
     }

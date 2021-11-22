@@ -18,20 +18,12 @@ import javax.persistence.Version;
 public class Gerant extends Personne {
     @OneToMany(mappedBy="gerant")
     private Set<Restaurant> restaurants;
-    @Version
-    @Column(name = "gerant_version")
-    private int version;
+
 
     public Gerant() {
 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGerant")
-    @Override
-    public Long getId() {
-        return super.getId();
-    }
 
     public Set<Restaurant> getRestaurants() {
         return restaurants;

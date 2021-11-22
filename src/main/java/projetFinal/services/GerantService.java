@@ -35,7 +35,7 @@ public class GerantService {
 	}
 
 	public Gerant byId(Long id) {
-		return gerantRepository.findByIdWithCommandes(id).orElseThrow(GerantException::new);
+		return gerantRepository.findById(id).orElseThrow(GerantException::new);
 	}
 	
 	public Gerant byLoginOrEmail(String login) {
