@@ -2,15 +2,16 @@ Commande :
 
 save()
 delete()
-byClientWithPlat()
+removeOneLigneCommande()
+byClientWithLigneCommande()
 byRestaurant()
 byRestaurantAndStatut()
-byIdWithPlat()
+byIdWithLigneCommande()
 commandeFirstpage()
 commandeNextpage()
 commandePreviouspage()
 
-Client : 
+Client : Quentin
 
 save()
 delete()
@@ -34,7 +35,7 @@ delete()
 byId()
 byLoginOrEmail()
 
-Restaurant : 
+Restaurant : Louis
 
 save()
 delete()
@@ -46,7 +47,7 @@ restaurantFirstpage()
 restaurantNextpage()
 restaurantPreviouspage()
 
-Plat : 
+Plat : Nina
 
 save()
 delete()
@@ -57,3 +58,4 @@ platNextpage()
 platPreviouspage()
 
 méthodes de tri ?
+pages
