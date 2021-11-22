@@ -1,5 +1,6 @@
 package projetFinal.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -39,13 +40,13 @@ public class Restaurant {
 			@AttributeOverride(name = "ville", column = @Column(name = "restaurant_ville")) })
 	private Adresse adresse;
 	@OneToMany(mappedBy = "id.restaurant")
-	private Set<LigneCarte> lignesCarte;
+	private Set<LigneCarte> lignesCarte = new HashSet<LigneCarte>();
 
 	@ManyToOne
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
 	private Gerant gerant;
 	@OneToMany(mappedBy = "restaurant")
-	private Set<Cuisinier> cuisiniers;
+	private Set<Cuisinier> cuisiniers = new HashSet<Cuisinier>();
 
 	public Long getId() {
 		return id;

@@ -1,5 +1,6 @@
 package projetFinal.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.persistence.Version;
 @SequenceGenerator(name = "seqGerant", sequenceName = "seq_gerant", initialValue = 200, allocationSize = 1)
 public class Gerant extends Personne {
     @OneToMany(mappedBy="gerant")
-    private Set<Restaurant> restaurants;
+    private Set<Restaurant> restaurants = new HashSet<Restaurant>();
 
 
     public Gerant() {

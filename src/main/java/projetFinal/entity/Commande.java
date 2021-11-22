@@ -1,6 +1,7 @@
 package projetFinal.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class Commande {
 	@Column(name = "commande_date", nullable = false)
 	private LocalDate date = LocalDate.now();
 	@OneToMany(mappedBy="id.commande")
-	private Set<LigneCommande> lignesCommande;
+	private Set<LigneCommande> lignesCommande = new HashSet<LigneCommande>();
 	@OneToOne
 	@JoinColumn(name="commande_restaurant_id", foreignKey = @ForeignKey(name="commande_restaurant_id_fk"))
 	private Restaurant restaurant;

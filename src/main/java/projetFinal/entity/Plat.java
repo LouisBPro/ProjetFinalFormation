@@ -1,5 +1,6 @@
 package projetFinal.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ public class Plat {
 	@Column(name = "plat_photo")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.plat")
-	private Set<LigneCommande> lignesCommande;
+	private Set<LigneCommande> lignesCommande = new HashSet<LigneCommande>();
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCarte> lignesCarte;
 	@Column(name = "ligne_carte_prix")

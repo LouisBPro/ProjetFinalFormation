@@ -88,7 +88,7 @@ public class RestaurantServiceTest {
         resto1.setLignesCarte(setLignesCarte);
 
         resto1.setGerant(gerant1);
-        Set<Cuisinier> cuisinierSet = new HashSet<>();
+        Set<Cuisinier> cuisinierSet = new HashSet<Cuisinier>();
         cuisinierSet.add(cuistot1);
         resto1.setCuisiniers(cuisinierSet);
 
