@@ -35,10 +35,10 @@ public class Restaurant {
 	@Column(name = "restaurant_name")
 	private String nom;
 	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "personne_numero")),
-			@AttributeOverride(name = "rue", column = @Column(name = "personne_rue")),
-			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
-			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
+	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "restaurant_numero")),
+			@AttributeOverride(name = "rue", column = @Column(name = "restaurant_rue")),
+			@AttributeOverride(name = "codePostal", column = @Column(name = "restaurant_code_postal", length = 20)),
+			@AttributeOverride(name = "ville", column = @Column(name = "restaurant_ville")) })
 	private Adresse adresse;
 	@OneToMany(mappedBy = "id.restaurant")
 	private Set<LigneCarte> lignesCarte;
