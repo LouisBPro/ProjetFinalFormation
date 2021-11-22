@@ -33,8 +33,6 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name="commande_client_id", foreignKey = @ForeignKey(name="commande_client_id_fk"))
 	private Client client;
-	@Column(name = "commande_plat_id", nullable = false)
-	private Set<Plat> plats;
 	@Column(name = "commande_date", nullable = false)
 	private LocalDate date = LocalDate.now();
 	@OneToMany(mappedBy="id.commande")
@@ -45,6 +43,8 @@ public class Commande {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "commande_statut")
 	private Statut statut = Statut.Validated;
+	@Column(name = "commande_prix_total")
+	private Float prixTotal;
 	@Version
 	private int version;
 	
@@ -84,6 +84,26 @@ public class Commande {
 		return statut;
 	}
 
+	public Set<LigneCommande> getLignesCommande() {
+		return lignesCommande;
+	}
+
+	public void setLignesCommande(Set<LigneCommande> lignesCommande) {
+		this.lignesCommande = lignesCommande;
+	}
+
+	public Float getPrixTotal() {
+		return prixTotal;
+	}
+
+	public void setPrixTotal(Float prixTotal) {
+		this.prixTotal = prixTotal;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
@@ -108,14 +128,6 @@ public class Commande {
 		return Objects.equals(id, other.id);
 	}
 
-	public Set<Plat> getPlats() {
-		return plats;
-	}
-
-	public void setPlats(Set<Plat> plats) {
-		this.plats = plats;
-	}
-
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
@@ -131,5 +143,12 @@ public class Commande {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+	
+	public void addLigneCommande(LigneCommande ligneCommande) {
+		this.lignesCommande.add(ligneCommande);
+	}
 
+	public void removeLigneCommande(LigneCommande ligneCommande) {
+		this.lignesCommande.remove(ligneCommande);
+	}
 }

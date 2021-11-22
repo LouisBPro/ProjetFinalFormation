@@ -12,8 +12,7 @@ public class LigneCarte {
 	private LigneCartePk id;
 	@Column(name = "ligne_carte_disponibilité")
 	private Boolean disponibilite;
-	@Column(name = "ligne_carte_prix")
-	private Float prix;
+	
 
 	public LigneCartePk getId() {
 		return id;
@@ -29,14 +28,6 @@ public class LigneCarte {
 
 	public void setDisponibilite(Boolean disponibilite) {
 		this.disponibilite = disponibilite;
-	}
-
-	public Float getPrix() {
-		return prix;
-	}
-
-	public void setPrix(Float prix) {
-		this.prix = prix;
 	}
 
 	public LigneCarte() {

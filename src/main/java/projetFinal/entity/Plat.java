@@ -32,12 +32,13 @@ public class Plat {
 	private Set<LigneCommande> lignesCommande;
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCarte> lignesCarte;
-
-	
+	@Column(name = "ligne_carte_prix")
+	private Float prix;
 
 	public Plat() {
 
 	}
+
 	public Plat(String nom, String description) {
 		super();
 		this.nom = nom;
@@ -64,6 +65,14 @@ public class Plat {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Float getPrix() {
+		return prix;
+	}
+
+	public void setPrix(Float prix) {
+		this.prix = prix;
 	}
 
 	public String getDescription() {
