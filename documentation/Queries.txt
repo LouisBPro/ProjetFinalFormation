@@ -1,0 +1,59 @@
+Commande :
+
+save()
+delete()
+byClientWithPlat()
+byRestaurant()
+byRestaurantAndStatut()
+byIdWithPlat()
+commandeFirstpage()
+commandeNextpage()
+commandePreviouspage()
+
+Client : 
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+clientFirstpage()
+clientNextpage()
+clientPreviouspage()
+
+Cuisinier :
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+
+Gérant :
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+
+Restaurant : 
+
+save()
+delete()
+all()
+byIdWithPlat()
+byNom()
+byVilleOuCodePostal()
+restaurantFirstpage()
+restaurantNextpage()
+restaurantPreviouspage()
+
+Plat : 
+
+save()
+delete()
+all()
+byNom()
+platFirstpage()
+platNextpage()
+platPreviouspage()
+
+méthodes de tri ?
