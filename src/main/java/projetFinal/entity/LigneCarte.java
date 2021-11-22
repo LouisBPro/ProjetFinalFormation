@@ -5,12 +5,14 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ligne_carte")
 public class LigneCarte {
 	@EmbeddedId
 	private LigneCartePk id;
-	@Column(name = "ligne_carte_disponibilité")
+	@Column(name = "ligne_carte_disponibilitï¿½")
 	private Boolean disponibilite;
 	
 
