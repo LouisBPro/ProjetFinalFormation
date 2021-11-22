@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import projetFinal.entity.Plat;
 import projetFinal.exceptions.PlatException;
+import projetFinal.repositories.LigneCarteRepository;
 import projetFinal.repositories.LigneCommandeRepository;
 import projetFinal.repositories.PlatRepository;
 
@@ -20,6 +21,8 @@ public class PlatService {
 	private Validator validator;
 	@Autowired
 	private LigneCommandeRepository ligneCommandeRepository;
+	@Autowired
+	private LigneCarteRepository ligneCarteRepository;
 
 	public void save(Plat plat) {
 		Set<ConstraintViolation<Plat>> violations = validator.validate(plat);
@@ -33,6 +36,7 @@ public class PlatService {
 
 	public void delete(Plat plat) {
 		plat = byId(plat.getId());
+		ligneCarteRepository.deleteByPlat(plat);
 		ligneCommandeRepository.deleteByPlat(plat);
 		platRepository.delete(plat);
 	}

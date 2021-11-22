@@ -18,7 +18,11 @@ import projetFinal.entity.Restaurant;
 import projetFinal.entity.Statut;
 
 public interface LigneCarteRepository extends JpaRepository<LigneCarte, Long>{
-    
+	@Modifying
+	@Transactional
+	@Query("delete from LigneCarte lc where lc.id.plat=:plat")
+	void deleteByPlat(@Param("plat") Plat plat);
+	
     @Modifying
 	@Transactional
 	@Query("delete from LigneCarte lc where lc.id.restaurant=:restaurant")
