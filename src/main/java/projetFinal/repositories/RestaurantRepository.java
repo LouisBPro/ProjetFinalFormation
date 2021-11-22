@@ -7,10 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import projetFinal.entity.Client;
-import projetFinal.entity.Commande;
 import projetFinal.entity.Restaurant;
-import projetFinal.entity.Statut;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 

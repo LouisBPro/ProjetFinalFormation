@@ -1,28 +1,18 @@
 package projetFinal.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Client;
-import projetFinal.entity.Commande;
 import projetFinal.entity.Plat;
 import projetFinal.entity.Restaurant;
-import projetFinal.entity.Statut;
-import projetFinal.exceptions.CommandeException;
 import projetFinal.exceptions.RestaurantException;
-import projetFinal.repositories.CommandeRepository;
 import projetFinal.repositories.LigneCarteRepository;
-import projetFinal.repositories.LigneCommandeRepository;
 import projetFinal.repositories.RestaurantRepository;
 
 @Service
@@ -46,13 +36,19 @@ public class RestaurantService {
 	}
 
 	public void delete(Restaurant restaurant) {
+        restaurant = byId(restaurant.getId());
 		ligneCarteRepository.deleteByRestaurant(restaurant);
 		restaurantRepository.delete(restaurant);
 	}
 
 	public void removeOneLigneCarte(Restaurant restaurant, Plat plat) {
+        restaurant = byId(restaurant.getId());
 		ligneCarteRepository.deleteByRestaurantAndPlat(restaurant, plat);
 	}
+
+    public Restaurant byId(Long id){
+        return restaurantRepository.findById(id).orElseThrow(RestaurantException::new);
+    }
 
     public List<Restaurant> all(){
         return restaurantRepository.findAll();
