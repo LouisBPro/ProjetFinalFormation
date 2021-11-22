@@ -31,10 +31,10 @@ public class PlatService {
 
 	}
 
-	public void delete(Plat Plat) {
-		Plat = byId(Plat.getId());
-		ligneCommandeRepository.deleteByPlat(Plat);
-		platRepository.delete(Plat);
+	public void delete(Plat plat) {
+		plat = byId(plat.getId());
+		ligneCommandeRepository.deleteByPlat(plat);
+		platRepository.delete(plat);
 	}
 
 	public Plat byId(Long id) {
