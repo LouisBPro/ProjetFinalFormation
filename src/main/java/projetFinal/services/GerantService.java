@@ -38,8 +38,13 @@ public class GerantService {
 		return gerantRepository.findById(id).orElseThrow(GerantException::new);
 	}
 	
+	public Gerant byIdWithRestaurants(Long id) {
+		return gerantRepository.findByIdWithRestaurants(id).orElseThrow(GerantException::new);
+	}
+
 	public Gerant byLoginOrEmail(String login) {
 		return gerantRepository.findByLoginOrEmail(login).orElseThrow(GerantException::new);
 	}
+
 
 }

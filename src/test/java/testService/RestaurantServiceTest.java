@@ -2,7 +2,9 @@ package testService;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ import projetFinal.services.RestaurantService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
-//@Rollback
+@Rollback
 public class RestaurantServiceTest {
 
     @Autowired
@@ -38,7 +40,7 @@ public class RestaurantServiceTest {
     PlatService platService;
     @Autowired
     CuisinierService cuisinierService;
-    @Autowired 
+    @Autowired
     GerantService gerantService;
 
     // @BeforeClass
@@ -46,8 +48,7 @@ public class RestaurantServiceTest {
     // }
 
     @Test
-    public void remplissageBdd(){
-        
+    public void remplissageBdd() {
 
         Cuisinier cuistot1 = new Cuisinier();
         cuistot1.setNom("Baron");
@@ -62,18 +63,21 @@ public class RestaurantServiceTest {
         gerant1.setLogin("pecaplop");
         gerant1.setPassword("motDePasse");
         gerant1.setEmail("martial@hotmail.com");
+        gerantService.save(gerant1);
 
         Plat plat1 = new Plat();
         plat1.setDescription("C'est un super bon plat !");
         plat1.setNom("Tofu fumé au gingembre");
         plat1.setPrix(10.50f);
-        
+        platService.save(plat1);
+
         Plat plat2 = new Plat();
         plat2.setDescription("C'est un super mauvais plat !");
         plat2.setNom("Poulet confit au sang de caille ");
         plat2.setPrix(18.50f);
+        platService.save(plat2);
 
-		Restaurant resto1 = new Restaurant();
+        Restaurant resto1 = new Restaurant();
         Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
         resto1.setNom("Restaurant - Saint Anne");
         resto1.setAdresse(adresse1);
@@ -89,7 +93,6 @@ public class RestaurantServiceTest {
         ligneCarte2.setDisponibilite(true);
 
         Set<LigneCarte> setLignesCarte = new HashSet<LigneCarte>();
-        // ID nulls
         System.out.println(setLignesCarte.add(ligneCarte1));
         System.out.println(setLignesCarte.add(ligneCarte2));
         resto1.setLignesCarte(setLignesCarte);
@@ -99,21 +102,82 @@ public class RestaurantServiceTest {
         cuisinierSet.add(cuistot1);
 
         cuistot1.setRestaurant(resto1);
-        
-        gerantService.save(gerant1);
-        platService.save(plat1);
-        platService.save(plat2);
+
         restaurantService.save(resto1);
         cuisinierService.save(cuistot1);
 
     }
 
-	@Test
-	public void testInsert() {
-        List<Restaurant> resto = restaurantService.byVille("Rennes");
+    @Test
+    public void testById() {
+        Restaurant resto = restaurantService.byId(1L);
         System.out.println(resto);
-        assertFalse(resto.isEmpty());
-        // TOUS MES ID SONT NULL TANT QUILS SONT PAS DANS LA BDD?
-	}
+        assertNotNull(resto);
+    }
 
+    @Test
+    public void testByIdWithLigneCarte() {
+        Restaurant resto = restaurantService.byIdWithLigneCarte(1L);
+        System.out.println(resto);
+        for (LigneCarte lc : resto.getLignesCarte()) {
+            System.out.println(lc);
+        }
+        assertFalse(resto.getLignesCarte().isEmpty());
+    }
+
+    @Test
+    public void testDelete() {
+        Restaurant resto = restaurantService.byId(1L);
+        assertNotNull(resto);
+        assertTrue(gerantService.byIdWithRestaurants(200L).getRestaurants().contains(resto));
+        assertTrue(cuisinierService.byId(201L).getRestaurant().equals(resto));
+        restaurantService.delete(resto);
+        assertFalse(gerantService.byIdWithRestaurants(200L).getRestaurants().contains(resto));
+        assertNull(cuisinierService.byId(201L).getRestaurant());
+    }
+
+    @Test
+    public void testRemoveOneLigneCarte() {
+        Restaurant resto = restaurantService.byIdWithLigneCarte(1L);
+        assertFalse(resto.getLignesCarte().isEmpty());
+        List<Plat> plats = new ArrayList<Plat>();
+        int i = 0;
+        for (LigneCarte lc : resto.getLignesCarte()) {
+            plats.add(lc.getId().getPlat());
+            System.out.println("Plat" + i + ": " + plats.get(i));
+            restaurantService.removeOneLigneCarte(resto, plats.get(i));
+            i++;
+        }
+        assertTrue(restaurantService.byIdWithLigneCarte(1L).getLignesCarte().isEmpty());
+    }
+
+    @Test
+    public void testByNom() {
+        List<Restaurant> restos = restaurantService.byNom("Restaurant - Saint Anne");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byNom("Restaurant");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byNom("Resturant");
+        assertTrue(restos.isEmpty());
+    }
+
+    @Test
+    public void testByVilleOrCodePostal() {
+        List<Restaurant> restos = restaurantService.byVilleOrCodePostal("35");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byVilleOrCodePostal("35000");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byVilleOrCodePostal("Rennes");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byVilleOrCodePostal("Re");
+        assertFalse(restos.isEmpty());
+        restos = restaurantService.byVilleOrCodePostal("36000");
+        assertTrue(restos.isEmpty());
+        restos = restaurantService.byVilleOrCodePostal("Rqnnes");
+        assertTrue(restos.isEmpty());
+    }
+
+    @Test
+    public void testAll() {
+    }
 }
