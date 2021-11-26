@@ -16,6 +16,7 @@ import projetFinal.entity.Statut;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	
+	
 	@Query("select c from Commande c left join fetch c.lignesCommande where c.client=:client")
 	List<Commande> findByClientWithLignesCommande(@Param("client") Client client);
 	
@@ -23,6 +24,7 @@ public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	
 	List<Commande> findByRestaurantAndStatut(Restaurant restaurant, Statut statut);
 	
+	@Transactional
 	@Query("select c from Commande c left join fetch c.lignesCommande where c.id =:id")
 	Optional<Commande> findByIdWithLignesCommande(@Param("id")Long id);
 	

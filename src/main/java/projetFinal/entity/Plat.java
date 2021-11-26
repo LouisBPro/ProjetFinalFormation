@@ -32,12 +32,11 @@ public class Plat {
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommande = new HashSet<LigneCommande>();
 	@OneToMany(mappedBy = "id.plat")
-	private Set<LigneCarte> lignesCarte;
+	private Set<LigneCarte> lignesCarte = new HashSet<LigneCarte>();
 	@Column(name = "ligne_carte_prix")
 	private Float prix;
 
 	public Plat() {
-
 	}
 
 	public Plat(String nom, String description) {

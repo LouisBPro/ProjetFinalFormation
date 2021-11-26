@@ -1,7 +1,6 @@
 package projetFinal.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.persistence.Embeddable;
 import javax.persistence.ForeignKey;

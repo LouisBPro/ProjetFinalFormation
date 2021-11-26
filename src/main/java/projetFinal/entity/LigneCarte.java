@@ -1,7 +1,5 @@
 package projetFinal.entity;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
