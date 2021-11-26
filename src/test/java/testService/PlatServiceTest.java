@@ -2,13 +2,11 @@ package testService;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 
 import projetFinal.config.AppConfig;
 import projetFinal.entity.Plat;
@@ -20,7 +18,7 @@ import projetFinal.services.PlatService;
 public class PlatServiceTest {
 	@Autowired
 	private PlatService platService;
-	
+
 	private Plat getPlat() {
 		Plat plat = new Plat("nom test", "description du plat test");
 		return plat;
@@ -34,5 +32,16 @@ public class PlatServiceTest {
 		platService.delete(produit);
 		platService.byId(produit.getId());
 	}
+
+	@Test
+	public void testall() {
+		assertNotNull(platService.all());
+	}
+	
+	@Test
+	public void testByNom() {
+		assertNotNull(platService.byNom("nom test"));
+	}
+	
 
 }
