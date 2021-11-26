@@ -26,7 +26,7 @@ public class CuisinierService {
 		if (violations.isEmpty()) {
 			cuisinierRepository.save(cuisinier);
 		} else {
-			throw new ClientException();
+			throw new CuisinierException();
 		}
 	}
 

@@ -21,10 +21,15 @@ public class Cuisinier extends Personne {
     private Restaurant restaurant;
   
 
-    public Cuisinier() {
+    public Cuisinier(String nom, String prenom) {
+		super(nom, prenom);
+	}
 
+
+	public Cuisinier() {
+    	super();
     }
-
+ 
     
     public Restaurant getRestaurant() {
         return restaurant;

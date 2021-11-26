@@ -42,6 +42,11 @@ public abstract class Personne {
 	public Personne() {
 
 	}
+	public Personne(String nom,String prenom) {
+		this.nom=nom;
+		this.prenom=prenom;
+
+	}
 
 	public Long getId() {
 		return id;

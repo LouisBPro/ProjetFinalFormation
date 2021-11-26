@@ -41,7 +41,7 @@ public class PlatServiceTest {
 	@Test
 	public void testByNom() {
 		assertNotNull(platService.byNom("nom test"));
-	}
-	
+		assertNotNull(platService.byNom("nom "));
+	}	
 
 }
