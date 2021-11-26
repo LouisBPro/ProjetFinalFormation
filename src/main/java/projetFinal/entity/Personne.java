@@ -29,11 +29,9 @@ public abstract class Personne {
 	@NotBlank
 	@NotEmpty
 	private String nom;
-	@Column(name = "personne_email", length = 200)
-	@UniqueElements
+	@Column(name = "personne_email", length = 200, unique = true)
 	private String email;
-	@Column(name = "personne_login", length = 30)
-	@UniqueElements
+	@Column(name = "personne_login", length = 30, unique = true)
 	private String login;
 	@Column(name = "personne_password", length = 30)
 	private String password;
