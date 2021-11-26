@@ -12,6 +12,8 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @SequenceGenerator(name = "seqPersonne", sequenceName = "seq_personne", initialValue = 200, allocationSize = 1)
@@ -28,8 +30,10 @@ public abstract class Personne {
 	@NotEmpty
 	private String nom;
 	@Column(name = "personne_email", length = 200)
+	@UniqueElements
 	private String email;
 	@Column(name = "personne_login", length = 30)
+	@UniqueElements
 	private String login;
 	@Column(name = "personne_password", length = 30)
 	private String password;
