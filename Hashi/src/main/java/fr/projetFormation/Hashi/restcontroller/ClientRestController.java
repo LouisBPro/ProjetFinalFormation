@@ -43,12 +43,12 @@ public class ClientRestController {
 		return clientService.save(client);
 	}
 	
-	@PostMapping("")
-	@JsonView(JsonViews.Common.class)
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public Client create(@Valid @RequestBody Client client,@Valid @RequestBody User user, BindingResult br) {
-		return clientService.save(client);
-	}
+//	@PostMapping("")
+//	@JsonView(JsonViews.Common.class)
+//	@ResponseStatus(code = HttpStatus.CREATED)
+//	public Client create(@Valid @RequestBody Client client,@Valid @RequestBody User user, BindingResult br) {
+//		return clientService.save(client);
+//	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)

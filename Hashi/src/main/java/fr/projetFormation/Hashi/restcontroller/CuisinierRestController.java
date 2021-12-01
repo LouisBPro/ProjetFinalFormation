@@ -42,12 +42,12 @@ public class CuisinierRestController {
 		return cuisinierService.save(cuisinier);
 	}
 	
-	@PostMapping("")
-	@JsonView(JsonViews.Common.class)
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public Cuisinier create(@Valid @RequestBody Cuisinier cuisinier,@Valid @RequestBody User user, BindingResult br) {
-		return cuisinierService.save(cuisinier);
-	}
+//	@PostMapping("")
+//	@JsonView(JsonViews.Common.class)
+//	@ResponseStatus(code = HttpStatus.CREATED)
+//	public Cuisinier create(@Valid @RequestBody Cuisinier cuisinier,@Valid @RequestBody User user, BindingResult br) {
+//		return cuisinierService.save(cuisinier);
+//	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
