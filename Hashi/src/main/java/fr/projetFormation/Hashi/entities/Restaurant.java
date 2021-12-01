@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "restaurant")
 @SequenceGenerator(name = "seqRestaurant", sequenceName = "seq_restaurant", allocationSize = 1)
@@ -28,24 +30,30 @@ public class Restaurant {
 	@Id
 	@Column(name = "restaurant_id", nullable = false)
 	@GeneratedValue(generator = "seqRestaurant", strategy = GenerationType.SEQUENCE)
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@NotBlank
 	@NotNull
 	@Column(name = "restaurant_name")
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "restaurant_numero")),
 			@AttributeOverride(name = "rue", column = @Column(name = "restaurant_rue")),
 			@AttributeOverride(name = "codePostal", column = @Column(name = "restaurant_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "restaurant_ville")) })
+	@JsonView(JsonViews.Common.class)
 	private Adresse adresse;
 	@OneToMany(mappedBy = "id.restaurant")
+	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
 	private Set<LigneCarte> lignesCarte = new HashSet<LigneCarte>();
 
 	@ManyToOne
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
+	@JsonView(JsonViews.RestaurantAvecGerant.class)
 	private Gerant gerant;
 	@OneToMany(mappedBy = "restaurant")
+	@JsonView(JsonViews.RestaurantAvecCuisinier.class)
 	private Set<Cuisinier> cuisiniers = new HashSet<Cuisinier>();
 
 	public Long getId() {

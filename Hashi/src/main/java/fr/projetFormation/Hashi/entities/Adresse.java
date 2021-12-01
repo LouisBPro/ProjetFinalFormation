@@ -3,12 +3,18 @@ package fr.projetFormation.Hashi.entities;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Embeddable
 public class Adresse {
+	@JsonView(JsonViews.Common.class)
 	private int numero;
+	@JsonView(JsonViews.Common.class)
 	private String rue;
 	@Column(length = 20)
+	@JsonView(JsonViews.Common.class)
 	private String codePostal;
+	@JsonView(JsonViews.Common.class)
 	private String ville;
 
 	public Adresse(int numero, String rue, String codePostal, String ville) {

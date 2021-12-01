@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "plat")
 @SequenceGenerator(name = "seqPlat", sequenceName = "seq_plat", allocationSize = 1)
@@ -20,13 +22,16 @@ public class Plat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPlat")
 	@Column(name = "plat_id")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Column(name = "plat_nom", nullable = false, length = 200)
+	@JsonView(JsonViews.Common.class)
 	private String nom;
-	@Lob
+	// @Lob
 	@Column(name = "plat_description")
+	@JsonView(JsonViews.Common.class)
 	private String description;
-	@Lob
+	// @Lob
 	@Column(name = "plat_photo")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.plat")
@@ -34,6 +39,7 @@ public class Plat {
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCarte> lignesCarte = new HashSet<LigneCarte>();
 	@Column(name = "ligne_carte_prix")
+	@JsonView(JsonViews.Common.class)
 	private Float prix;
 
 	public Plat() {

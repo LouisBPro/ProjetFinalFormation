@@ -12,6 +12,8 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -19,20 +21,26 @@ import javax.validation.constraints.NotEmpty;
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqPersonne")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Column(name = "personne_prenom", length = 200)
 	@NotBlank
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String prenom;
 	@Column(name = "personne_nom", length = 200)
 	@NotBlank
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 	@Column(name = "personne_email", length = 200, unique = true)
+	@JsonView(JsonViews.Common.class)
 	private String email;
 	@Column(name = "personne_login", length = 30, unique = true)
+	@JsonView(JsonViews.Common.class)
 	private String login;
 	@Column(name = "personne_password", length = 30)
+	@JsonView(JsonViews.Common.class)
 	private String password;
 	@Version
 	@Column(name = "personne_version")

@@ -7,10 +7,13 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Embeddable
 public class LigneCartePk implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ligne_carte_plat_id", foreignKey = @ForeignKey(name = "ligne_carte_plat_id_fk"))
+	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
 	private Plat plat;
 	@ManyToOne
 	@JoinColumn(name = "ligne_carte_restaurant_id", foreignKey = @ForeignKey(name = "ligne_carte_restaurant_id_fk"))

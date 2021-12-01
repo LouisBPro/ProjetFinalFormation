@@ -5,12 +5,16 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "ligne_carte")
 public class LigneCarte {
 	@EmbeddedId
+	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
 	private LigneCartePk id;
 	@Column(name = "ligne_carte_disponibilite")
+	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
 	private Boolean disponibilite;
 	
 

@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", initialValue = 100, allocationSize = 1)
@@ -22,6 +24,7 @@ public class Client extends Personne {
 			@AttributeOverride(name = "rue", column = @Column(name = "personne_rue")),
 			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
+	@JsonView(JsonViews.Common.class)
 	private Adresse adresse;
 	@OneToMany(mappedBy="client")
 	private Set<Commande> commandes = new HashSet<Commande>();

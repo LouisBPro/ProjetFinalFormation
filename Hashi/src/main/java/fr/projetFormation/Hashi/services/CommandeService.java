@@ -66,17 +66,4 @@ public class CommandeService {
 	public Commande byId(Long id) {
 		return commandeRepository.findById(id).orElseThrow(CommandeException::new);
 	}
-
-//	public Page<Commande> clientFirstPage(int size) {
-//		Pageable pageable = PageRequest.of(0, size);
-//		return commandeRepository.findAll(pageable);
-//	}
-//
-//	public Page<Commande> clientNextPage(Page<Commande> page) {
-//		return commandeRepository.findAll(page.nextOrLastPageable());
-//	}
-//
-//	public Page<Commande> clientPreviousPage(Page<Commande> page) {
-//		return commandeRepository.findAll(page.previousOrFirstPageable());
-//	}
 }

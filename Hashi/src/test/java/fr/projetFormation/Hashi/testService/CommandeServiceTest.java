@@ -39,7 +39,7 @@ public class CommandeServiceTest {
 	@Autowired
 	private RestaurantService restaurantService;
 
-//	@Test
+	@Test
 	public void testSave() {
 		Client cl = new Client();
 		cl.setEmail("jjj@kkk.com");
@@ -137,7 +137,7 @@ public class CommandeServiceTest {
 
 	// @Test(expected = CommandeException.class)
 	// public void testDelete() {
-		Commande c = commandeService.byId(1L);
+	//	Commande c = commandeService.byId(1L);
 	// 	commandeService.delete(c);
 	// 	commandeService.byId(1L);
 	// }

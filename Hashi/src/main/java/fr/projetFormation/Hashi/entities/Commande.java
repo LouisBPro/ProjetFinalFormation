@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "commande")
 @SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", allocationSize = 1)
@@ -29,22 +31,29 @@ public class Commande {
 	@Id
 	@Column(name = "commande_id")
 	@GeneratedValue(generator = "seqCommande", strategy = GenerationType.SEQUENCE)
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="commande_client_id", foreignKey = @ForeignKey(name="commande_client_id_fk"))
+	@JsonView(JsonViews.Common.class)
 	private Client client;
 	@Column(name = "commande_date", nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private LocalDate date = LocalDate.now();
 	@OneToMany(mappedBy="id.commande")
+	@JsonView(JsonViews.Common.class)
 	private Set<LigneCommande> lignesCommande = new HashSet<LigneCommande>();
 	@OneToOne
 	@JoinColumn(name="commande_restaurant_id", foreignKey = @ForeignKey(name="commande_restaurant_id_fk"))
+	@JsonView(JsonViews.Common.class)
 	private Restaurant restaurant;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "commande_statut")
+	@JsonView(JsonViews.Common.class)
 	private Statut statut = Statut.Validated;
 	@Column(name = "commande_prix_total")
+	@JsonView(JsonViews.Common.class)
 	private Float prixTotal;
 	@Version
 	private int version;
