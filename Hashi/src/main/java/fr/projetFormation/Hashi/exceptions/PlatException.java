@@ -1,4 +1,4 @@
-package projetFinal.exceptions;
+package fr.projetFormation.Hashi.exceptions;
 
 public class PlatException extends RuntimeException {
 	public PlatException() {

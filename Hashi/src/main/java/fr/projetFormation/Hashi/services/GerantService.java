@@ -9,7 +9,7 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.projetFormation.Hashi.entity.Gerant;
+import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.exceptions.ClientException;
 import fr.projetFormation.Hashi.exceptions.GerantException;
 import fr.projetFormation.Hashi.repositories.GerantRepository;

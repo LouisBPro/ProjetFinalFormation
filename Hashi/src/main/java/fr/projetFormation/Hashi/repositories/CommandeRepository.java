@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.projetFormation.Hashi.entity.Client;
-import fr.projetFormation.Hashi.entity.Commande;
-import fr.projetFormation.Hashi.entity.Restaurant;
-import fr.projetFormation.Hashi.entity.Statut;
+import fr.projetFormation.Hashi.entities.Commande;
+import fr.projetFormation.Hashi.entities.Restaurant;
+import fr.projetFormation.Hashi.entities.Statut;
+import fr.projetFormation.Hashi.entities.Client;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	

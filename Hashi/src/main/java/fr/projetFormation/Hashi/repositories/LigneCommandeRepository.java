@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.projetFormation.Hashi.entity.Commande;
-import fr.projetFormation.Hashi.entity.Plat;
-import fr.projetFormation.Hashi.entity.LigneCommande;
-import fr.projetFormation.Hashi.LigneCommandePK;
+import fr.projetFormation.Hashi.entities.Commande;
+import fr.projetFormation.Hashi.entities.LigneCommande;
+import fr.projetFormation.Hashi.entities.LigneCommandePK;
+import fr.projetFormation.Hashi.entities.Plat;
 
 public interface LigneCommandeRepository extends JpaRepository<LigneCommande, LigneCommandePK>{
 

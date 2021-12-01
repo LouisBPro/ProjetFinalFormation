@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import fr.projetFormation.Hashi.entity.Client;
+import fr.projetFormation.Hashi.entities.Client;
 import fr.projetFormation.Hashi.exceptions.ClientException;
 import fr.projetFormation.Hashi.repositories.ClientRepository;
 import fr.projetFormation.Hashi.repositories.CommandeRepository;

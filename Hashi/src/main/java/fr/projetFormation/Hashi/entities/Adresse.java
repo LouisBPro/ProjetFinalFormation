@@ -1,4 +1,4 @@
-package fr.projetFormation.Hashi.entity;
+package fr.projetFormation.Hashi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

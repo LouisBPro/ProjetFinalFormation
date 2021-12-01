@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import fr.projetFormation.Hashi.entity.Client;
+import fr.projetFormation.Hashi.entities.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long>{
 	

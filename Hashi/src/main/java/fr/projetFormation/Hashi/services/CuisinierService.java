@@ -9,8 +9,7 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.projetFormation.Hashi.entity.Cuisinier;
-import fr.projetFormation.Hashi.exceptions.ClientException;
+import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.exceptions.CuisinierException;
 import fr.projetFormation.Hashi.repositories.CuisinierRepository;
 

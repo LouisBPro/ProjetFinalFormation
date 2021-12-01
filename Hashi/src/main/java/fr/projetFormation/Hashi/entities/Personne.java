@@ -1,4 +1,4 @@
-package fr.projetFormation.Hashi.entity;
+package fr.projetFormation.Hashi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

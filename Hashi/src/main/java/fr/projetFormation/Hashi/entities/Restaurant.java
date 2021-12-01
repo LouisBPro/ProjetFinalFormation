@@ -1,4 +1,4 @@
-package fr.projetFormation.Hashi.entity;
+package fr.projetFormation.Hashi.entities;
 
 import java.util.HashSet;
 import java.util.Objects;

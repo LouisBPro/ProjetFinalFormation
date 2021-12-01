@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import fr.projetFormation.Hashi.entity.LigneCarte;
-import fr.projetFormation.Hashi.entity.Plat;
-import fr.projetFormation.Hashi.entity.Restaurant;
+import fr.projetFormation.Hashi.entities.LigneCarte;
+import fr.projetFormation.Hashi.entities.Plat;
+import fr.projetFormation.Hashi.entities.Restaurant;
 
 public interface LigneCarteRepository extends JpaRepository<LigneCarte, Long>{
 	@Modifying

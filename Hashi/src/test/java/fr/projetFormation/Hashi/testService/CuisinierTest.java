@@ -1,21 +1,17 @@
-package testService;
-
-import static org.junit.Assert.*;
+package fr.projetFormation.Hashi.testService;
 
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import projetFinal.config.AppConfig;
-import projetFinal.entity.Cuisinier;
+import fr.projetFormation.Hashi.entities.Cuisinier;
+import fr.projetFormation.Hashi.services.CuisinierService;
 
-import projetFinal.services.CuisinierService;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { AppConfig.class })
+@SpringBootTest
 public class CuisinierTest {
 	 @Autowired
 	    CuisinierService cuisinierService;

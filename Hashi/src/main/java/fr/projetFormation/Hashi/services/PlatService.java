@@ -9,11 +9,11 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.projetFormation.Hashi.entity.Plat;
+import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.exceptions.PlatException;
 import fr.projetFormation.Hashi.repositories.LigneCarteRepository;
-import fr.projetFormation.Hashi.LigneCommandeRepository;
-import fr.projetFormation.Hashi.PlatRepository;
+import fr.projetFormation.Hashi.repositories.LigneCommandeRepository;
+import fr.projetFormation.Hashi.repositories.PlatRepository;
 
 @Service
 public class PlatService {

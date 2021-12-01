@@ -9,11 +9,11 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.projetFormation.Hashi.entity.Client;
-import fr.projetFormation.Hashi.entity.Commande;
-import fr.projetFormation.Hashi.entity.Plat;
-import fr.projetFormation.Hashi.entity.Restaurant;
-import fr.projetFormation.Hashi.entity.Statut;
+import fr.projetFormation.Hashi.entities.Client;
+import fr.projetFormation.Hashi.entities.Commande;
+import fr.projetFormation.Hashi.entities.Plat;
+import fr.projetFormation.Hashi.entities.Restaurant;
+import fr.projetFormation.Hashi.entities.Statut;
 import fr.projetFormation.Hashi.exceptions.CommandeException;
 import fr.projetFormation.Hashi.repositories.CommandeRepository;
 import fr.projetFormation.Hashi.repositories.LigneCommandeRepository;
