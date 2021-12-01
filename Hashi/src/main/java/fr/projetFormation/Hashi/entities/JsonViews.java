@@ -8,4 +8,6 @@ public class JsonViews {
 	public static class RestaurantAvecEmployes extends Common{}
 
 	public static class RestaurantAvecTout extends RestaurantAvecEmployes{}
+
+	public static class ClientWithCommandes extends Common{}
 }
