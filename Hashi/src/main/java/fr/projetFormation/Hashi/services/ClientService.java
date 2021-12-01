@@ -1,5 +1,6 @@
 package fr.projetFormation.Hashi.services;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.projetFormation.Hashi.entities.Client;
+import fr.projetFormation.Hashi.entities.Role;
+import fr.projetFormation.Hashi.entities.User;
 import fr.projetFormation.Hashi.exceptions.ClientException;
 import fr.projetFormation.Hashi.repositories.ClientRepository;
 import fr.projetFormation.Hashi.repositories.CommandeRepository;
@@ -25,11 +28,15 @@ public class ClientService {
 	@Autowired
 	private CommandeRepository commandeRepository;
 
-	public void save(Client client) {
+	public Client save(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
-			clientRepository.save(client);
+			User user = client.getUser();
+			user.setPassword(user.getPassword());
+			user.setRoles(Arrays.asList(Role.ROLE_CLIENT));
+			client.setUser(user);
+			return clientRepository.save(client);
 		} else {
 			throw new ClientException();
 		}
@@ -39,6 +46,9 @@ public class ClientService {
 		Client clientEnBase = clientRepository.findById(client.getId()).orElseThrow(ClientException::new);
 		commandeRepository.removeClientFromCommandeByClient(clientEnBase);
 		clientRepository.delete(clientEnBase);
+	}
+	public void delete(Long id) {
+		delete(clientRepository.findById(id).orElseThrow(ClientException::new));
 	}
 
 	public Page<Client> clientFirstPage(int size) {
@@ -58,7 +68,9 @@ public class ClientService {
 		return clientRepository.findByIdWithCommandes(id).orElseThrow(ClientException::new);
 	}
 	
-	public Client byLoginOrEmail(String login) {
-		return clientRepository.findByLoginOrEmail(login).orElseThrow(ClientException::new);
-	}
+	
+	//not necessary because of users
+//	public Client byLoginOrEmail(String login) {
+//		return clientRepository.findByLoginOrEmail(login).orElseThrow(ClientException::new);
+//	}
 }

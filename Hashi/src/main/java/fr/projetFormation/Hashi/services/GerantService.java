@@ -42,9 +42,9 @@ public class GerantService {
 		return gerantRepository.findByIdWithRestaurants(id).orElseThrow(GerantException::new);
 	}
 
-	public Gerant byLoginOrEmail(String login) {
-		return gerantRepository.findByLoginOrEmail(login).orElseThrow(GerantException::new);
-	}
+//	public Gerant byLoginOrEmail(String login) {
+//		return gerantRepository.findByLoginOrEmail(login).orElseThrow(GerantException::new);
+//	}
 
 
 }

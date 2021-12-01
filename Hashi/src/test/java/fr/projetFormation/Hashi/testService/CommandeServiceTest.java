@@ -43,11 +43,9 @@ public class CommandeServiceTest {
 	public void testSave() {
 		Client cl = new Client();
 		cl.setEmail("jjj@kkk.com");
-		cl.setLogin("jjj");
 		cl.setNom("jkj");
 		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
-		cl.setPassword("jjj");
 		clientService.save(cl);
 
 		Plat plat1 = new Plat();
@@ -90,11 +88,9 @@ public class CommandeServiceTest {
 	public void testByClientWithLigneCommande() {
 		Client cl = new Client();
 		cl.setEmail("jjj@kkk.com");
-		cl.setLogin("jjj");
 		cl.setNom("jkj");
 		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
-		cl.setPassword("jjj");
 		clientService.save(cl);
 		List<Commande> c = commandeService.byClientWithLigneCommande(cl);
 		assertNotNull(c);

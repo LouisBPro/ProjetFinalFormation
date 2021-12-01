@@ -20,7 +20,6 @@ public class CuisinierTest {
 		 Cuisinier cuistot1 = new Cuisinier();
 	        cuistot1.setNom("Baron");
 	        cuistot1.setPrenom("Louis");
-	        cuistot1.setPassword("motDePasse");
 	        return cuistot1;
 		}
 	@Test
@@ -38,14 +37,6 @@ public class CuisinierTest {
 		assertNull(cuisinierService.byId(cuistot1.getId()));
 	}
 
-	@Test
-	public void testByLoginOrEmail() {
-		 Cuisinier cuistot2 = new Cuisinier("test", "test");
-		 cuistot2.setLogin("testlogin");
-		 cuistot2.setEmail("test@hotmail.com");
-		 cuisinierService.save(cuistot2);
-		 assertNotNull(cuisinierService.byLoginOrEmail(cuistot2.getLogin()));
-		 assertNotNull(cuisinierService.byLoginOrEmail(cuistot2.getEmail()));
-	}
+	
 
 }

@@ -26,6 +26,7 @@ public class Client extends Personne {
 			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	@JsonView(JsonViews.Common.class)
 	private Adresse adresse;
+	@JsonView(JsonViews.ClientWithCommandes.class)
 	@OneToMany(mappedBy="client")
 	private Set<Commande> commandes = new HashSet<Commande>();
 	

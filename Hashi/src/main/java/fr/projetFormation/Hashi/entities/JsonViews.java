@@ -16,4 +16,8 @@ public class JsonViews {
 	public static class RestaurantAvecCuisinier{
 
 	}
+	
+	public static class ClientWithCommandes{
+		
+	}
 }

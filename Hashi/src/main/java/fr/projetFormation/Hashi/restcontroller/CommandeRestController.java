@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.projetFormation.Hashi.entities.Commande;
 import fr.projetFormation.Hashi.entities.JsonViews;
-import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.entities.Statut;
 import fr.projetFormation.Hashi.services.ClientService;
 import fr.projetFormation.Hashi.services.CommandeService;

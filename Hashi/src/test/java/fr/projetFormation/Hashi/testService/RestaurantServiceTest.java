@@ -51,15 +51,11 @@ public class RestaurantServiceTest {
         Cuisinier cuistot1 = new Cuisinier();
         cuistot1.setNom("Baron");
         cuistot1.setPrenom("Louis");
-        cuistot1.setLogin("barlou");
-        cuistot1.setPassword("motDePasse");
         cuistot1.setEmail("louis@hotmail.com");
 
         Gerant gerant1 = new Gerant();
         gerant1.setNom("Henan");
-        gerant1.setPrenom("Martial");
-        gerant1.setLogin("pecaplop");
-        gerant1.setPassword("motDePasse");
+        gerant1.setPrenom("Martial"); 
         gerant1.setEmail("martial@hotmail.com");
         gerantService.save(gerant1);
 

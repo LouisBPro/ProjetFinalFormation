@@ -13,8 +13,8 @@ import fr.projetFormation.Hashi.entities.Gerant;
 
 public interface GerantRepository extends JpaRepository<Gerant, Long>{
 	
-	@Query("select g from Gerant g where g.login=:login or g.email=:login")
-	Optional<Gerant> findByLoginOrEmail(@Param("login") String login);
+//	@Query("select g from Gerant g where g.login=:login or g.email=:login")
+//	Optional<Gerant> findByLoginOrEmail(@Param("login") String login);
 
 	@Transactional
     @Query("select g from Gerant g left join fetch g.restaurants")
