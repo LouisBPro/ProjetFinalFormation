@@ -34,11 +34,12 @@ public class RestaurantService {
 	@Autowired
 	private Validator validator;
 
-	public void save(Restaurant restaurant) {
+	public Restaurant save(Restaurant restaurant) {
 		Set<ConstraintViolation<Restaurant>> violations = validator.validate(restaurant);
 		if (violations.isEmpty()) {
 			restaurantRepository.save(restaurant);
 			ligneCarteRepository.saveAll(restaurant.getLignesCarte());
+			return restaurant;
 		} else {
 			throw new RestaurantException();
 		}
@@ -47,30 +48,20 @@ public class RestaurantService {
 	public void delete(Restaurant restaurant) {
 		restaurant = byId(restaurant.getId());
 		ligneCarteRepository.deleteByRestaurant(restaurant);
-
-		List<Cuisinier> cuisiniers = cuisinierRepository.findAll();
-		for (Cuisinier c : cuisiniers){
-			if (c.getRestaurant().equals(restaurant))
-			{
-				c.setRestaurant(null);
-				cuisinierRepository.save(c);
-			}
-		}
-
-		List<Gerant> gerants = gerantRepository.findAllWithRestaurants().orElseThrow(GerantException::new);
-		for (Gerant g : gerants){
-			Set<Restaurant> restos = g.getRestaurants();
-			if(restos.remove(restaurant)){
-				g.setRestaurants(restos);
-				gerantRepository.save(g);
-			}
-		}
+		
+		restaurant.getCuisiniers().forEach(c ->{
+			c.setRestaurant(null);
+			cuisinierRepository.save(c);
+		});
+		restaurant.getGerant().getRestaurants().remove(restaurant);
+		gerantRepository.save(restaurant.getGerant());
 		restaurantRepository.delete(restaurant);
 	}
 
-	public void removeOneLigneCarte(Restaurant restaurant, Plat plat) {
+	public Restaurant removeOneLigneCarte(Restaurant restaurant, Plat plat) {
 		restaurant = byId(restaurant.getId());
 		ligneCarteRepository.deleteByRestaurantAndPlat(restaurant, plat);
+		return restaurant;
 	}
 
 	public Restaurant byId(Long id) {

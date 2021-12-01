@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class LigneCartePk implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ligne_carte_plat_id", foreignKey = @ForeignKey(name = "ligne_carte_plat_id_fk"))
-	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+	@JsonView({JsonViews.RestaurantAvecLignesCarte.class, JsonViews.RestaurantAvecTout.class})
 	private Plat plat;
 	@ManyToOne
 	@JoinColumn(name = "ligne_carte_restaurant_id", foreignKey = @ForeignKey(name = "ligne_carte_restaurant_id_fk"))

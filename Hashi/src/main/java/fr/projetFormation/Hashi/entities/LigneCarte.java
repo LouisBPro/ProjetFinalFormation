@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Table(name = "ligne_carte")
 public class LigneCarte {
 	@EmbeddedId
-	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+	@JsonView({JsonViews.RestaurantAvecLignesCarte.class, JsonViews.RestaurantAvecTout.class})
 	private LigneCartePk id;
 	@Column(name = "ligne_carte_disponibilite")
-	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+	@JsonView({JsonViews.RestaurantAvecLignesCarte.class, JsonViews.RestaurantAvecTout.class})
 	private Boolean disponibilite;
 	
 

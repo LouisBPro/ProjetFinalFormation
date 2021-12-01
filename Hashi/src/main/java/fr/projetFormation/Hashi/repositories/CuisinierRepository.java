@@ -14,8 +14,8 @@ import fr.projetFormation.Hashi.entities.Restaurant;
 
 public interface CuisinierRepository extends JpaRepository<Cuisinier, Long>{
 	
-	@Query("select c from Cuisinier c where c.login=:login or c.email=:login")
-	Optional<Cuisinier> findByLoginOrEmail(@Param("login") String login);
+//	@Query("select c from Cuisinier c where c.login=:login or c.email=:login")
+//	Optional<Cuisinier> findByLoginOrEmail(@Param("login") String login);
 
     @Modifying
 	@Transactional

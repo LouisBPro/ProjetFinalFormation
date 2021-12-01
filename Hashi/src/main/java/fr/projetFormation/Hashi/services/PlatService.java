@@ -26,10 +26,11 @@ public class PlatService {
 	@Autowired
 	private LigneCarteRepository ligneCarteRepository;
 
-	public void save(Plat plat) {
+	public Plat save(Plat plat) {
 		Set<ConstraintViolation<Plat>> violations = validator.validate(plat);
 		if (violations.isEmpty()) {
 			platRepository.save(plat);
+			return plat;
 		} else {
 			throw new PlatException();
 		}

@@ -45,15 +45,14 @@ public class Restaurant {
 	@JsonView(JsonViews.Common.class)
 	private Adresse adresse;
 	@OneToMany(mappedBy = "id.restaurant")
-	@JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+	@JsonView({JsonViews.RestaurantAvecLignesCarte.class, JsonViews.RestaurantAvecTout.class})
 	private Set<LigneCarte> lignesCarte = new HashSet<LigneCarte>();
-
 	@ManyToOne
 	@JoinColumn(name = "restaurant_gerant_id", foreignKey = @ForeignKey(name = "restaurant_gerant_id_fk"))
-	@JsonView(JsonViews.RestaurantAvecGerant.class)
+	@JsonView(JsonViews.RestaurantAvecEmployes.class)
 	private Gerant gerant;
 	@OneToMany(mappedBy = "restaurant")
-	@JsonView(JsonViews.RestaurantAvecCuisinier.class)
+	@JsonView(JsonViews.RestaurantAvecEmployes.class)
 	private Set<Cuisinier> cuisiniers = new HashSet<Cuisinier>();
 
 	public Long getId() {

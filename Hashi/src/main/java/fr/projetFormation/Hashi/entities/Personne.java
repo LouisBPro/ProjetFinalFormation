@@ -7,12 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
 
 
 @Entity
@@ -36,12 +39,9 @@ public abstract class Personne {
 	@Column(name = "personne_email", length = 200, unique = true)
 	@JsonView(JsonViews.Common.class)
 	private String email;
-	@Column(name = "personne_login", length = 30, unique = true)
-	@JsonView(JsonViews.Common.class)
-	private String login;
-	@Column(name = "personne_password", length = 30)
-	@JsonView(JsonViews.Common.class)
-	private String password;
+	@OneToOne
+	@JoinColumn(name = "personne_user_id")
+	private User user;
 	@Version
 	@Column(name = "personne_version")
 	private int version;
@@ -87,22 +87,14 @@ public abstract class Personne {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
-	}
+	
 
-	public void setLogin(String login) {
-		this.login = login;
+	public User getUser() {
+		return user;
 	}
-
-	public String getPassword() {
-		return password;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public void Connection() {
 		// TODO
 	}
