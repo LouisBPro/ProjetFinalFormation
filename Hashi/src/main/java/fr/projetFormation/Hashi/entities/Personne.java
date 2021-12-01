@@ -41,6 +41,7 @@ public abstract class Personne {
 	private String email;
 	@OneToOne
 	@JoinColumn(name = "personne_user_id")
+	@JsonView(JsonViews.Common.class)
 	private User user;
 	@Version
 	@Column(name = "personne_version")

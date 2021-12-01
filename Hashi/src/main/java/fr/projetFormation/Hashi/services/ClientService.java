@@ -19,6 +19,7 @@ import fr.projetFormation.Hashi.entities.User;
 import fr.projetFormation.Hashi.exceptions.ClientException;
 import fr.projetFormation.Hashi.repositories.ClientRepository;
 import fr.projetFormation.Hashi.repositories.CommandeRepository;
+import fr.projetFormation.Hashi.repositories.UserRepository;
 
 @Service
 public class ClientService {
@@ -27,6 +28,8 @@ public class ClientService {
 	private ClientRepository clientRepository;
 	@Autowired
 	private CommandeRepository commandeRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	public Client save(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -35,6 +38,7 @@ public class ClientService {
 			User user = client.getUser();
 			user.setPassword(user.getPassword());
 			user.setRoles(Arrays.asList(Role.ROLE_CLIENT));
+			userRepository.save(user);
 			client.setUser(user);
 			return clientRepository.save(client);
 		} else {
@@ -46,6 +50,7 @@ public class ClientService {
 		Client clientEnBase = clientRepository.findById(client.getId()).orElseThrow(ClientException::new);
 		commandeRepository.removeClientFromCommandeByClient(clientEnBase);
 		clientRepository.delete(clientEnBase);
+		userRepository.delete(clientEnBase.getUser());
 	}
 	public void delete(Long id) {
 		delete(clientRepository.findById(id).orElseThrow(ClientException::new));
