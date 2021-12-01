@@ -3,7 +3,7 @@ package fr.projetFormation.Hashi.entities;
 
 public enum Statut {
 	Validated("validee"), Waiting("en attente d'acceptation"), Delivered("livree"),
-	Preparation("en cours de preparation"), Done("realisee"), Cancelled("annulee");
+	Preparation("en cours de preparation"), Done("realisee"), Cancelled("annulee"), None("none");
 
 	private String type;
 
