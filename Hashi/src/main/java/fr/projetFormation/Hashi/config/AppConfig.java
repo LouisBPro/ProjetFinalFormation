@@ -1,4 +1,4 @@
-package projetFinal.config;
+package fr.projetFormation.Hashi.config;
 
 import java.util.Properties;
 
@@ -6,7 +6,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

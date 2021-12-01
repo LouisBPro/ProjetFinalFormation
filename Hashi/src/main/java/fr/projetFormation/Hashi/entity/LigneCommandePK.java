@@ -1,4 +1,4 @@
-package projetFinal.entity;
+package fr.projetFormation.Hashi.entity;
 
 import java.io.Serializable;
 

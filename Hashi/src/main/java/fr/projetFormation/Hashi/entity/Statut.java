@@ -1,9 +1,9 @@
-package projetFinal.entity;
+package fr.projetFormation.Hashi.entity;
 
 
 public enum Statut {
-	Validated("validée"), Waiting("en attente d'acceptation"), Delivered("livrée"),
-	Preparation("en cours de préparation"), Done("réalisée"), Cancelled("annulée");
+	Validated("validï¿½e"), Waiting("en attente d'acceptation"), Delivered("livrï¿½e"),
+	Preparation("en cours de prï¿½paration"), Done("rï¿½alisï¿½e"), Cancelled("annulï¿½e");
 
 	private String type;
 

@@ -1,4 +1,4 @@
-package projetFinal.entity;
+package fr.projetFormation.Hashi.entity;
 
 import java.time.LocalDate;
 import java.util.HashSet;
