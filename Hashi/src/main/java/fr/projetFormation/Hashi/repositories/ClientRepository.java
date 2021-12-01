@@ -1,4 +1,4 @@
-package projetFinal.repositories;
+package fr.projetFormation.Hashi.repositories;
 
 import java.util.Optional;
 

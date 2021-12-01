@@ -1,4 +1,4 @@
-  package projetFinal.repositories;
+  package fr.projetFormation.Hashi.repositories;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import projetFinal.entity.Cuisinier;
-import projetFinal.entity.Restaurant;
+import fr.projetFormation.Hashi.entity.Cuisinier;
+import fr.projetFormation.Hashi.entity.Restaurant;
 
 public interface CuisinierRepository extends JpaRepository<Cuisinier, Long>{
 	

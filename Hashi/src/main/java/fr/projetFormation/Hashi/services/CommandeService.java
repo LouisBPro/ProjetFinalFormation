@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.List;
 import java.util.Set;
@@ -9,14 +9,14 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Client;
-import projetFinal.entity.Commande;
-import projetFinal.entity.Plat;
-import projetFinal.entity.Restaurant;
-import projetFinal.entity.Statut;
-import projetFinal.exceptions.CommandeException;
-import projetFinal.repositories.CommandeRepository;
-import projetFinal.repositories.LigneCommandeRepository;
+import fr.projetFormation.Hashi.entity.Client;
+import fr.projetFormation.Hashi.entity.Commande;
+import fr.projetFormation.Hashi.entity.Plat;
+import fr.projetFormation.Hashi.entity.Restaurant;
+import fr.projetFormation.Hashi.entity.Statut;
+import fr.projetFormation.Hashi.exceptions.CommandeException;
+import fr.projetFormation.Hashi.repositories.CommandeRepository;
+import fr.projetFormation.Hashi.repositories.LigneCommandeRepository;
 
 @Service
 public class CommandeService {
@@ -46,27 +46,27 @@ public class CommandeService {
 	public void removeOneLigneCommande(Commande commande, Plat plat) {
 		ligneCommandeRepository.deleteByCommandeAndPlat(commande, plat);
 	}
-	
-	public List<Commande> byClientWithLigneCommande(Client client){
+
+	public List<Commande> byClientWithLigneCommande(Client client) {
 		return commandeRepository.findByClientWithLignesCommande(client);
 	}
-	
-	public List<Commande> byRestaurantAndStatut(Restaurant restaurant, Statut statut){
+
+	public List<Commande> byRestaurantAndStatut(Restaurant restaurant, Statut statut) {
 		return commandeRepository.findByRestaurantAndStatut(restaurant, statut);
 	}
-	
-	public List<Commande> byRestaurant(Restaurant restaurant){
+
+	public List<Commande> byRestaurant(Restaurant restaurant) {
 		return commandeRepository.findByRestaurant(restaurant);
 	}
-	
+
 	public Commande byIdWithLigneCommande(Long id) {
 		return commandeRepository.findByIdWithLignesCommande(id).orElseThrow(CommandeException::new);
 	}
-	
+
 	public Commande byId(Long id) {
 		return commandeRepository.findById(id).orElseThrow(CommandeException::new);
 	}
-	
+
 //	public Page<Commande> clientFirstPage(int size) {
 //		Pageable pageable = PageRequest.of(0, size);
 //		return commandeRepository.findAll(pageable);

@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.List;
 import java.util.Set;
@@ -9,16 +9,16 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Cuisinier;
-import projetFinal.entity.Gerant;
-import projetFinal.entity.Plat;
-import projetFinal.entity.Restaurant;
-import projetFinal.exceptions.GerantException;
-import projetFinal.exceptions.RestaurantException;
-import projetFinal.repositories.CuisinierRepository;
-import projetFinal.repositories.GerantRepository;
-import projetFinal.repositories.LigneCarteRepository;
-import projetFinal.repositories.RestaurantRepository;
+import fr.projetFormation.Hashi.entity.Cuisinier;
+import fr.projetFormation.Hashi.entity.Gerant;
+import fr.projetFormation.Hashi.entity.Plat;
+import fr.projetFormation.Hashi.entity.Restaurant;
+import fr.projetFormation.Hashi.exceptions.GerantException;
+import fr.projetFormation.Hashi.exceptions.RestaurantException;
+import fr.projetFormation.Hashi.repositories.CuisinierRepository;
+import fr.projetFormation.Hashi.repositories.GerantRepository;
+import fr.projetFormation.Hashi.repositories.LigneCarteRepository;
+import fr.projetFormation.Hashi.repositories.RestaurantRepository;
 
 @Service
 public class RestaurantService {

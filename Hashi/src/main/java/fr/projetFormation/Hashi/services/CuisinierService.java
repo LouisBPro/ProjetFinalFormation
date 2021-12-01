@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.Set;
 
@@ -9,10 +9,10 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Cuisinier;
-import projetFinal.exceptions.ClientException;
-import projetFinal.exceptions.CuisinierException;
-import projetFinal.repositories.CuisinierRepository;
+import fr.projetFormation.Hashi.entity.Cuisinier;
+import fr.projetFormation.Hashi.exceptions.ClientException;
+import fr.projetFormation.Hashi.exceptions.CuisinierException;
+import fr.projetFormation.Hashi.repositories.CuisinierRepository;
 
 @Service
 public class CuisinierService {

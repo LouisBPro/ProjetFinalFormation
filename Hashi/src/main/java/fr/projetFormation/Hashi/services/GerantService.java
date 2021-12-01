@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.Set;
 
@@ -9,10 +9,10 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Gerant;
-import projetFinal.exceptions.ClientException;
-import projetFinal.exceptions.GerantException;
-import projetFinal.repositories.GerantRepository;
+import fr.projetFormation.Hashi.entity.Gerant;
+import fr.projetFormation.Hashi.exceptions.ClientException;
+import fr.projetFormation.Hashi.exceptions.GerantException;
+import fr.projetFormation.Hashi.repositories.GerantRepository;
 
 @Service
 public class GerantService {

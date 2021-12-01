@@ -1,0 +1,62 @@
+Commande :
+
+save()
+delete()
+removeOneLigneCommande()
+byClientWithLigneCommande()
+byRestaurant()
+byRestaurantAndStatut()
+byIdWithPlat()
+commandeFirstpage()
+commandeNextpage()
+commandePreviouspage()
+
+Client : Quentin
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+clientFirstpage()
+clientNextpage()
+clientPreviouspage()
+
+Cuisinier :
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+
+Gérant :
+
+save()
+delete()
+byId()
+byLoginOrEmail()
+
+Restaurant : Louis
+
+save()
+delete()
+all()
+byIdWithLigneCarte()
+byNom()
+removeOneLigneCarte()
+byVilleOuCodePostal()
+restaurantFirstpage()
+restaurantNextpage()
+restaurantPreviouspage()
+
+Plat : Nina
+
+save()
+delete()
+all()
+byNom()
+platFirstpage()
+platNextpage()
+platPreviouspage()
+
+méthodes de tri ?
+pages

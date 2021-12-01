@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.List;
 import java.util.Set;
@@ -9,11 +9,11 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Plat;
-import projetFinal.exceptions.PlatException;
-import projetFinal.repositories.LigneCarteRepository;
-import projetFinal.repositories.LigneCommandeRepository;
-import projetFinal.repositories.PlatRepository;
+import fr.projetFormation.Hashi.entity.Plat;
+import fr.projetFormation.Hashi.exceptions.PlatException;
+import fr.projetFormation.Hashi.repositories.LigneCarteRepository;
+import fr.projetFormation.Hashi.LigneCommandeRepository;
+import fr.projetFormation.Hashi.PlatRepository;
 
 @Service
 public class PlatService {

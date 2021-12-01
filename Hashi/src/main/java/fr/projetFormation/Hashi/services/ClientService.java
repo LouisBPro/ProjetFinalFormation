@@ -1,4 +1,4 @@
-package projetFinal.services;
+package fr.projetFormation.Hashi.services;
 
 import java.util.Set;
 
@@ -12,10 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import projetFinal.entity.Client;
-import projetFinal.exceptions.ClientException;
-import projetFinal.repositories.ClientRepository;
-import projetFinal.repositories.CommandeRepository;
+import fr.projetFormation.Hashi.entity.Client;
+import fr.projetFormation.Hashi.exceptions.ClientException;
+import fr.projetFormation.Hashi.repositories.ClientRepository;
+import fr.projetFormation.Hashi.repositories.CommandeRepository;
 
 @Service
 public class ClientService {

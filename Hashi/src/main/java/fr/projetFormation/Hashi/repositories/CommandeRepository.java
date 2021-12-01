@@ -1,4 +1,4 @@
-package projetFinal.repositories;
+package fr.projetFormation.Hashi.repositories;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import projetFinal.entity.Client;
-import projetFinal.entity.Commande;
-import projetFinal.entity.Restaurant;
-import projetFinal.entity.Statut;
+import fr.projetFormation.Hashi.entity.Client;
+import fr.projetFormation.Hashi.entity.Commande;
+import fr.projetFormation.Hashi.entity.Restaurant;
+import fr.projetFormation.Hashi.entity.Statut;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long>{
 	
