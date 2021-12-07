@@ -46,7 +46,7 @@ public class CommandeServiceTest {
 		cl.setNom("jkj");
 		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
-		clientService.save(cl);
+		clientService.create(cl);
 
 		Plat plat1 = new Plat();
 		plat1.setDescription("C'est un super bon plat !");
@@ -91,7 +91,7 @@ public class CommandeServiceTest {
 		cl.setNom("jkj");
 		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
-		clientService.save(cl);
+		clientService.create(cl);
 		List<Commande> c = commandeService.byClientWithLigneCommande(cl);
 		assertNotNull(c);
 	}

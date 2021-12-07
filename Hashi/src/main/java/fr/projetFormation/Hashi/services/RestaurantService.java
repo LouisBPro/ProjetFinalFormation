@@ -48,8 +48,8 @@ public class RestaurantService {
 	public void delete(Restaurant restaurant) {
 		restaurant = byId(restaurant.getId());
 		ligneCarteRepository.deleteByRestaurant(restaurant);
-		
-		restaurant.getCuisiniers().forEach(c ->{
+
+		restaurant.getCuisiniers().forEach(c -> {
 			c.setRestaurant(null);
 			cuisinierRepository.save(c);
 		});

@@ -25,7 +25,7 @@ public class CuisinierTest {
 	@Test
 	public void testSave() {
 		Cuisinier cuistot1 = getcuisot();
-		cuisinierService.save(cuistot1);
+		cuisinierService.create(cuistot1);
 		assertNotNull(cuisinierService.byId(cuistot1.getId()));
 		
 	}

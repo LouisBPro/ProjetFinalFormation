@@ -25,10 +25,10 @@ import fr.projetFormation.Hashi.services.CuisinierService;
 @RestController
 @RequestMapping("/api/cuisinier")
 public class CuisinierRestController {
-	
+
 	@Autowired
 	private CuisinierService cuisinierService;
-	
+
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Cuisinier byId(@PathVariable("id") Long id) {
@@ -39,15 +39,8 @@ public class CuisinierRestController {
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Cuisinier create(@Valid @RequestBody Cuisinier cuisinier, BindingResult br) {
-		return cuisinierService.save(cuisinier);
+		return cuisinierService.create(cuisinier);
 	}
-	
-//	@PostMapping("")
-//	@JsonView(JsonViews.Common.class)
-//	@ResponseStatus(code = HttpStatus.CREATED)
-//	public Cuisinier create(@Valid @RequestBody Cuisinier cuisinier,@Valid @RequestBody User user, BindingResult br) {
-//		return cuisinierService.save(cuisinier);
-//	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
@@ -55,7 +48,8 @@ public class CuisinierRestController {
 		Cuisinier cuisinierEnBase = cuisinierService.byId(id);
 		cuisinierEnBase.setNom(cuisinier.getNom());
 		cuisinierEnBase.setPrenom(cuisinier.getPrenom());
-		return cuisinierService.save(cuisinierEnBase);
+        cuisinierEnBase.setEmail(cuisinier.getEmail());
+		return cuisinierService.create(cuisinierEnBase);
 	}
 
 	@DeleteMapping("/{id}")

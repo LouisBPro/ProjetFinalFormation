@@ -38,6 +38,7 @@ public class User {
 	@ElementCollection(targetClass = Role.class)
 	private List<Role> roles;
 	@OneToOne(mappedBy = "user")
+	@JsonView(JsonViews.UserWithPersonne.class)
 	private Personne personne;
 
 	public User() {

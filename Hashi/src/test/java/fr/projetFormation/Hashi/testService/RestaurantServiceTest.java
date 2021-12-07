@@ -23,6 +23,7 @@ import fr.projetFormation.Hashi.entities.LigneCarte;
 import fr.projetFormation.Hashi.entities.LigneCartePk;
 import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.entities.Restaurant;
+import fr.projetFormation.Hashi.entities.User;
 import fr.projetFormation.Hashi.services.CuisinierService;
 import fr.projetFormation.Hashi.services.GerantService;
 import fr.projetFormation.Hashi.services.PlatService;
@@ -48,16 +49,26 @@ public class RestaurantServiceTest {
     @Test
     public void remplissageBdd() {
 
+        User userCuisinier = new User();
+        userCuisinier.setLogin("cuisinier");
+        userCuisinier.setPassword("cuisinier");
+
+        User userGerant = new User();
+        userGerant.setLogin("gerant");
+        userGerant.setPassword("gerant");
+
         Cuisinier cuistot1 = new Cuisinier();
         cuistot1.setNom("Baron");
         cuistot1.setPrenom("Louis");
         cuistot1.setEmail("louis@hotmail.com");
+        cuistot1.setUser(userCuisinier);
 
         Gerant gerant1 = new Gerant();
         gerant1.setNom("Henan");
         gerant1.setPrenom("Martial"); 
         gerant1.setEmail("martial@hotmail.com");
-        gerantService.save(gerant1);
+        gerant1.setUser(userGerant);
+        gerantService.create(gerant1);
 
         Plat plat1 = new Plat();
         plat1.setDescription("C'est un super bon plat !");
@@ -98,7 +109,7 @@ public class RestaurantServiceTest {
         cuistot1.setRestaurant(resto1);
 
         restaurantService.save(resto1);
-        cuisinierService.save(cuistot1);
+        cuisinierService.create(cuistot1);
 
     }
 

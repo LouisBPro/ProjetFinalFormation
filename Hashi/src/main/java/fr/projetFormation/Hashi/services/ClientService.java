@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.projetFormation.Hashi.entities.Client;
@@ -23,27 +24,34 @@ import fr.projetFormation.Hashi.repositories.UserRepository;
 
 @Service
 public class ClientService {
-	
+
 	@Autowired
 	private ClientRepository clientRepository;
 	@Autowired
 	private CommandeRepository commandeRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-	public Client save(Client client) {
+	public Client create(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
 			User user = client.getUser();
-			user.setPassword(user.getPassword());
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setRoles(Arrays.asList(Role.ROLE_CLIENT));
+			user.setEnable(true);
 			userRepository.save(user);
-			client.setUser(user);
-			return clientRepository.save(client);
+			client = clientRepository.save(client);
+			return client;
 		} else {
 			throw new ClientException();
 		}
+	}
+
+	public Client update(Client client) {
+		return clientRepository.save(client);
 	}
 
 	public void delete(Client client) {
@@ -52,6 +60,7 @@ public class ClientService {
 		clientRepository.delete(clientEnBase);
 		userRepository.delete(clientEnBase.getUser());
 	}
+
 	public void delete(Long id) {
 		delete(clientRepository.findById(id).orElseThrow(ClientException::new));
 	}
@@ -72,10 +81,10 @@ public class ClientService {
 	public Client byId(Long id) {
 		return clientRepository.findByIdWithCommandes(id).orElseThrow(ClientException::new);
 	}
-	
-	
-	//not necessary because of users
-//	public Client byLoginOrEmail(String login) {
-//		return clientRepository.findByLoginOrEmail(login).orElseThrow(ClientException::new);
-//	}
+
+	// not necessary because of users
+	// public Client byLoginOrEmail(String login) {
+	// return
+	// clientRepository.findByLoginOrEmail(login).orElseThrow(ClientException::new);
+	// }
 }
