@@ -24,10 +24,9 @@ import fr.projetFormation.Hashi.services.ClientService;
 @RestController
 @RequestMapping("/api/client")
 public class ClientRestController {
-	
+
 	@Autowired
 	private ClientService clientService;
-
 
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
@@ -39,15 +38,8 @@ public class ClientRestController {
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
-		return clientService.save(client);
+		return clientService.create(client);
 	}
-	
-//	@PostMapping("")
-//	@JsonView(JsonViews.Common.class)
-//	@ResponseStatus(code = HttpStatus.CREATED)
-//	public Client create(@Valid @RequestBody Client client,@Valid @RequestBody User user, BindingResult br) {
-//		return clientService.save(client);
-//	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
@@ -55,7 +47,8 @@ public class ClientRestController {
 		Client clientEnBase = clientService.byId(id);
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
-		return clientService.save(clientEnBase);
+        clientEnBase.setEmail(client.getEmail());
+		return clientService.update(clientEnBase);
 	}
 
 	@DeleteMapping("/{id}")
