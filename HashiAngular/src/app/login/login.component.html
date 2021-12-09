@@ -1,0 +1,20 @@
+<div>
+  <h1>identification</h1>
+  <div *ngIf="showMessage" class="alert alert-danger">
+    {{ message }}
+  </div>
+  <div class="form-group">
+    <label>login</label>
+    <input [(ngModel)]="login" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>password</label>
+    <input type="password" [(ngModel)]="password" class="form-control" />
+  </div>
+  <div>
+    <button (click)="check()" class="btn btn-outline-primary">envoyer</button>
+    <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link"
+      >retour acceuil</a
+    >
+  </div>
+</div>

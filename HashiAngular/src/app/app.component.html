@@ -28,9 +28,12 @@
           >
         </li>
         <li class="nav-item">
-          <a routerLink=" " routerLinkActive="active" class="nav-link"
-            >Login/Sign in</a
-          >
+            <a
+            *ngIf="!logged"
+            routerLink="/login"
+            routerLinkActive="active"
+            class="btn btn-link"
+            >login</a>
         </li>
         <li class="nav-item">
           <a routerLink=" " routerLinkActive="active" class="nav-link"
@@ -47,19 +50,12 @@
             >commander</a
           >
         </li>
+        <li class="nav-item">
+          <button *ngIf="logged" (click)="logout()" class="btn btn-outline-danger">logout</button>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- <a
-    *ngIf="logged"
-    routerLink="/produits"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >produits</a
-  > -->
-
-<!-- <button *ngIf=" " (click)="logout()" class="btn btn-link">logout</button> -->
 
 <router-outlet></router-outlet>
