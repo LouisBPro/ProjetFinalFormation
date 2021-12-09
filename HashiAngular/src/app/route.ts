@@ -8,5 +8,3 @@ export const route: Routes = [
     component: PlatsComponent,
   },
 ];
-
-];

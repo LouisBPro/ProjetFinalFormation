@@ -7,7 +7,7 @@ import { Plat } from "../model/plat";
   providedIn: "root",
 })
 export class PlatService {
-  url: string = "http://localhost:8080/eshop/api/plat";
+  url: string = "http://localhost:8080/hashi/api/plat";
   constructor(private http: HttpClient) {}
 
   private get httpHeaders(): HttpHeaders {

@@ -1,7 +1,7 @@
-import { PlatService } from "./../services/plat-service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Plat } from "../model/plat";
+import { PlatService } from "../services/plat.service";
 
 @Component({
   selector: "app-plats",
