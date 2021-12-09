@@ -28,12 +28,13 @@
           >
         </li>
         <li class="nav-item">
-            <a
+          <a
             *ngIf="!logged"
             routerLink="/login"
             routerLinkActive="active"
-            class="btn btn-link"
-            >login</a>
+            class="nav-link"
+            >login</a
+          >
         </li>
         <li class="nav-item">
           <a routerLink=" " routerLinkActive="active" class="nav-link"
@@ -51,7 +52,13 @@
           >
         </li>
         <li class="nav-item">
-          <button *ngIf="logged" (click)="logout()" class="btn btn-outline-danger">logout</button>
+          <button
+            *ngIf="logged"
+            (click)="logout()"
+            class="btn btn-outline-danger"
+          >
+            logout
+          </button>
         </li>
       </ul>
     </div>

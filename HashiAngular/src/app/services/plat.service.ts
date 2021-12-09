@@ -14,10 +14,11 @@ export class PlatService {
     return new HttpHeaders({
       Authorization: "Basic " + sessionStorage.getItem("token"),
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     });
   }
   public allPlats(): Observable<Plat[]> {
-    return this.http.get<Plat[]>(this.url);
+    return this.http.get<Plat[]>(this.url, { headers: this.httpHeaders });
   }
   public delete(id: number): Observable<any> {
     return this.http.delete(this.url + "/" + id, { headers: this.httpHeaders });

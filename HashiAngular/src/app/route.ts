@@ -10,6 +10,7 @@ export const route: Routes = [
   {
     path: 'plats',
     component: PlatsComponent,
+    canActivate: [AuthService],
   },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

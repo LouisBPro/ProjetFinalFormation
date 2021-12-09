@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'HashiAngular';
+  title = "HashiAngular";
 
   constructor(private router: Router) {}
 
   logout() {
     sessionStorage.clear();
-    this.router.navigate(['/home']);
+    this.router.navigate(["/home"]);
   }
 
   get logged(): boolean {
-    return !!sessionStorage.getItem('token') ? true : false;
+    return !!sessionStorage.getItem("token") ? true : false;
   }
 }
