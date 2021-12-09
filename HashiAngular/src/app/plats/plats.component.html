@@ -1,1 +1,29 @@
-<p>plats works!</p>
+<table class="table">
+  <tr *ngFor="let p of plats | async">
+    <td>{{ p.id }}</td>
+    <td>{{ p.nom }}</td>
+    <td>{{ p.description }}</td>
+    <td>{{ p.prix }}</td>
+    <td>{{ p.photo }}</td>
+    <td>
+      <a
+        [routerLink]="['/plats', p.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-info"
+        >editer</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(p.id)" class="btn btn-outline-danger">
+        supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+
+<a
+  [routerLink]="['/plats', 'edit']"
+  routerLinkActive="active"
+  class="btn btn-link"
+  >ajouter un produit</a
+>
