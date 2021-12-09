@@ -42,7 +42,7 @@ public class GerantRestController {
     }
 
     @PutMapping("/{id}")
-    @JsonView(JsonViews.Common.class)
+    @JsonView(JsonViews.class)
     public Gerant update(@Valid @RequestBody Gerant gerant, BindingResult br, @PathVariable("id") Long id) {
         Gerant gerantEnBase = gerantService.byId(id);
         gerantEnBase.setNom(gerant.getNom());
