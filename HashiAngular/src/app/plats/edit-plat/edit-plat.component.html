@@ -1,0 +1,29 @@
+<div>
+  <div class="form-group">
+    <label>id</label>
+    <input [(ngModel)]="plat.id" readonly class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>nom</label>
+    <input [(ngModel)]="plat.nom" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>description</label>
+    <textarea [(ngModel)]="plat.description" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label>prix</label>
+    <input type="number" [(ngModel)]="plat.prix" class="form-control" />
+  </div>
+  <div class="form-group">
+    <button (click)="save()" class="btn btn-outline-success">
+      enregistrer
+    </button>
+    <a
+      [routerLink]="['/plats']"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</div>

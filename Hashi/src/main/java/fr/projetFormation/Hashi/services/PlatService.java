@@ -55,4 +55,8 @@ public class PlatService {
 	public List<Plat> byNom(String nom) {
 		return platRepository.findByNomContaining(nom);
 	}
+
+	public Plat update(Plat platEnBase) {
+		return platRepository.save(platEnBase);
+	}
 }
