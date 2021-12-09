@@ -1,32 +1,59 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Hashi</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#"
+      ><img
+        src="../../assets/images/back.jpg"
+        alt=""
+        width="30"
+        height="30"
+        class="rounded-circle mx-3"
+      />Hashi</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a routerLink="/home" routerLinkActive="active" class="nav-link">home</a>
+          <a routerLink="/home" routerLinkActive="active" class="nav-link"
+            >home</a
+          >
         </li>
         <li class="nav-item">
-          <a routerLink=" " routerLinkActive="active" class="nav-link" >Login/Sign in</a>
+          <a routerLink=" " routerLinkActive="active" class="nav-link"
+            >Login/Sign in</a
+          >
         </li>
         <li class="nav-item">
-          <a routerLink=" " routerLinkActive="active" class="nav-link">choix restaurants</a>
+          <a routerLink=" " routerLinkActive="active" class="nav-link"
+            >choix restaurants</a
+          >
         </li>
         <li class="nav-item">
-          <a routerLink=" " routerLinkActive="active" class="nav-link">choix plats</a>
+          <a routerLink=" " routerLinkActive="active" class="nav-link"
+            >choix plats</a
+          >
         </li>
         <li class="nav-item">
-          <a routerLink=" " routerLinkActive="active" class="nav-link">commander</a>
+          <a routerLink=" " routerLinkActive="active" class="nav-link"
+            >commander</a
+          >
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<img src="../../assets/images/back.jpg" class="img-fluid" />
 
-  <!-- <a
+<!-- <a
     *ngIf="logged"
     routerLink="/produits"
     routerLinkActive="active"
@@ -34,6 +61,6 @@
     >produits</a
   > -->
 
-  <!-- <button *ngIf=" " (click)="logout()" class="btn btn-link">logout</button> -->
+<!-- <button *ngIf=" " (click)="logout()" class="btn btn-link">logout</button> -->
 
 <router-outlet></router-outlet>
