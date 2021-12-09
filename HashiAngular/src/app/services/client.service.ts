@@ -30,7 +30,7 @@ export class ClientService {
 
   public checkLogin(login: string): Observable<boolean> {
     return this.http.get<boolean>(
-      'http://localhost:8080/eshop/api/user/' + login
+      'http://localhost:8080/hashi/api/user/' + login
     );
   }
 

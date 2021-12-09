@@ -1,0 +1,51 @@
+<div>
+  <div class="form-group">
+    <label>id</label>
+    <input [(ngModel)]="client.id" readonly class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>prenom</label>
+    <input [(ngModel)]="client.prenom" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>nom</label>
+    <input [(ngModel)]="client.nom" class="form-control" />
+  </div>
+  <ng-container *ngIf="!client.id">
+    <div class="form-group">
+      <label>login</label>
+      <input [(ngModel)]="client.login" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input type="password" [(ngModel)]="password" class="form-control" />
+    </div>
+  </ng-container>
+  <div class="form-group">
+    <label>numero de rue</label>
+    <input [(ngModel)]="client.numero" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>nom de rue</label>
+    <input [(ngModel)]="client.rue" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>code postal</label>
+    <input [(ngModel)]="client.codePostal" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>ville</label>
+    <input [(ngModel)]="client.ville" class="form-control" />
+  </div>
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      enregistrer
+    </button>
+    <a
+      [routerLink]="['/client']"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</div>
