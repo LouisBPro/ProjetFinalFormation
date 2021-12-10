@@ -1,6 +1,7 @@
 import { ClientComponent } from "./client/client/client.component";
 import { AuthService } from "./services/auth.service";
 import { EditClientComponent } from "./client/edit-client/edit-client.component";
+import { InscriptionComponent } from './inscription/inscription.component';
 import { HomeComponent } from "./home/home.component";
 import { Routes } from "@angular/router";
 import { PlatsComponent } from "./plats/plats.component";
@@ -32,4 +33,5 @@ export const route: Routes = [
     canActivate: [AuthService],
   },
   { path: "client/edit", component: EditClientComponent },
+  {path : 'inscription', component : InscriptionComponent},
 ];

@@ -24,14 +24,14 @@ import fr.projetFormation.Hashi.services.ClientService;
 
 @RestController
 @RequestMapping("/api/client")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class ClientRestController {
 
 	@Autowired
 	private ClientService clientService;
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.PersonneWithUser.class)
 	public Client byId(@PathVariable("id") Long id) {
 		return clientService.byId(id);
 	}

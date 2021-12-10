@@ -1,20 +1,27 @@
-<div>
-  <h1>identification</h1>
-  <div *ngIf="showMessage" class="alert alert-danger">
+<div class="container">
+  <h2>Connexion</h2>
+  <br/>
+  <div *ngIf="showMessage" class="col-sm-4 alert alert-danger">
     {{ message }}
   </div>
-  <div class="form-group">
-    <label>login</label>
-    <input [(ngModel)]="login" class="form-control" />
+  <div class="form-group" class="col-sm-4">
+    <label>Nom d'utilisateur:</label>
+    <input [(ngModel)]="login" class="form-control" placeholder="Nom d'utilisateur"/>
   </div>
-  <div class="form-group">
-    <label>password</label>
-    <input type="password" [(ngModel)]="password" class="form-control" />
+  <div class="form-group" class="col-sm-4">
+    <label>Mot de passe:</label>
+    <input type="password" [(ngModel)]="password" class="form-control" placeholder="Mot de passe"/>
   </div>
+  <br/>
   <div>
-    <button (click)="check()" class="btn btn-outline-primary">envoyer</button>
-    <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-link"
+    <button (click)="check()" class="btn btn-primary">envoyer</button>
+    &nbsp;
+    <a routerLink="/inscription" routerLinkActive="active" class="btn btn-outline-success"
+    >inscription</a>
+    &nbsp;
+    <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-outline-warning"
       >retour acceuil</a
     >
   </div>
+  <br/>
 </div>

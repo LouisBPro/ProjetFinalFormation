@@ -24,7 +24,7 @@ import fr.projetFormation.Hashi.services.GerantService;
 
 @RestController
 @RequestMapping("/api/gerant")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class GerantRestController {
 
     @Autowired

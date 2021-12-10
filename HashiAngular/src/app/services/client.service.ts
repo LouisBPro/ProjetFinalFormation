@@ -7,7 +7,7 @@ import { Client } from '../model/client';
   providedIn: 'root',
 })
 export class ClientService {
-  private static URL: string = 'http://localhost8080/hashi/api/client';
+  private static URL: string = 'http://localhost:8080/hashi/api/client';
 
   constructor(private http: HttpClient) {}
 
@@ -47,7 +47,9 @@ export class ClientService {
         ville: client.ville,
       },
     };
-    return this.http.post<Client>(ClientService.URL, o);
+    return this.http.post<Client>(ClientService.URL, o, {
+      headers: this.httpHeaders,
+    });
   }
 
   public update(client: Client): Observable<Client> {

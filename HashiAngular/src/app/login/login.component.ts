@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
     this.authService.auth(this.login, this.password).subscribe(
       (ok) => {
         this.showMessage = false;
-        sessionStorage.setItem("token", btoa(this.login + ":" + this.password));
-        sessionStorage.setItem("login", this.login);
-        // TODO
-        if (!!ok["client"]) {
-          sessionStorage.setItem("role", "client");
+        sessionStorage.setItem('token', btoa(this.login + ':' + this.password));
+        sessionStorage.setItem('login', this.login);
+        // TODO roles
+        if (!!ok['client']) {
+          sessionStorage.setItem('role', 'client');
         } else {
           sessionStorage.setItem("role", "admin");
         }

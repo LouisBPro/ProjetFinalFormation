@@ -29,7 +29,7 @@ import fr.projetFormation.Hashi.services.RestaurantService;
 
 @RestController
 @RequestMapping("/api/commande")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class CommandeRestController {
 
     @Autowired

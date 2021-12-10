@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { EditClientComponent } from "./client/edit-client/edit-client.component";
 import { ClientComponent } from "./client/client/client.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
     EditClientComponent,
     ClientComponent,
     EditPlatComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import fr.projetFormation.Hashi.entities.Adresse;
+import fr.projetFormation.Hashi.entities.Client;
 import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.LigneCarte;
@@ -24,6 +25,7 @@ import fr.projetFormation.Hashi.entities.LigneCartePk;
 import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.entities.User;
+import fr.projetFormation.Hashi.services.ClientService;
 import fr.projetFormation.Hashi.services.CuisinierService;
 import fr.projetFormation.Hashi.services.GerantService;
 import fr.projetFormation.Hashi.services.PlatService;
@@ -41,6 +43,8 @@ public class RestaurantServiceTest {
     CuisinierService cuisinierService;
     @Autowired
     GerantService gerantService;
+    @Autowired
+    ClientService clientService;
 
     // @BeforeClass
     // public static void startTest(){
@@ -48,6 +52,19 @@ public class RestaurantServiceTest {
 
     @Test
     public void remplissageBdd() {
+
+        User userClient = new User();
+        userClient.setLogin("client");
+        userClient.setPassword("client");
+
+        Client client = new Client();
+        client.setAdresse(new Adresse(5,"Square marcel bozzuffi", "35000", "Rennes"));
+        client.setEmail("client@gmail.com");
+        client.setNom("Client");
+        client.setPrenom("Client");
+        client.setUser(userClient);
+
+        clientService.create(client);
 
         User userCuisinier = new User();
         userCuisinier.setLogin("cuisinier");

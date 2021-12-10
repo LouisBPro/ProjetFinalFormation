@@ -1,0 +1,74 @@
+<form (ngSubmit)="save()" [formGroup]="_form">
+  <h3>Inscription</h3>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="prenom" placeholder="Votre prénom"/>
+  </div>
+  <div
+    *ngIf="form['prenom'].dirty && form['prenom'].invalid"
+    class="alert alert-danger"
+  >
+    prenom probleme
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="nom" placeholder="Votre nom"/>
+    <div
+      *ngIf="form['nom'].dirty && form['nom'].invalid"
+      class="alert alert-danger"
+    >
+      {{ nomErrorMessage() }}
+    </div>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input type="email" class="form-control" formControlName="email" placeholder="Email"/>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input type="number" class="form-control" formControlName="numero" placeholder="Numéro"/>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="rue" placeholder="Rue"/>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="codePostal" placeholder="Code postal"/>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="ville" placeholder="Ville"/>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="form-control" formControlName="login" placeholder="Nom d'utilisateur"/>
+  </div>
+  <ng-container formGroupName="passwordGroup">
+    <br/>
+    <div class="form-group">
+      <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe"/>
+    </div>
+    <br/>
+    <div class="form-group">
+      <input type="password" class="form-control" formControlName="confirm" placeholder="Confirmer le mot de passe"/>
+    </div>
+  </ng-container>
+  <br/>
+  <div>
+    &nbsp;
+    <button
+      type="submit"
+      class="btn btn-outline-success"
+      [disabled]="_form.invalid"
+    >
+      enregistrer {{ _form.invalid }}
+    </button>&nbsp;
+    <a
+      [routerLink]="['/login']"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</form>

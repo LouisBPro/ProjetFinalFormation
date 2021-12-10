@@ -25,7 +25,7 @@ import fr.projetFormation.Hashi.services.CuisinierService;
 
 @RestController
 @RequestMapping("/api/cuisinier")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class CuisinierRestController {
 
 	@Autowired
