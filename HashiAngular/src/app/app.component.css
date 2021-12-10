@@ -1,0 +1,8 @@
+.nav-link-danger {
+  color: orangered;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-link-danger:hover {
+  color: orange;
+}

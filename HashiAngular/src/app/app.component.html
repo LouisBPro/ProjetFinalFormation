@@ -22,12 +22,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <a routerLink="/home" routerLinkActive="active" class="nav-link"
             >home</a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <a
             *ngIf="!logged"
             routerLink="/login"
@@ -36,7 +44,11 @@
             >login</a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <a
             routerLink="/restaurants"
             routerLinkActive="active"
@@ -44,17 +56,29 @@
             >choix restaurants</a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <a routerLink="/plats" routerLinkActive="active" class="nav-link"
             >choix plats</a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <a routerLink=" " routerLinkActive="active" class="nav-link"
             >commander</a
           >
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <button
             *ngIf="logged"
             (click)="getClient()"
@@ -63,14 +87,14 @@
             Mon Compte
           </button>
         </li>
-        <li class="nav-item">
-          <button
-            *ngIf="logged"
-            (click)="logout()"
-            class="btn btn-outline-danger"
-          >
-            logout
-          </button>
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
+          <a *ngIf="logged" (click)="logout()" class="nav-link-danger">
+            Logout
+          </a>
         </li>
       </ul>
     </div>
