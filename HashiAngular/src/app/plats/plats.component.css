@@ -1,0 +1,11 @@
+.table thead {
+  background-color: black;
+  color: #ffffff;
+  text-align: left;
+  font-family: Coco-Light;
+  text-align: center;
+  padding: 1em;
+}
+.table {
+  font-family: Verdana;
+}

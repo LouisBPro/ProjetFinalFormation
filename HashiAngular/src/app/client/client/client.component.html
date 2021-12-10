@@ -1,66 +1,74 @@
-<div class="row">
-  <div class="col-sm-3">
-    <h6>Prenom :</h6>
+<div class="card m-5 p-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <h6>Prenom :</h6>
+    </div>
+    <div class="col-sm-6">
+      <p>{{ client.prenom }}</p>
+    </div>
   </div>
-  <div class="col-sm-6">
-    <p>{{ client.prenom }}</p>
+  <div class="row">
+    <div class="col-sm-3">
+      <h6>Nom :</h6>
+    </div>
+    <div class="col-sm-6">
+      <p>{{ client.nom }}</p>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <h6>Email :</h6>
+    </div>
+    <div class="col-sm-6">
+      <p>{{ client.email }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <h6>Login :</h6>
+    </div>
+    <div class="col-sm-6">
+      <p>{{ client.user!.login }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <h6>N° :</h6>
+    </div>
+    <div
+      class="col-sm-2"
+      style="font-family: Verdana, Geneva, Tahoma, sans-serif;"
+    >
+      <p>{{ client.adresse!.numero }}</p>
+    </div>
+    <div class="col-sm-2">
+      <h6>Rue :</h6>
+    </div>
+    <div class="col-sm-6">
+      <p>{{ client.adresse!.rue }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <h6>Code Postal :</h6>
+    </div>
+    <div
+      class="col-sm-4"
+      style="font-family: Verdana, Geneva, Tahoma, sans-serif;"
+    >
+      <p>{{ client.adresse!.codePostal }}</p>
+    </div>
+    <div class="col-sm-2">
+      <h6>Ville :</h6>
+    </div>
+    <div class="col-sm-4">
+      <p>{{ client.adresse!.ville }}</p>
+    </div>
+  </div>
+  <a
+    class="btn btn-outline-primary"
+    [routerLink]="['/client', 'edit', client.id]"
+    routerLinkActive="active"
+    >editer</a
+  >
 </div>
-<div class="row">
-  <div class="col-sm-3">
-    <h6>Nom :</h6>
-  </div>
-  <div class="col-sm-6">
-    <p>{{ client.nom }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-    <h6>Email :</h6>
-  </div>
-  <div class="col-sm-6">
-    <p>{{ client.email }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-    <h6>Login :</h6>
-  </div>
-  <div class="col-sm-6">
-    <p>{{ client.user!.login }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-2">
-    <h6>N° :</h6>
-  </div>
-  <div class="col-sm-2">
-    <p>{{ client.adresse!.numero }}</p>
-  </div>
-  <div class="col-sm-2">
-    <h6>Rue :</h6>
-  </div>
-  <div class="col-sm-6">
-    <p>{{ client.adresse!.rue }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-2">
-    <h6>Code Postal :</h6>
-  </div>
-  <div class="col-sm-4">
-    <p>{{ client.adresse!.codePostal }}</p>
-  </div>
-  <div class="col-sm-2">
-    <h6>Ville :</h6>
-  </div>
-  <div class="col-sm-4">
-    <p>{{ client.adresse!.ville }}</p>
-  </div>
-</div>
-<a
-  class="btn btn-outline-primary"
-  [routerLink]="['/client', 'edit', client.id]"
-  routerLinkActive="active"
-  >editer</a
->

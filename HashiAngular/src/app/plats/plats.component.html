@@ -1,31 +1,42 @@
 <div class="container mt-3">
-  <table class="table">
-    <tr *ngFor="let p of plats | async">
-      <td>{{ p.id }}</td>
-      <td>{{ p.nom }}</td>
-      <td>{{ p.description }}</td>
-      <td>{{ p.prix }}</td>
-      <td>{{ p.photo }}</td>
-      <td>
-        <a
-          [routerLink]="['/plats','edit', p.id]"
-          routerLinkActive="active"
-          class="btn btn-outline-info"
-          >editer</a
-        >
-      </td>
-      <td>
-        <button (click)="delete(p.id)" class="btn btn-outline-danger">
-          supprimer
-        </button>
-      </td>
-    </tr>
-  </table>
+  <div class="card shadow p-5">
+    <table class="table align-middle">
+      <thead>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of plats | async">
+          <td style="font-family: Coco-Light;">{{ p.nom }}</td>
+          <td style="font-family: Coco-Light;">{{ p.description }}</td>
+          <td style="text-align: center;">{{ p.prix }}</td>
+          <td>{{ p.photo }}</td>
+          <td>
+            <a
+              [routerLink]="['/plats','edit', p.id]"
+              routerLinkActive="active"
+              class="btn btn-outline-info"
+              >editer</a
+            >
+          </td>
+          <td>
+            <button (click)="delete(p.id)" class="btn btn-outline-danger">
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <a
-    [routerLink]="['/plats', 'edit']"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >ajouter un plat</a
-  >
+    <a
+      [routerLink]="['/plats', 'edit']"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >ajouter un plat</a
+    >
+  </div>
 </div>

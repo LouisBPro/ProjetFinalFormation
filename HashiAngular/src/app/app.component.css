@@ -1,8 +1,47 @@
+@font-face {
+  font-family: mono-reg;
+  src: url(/../../assets/font/victor-mono/VictorMono-Regular.otf)
+    format("opentype");
+}
+@font-face {
+  font-family: Coco-Extrabold;
+  src: url(src/assets/font/cocosharp/Coco-Sharp-Extrabold-trial.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: Coco-Light;
+  src: url(src/assets/font/cocosharp/Coco-Sharp-Light-trial.ttf)
+    format("truetype");
+}
+@font-face {
+  font-family: Coco-Extralight;
+  src: url(src/assets/font/cocosharp/Coco-Sharp-Extralight-trial.ttf)
+    format("truetype");
+}
 .nav-link-danger {
+  display: block;
+  padding: 0.5rem 1rem;
   color: orangered;
   text-decoration: none;
   cursor: pointer;
 }
 .nav-link-danger:hover {
   color: orange;
+}
+
+body {
+  min-height: 100vh;
+}
+.bg {
+  /* The image used */
+  background-image: url("/../../assets/images/back.jpg");
+
+  /* Full height */
+  height: 100vh;
+  width: 100vw;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
