@@ -45,6 +45,6 @@ export class EditClientComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/client']);
+    this.router.navigate(['/client/' + this.client.id]);
   }
 }

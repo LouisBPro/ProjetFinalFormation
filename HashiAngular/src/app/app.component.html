@@ -55,7 +55,11 @@
           >
         </li>
         <li class="nav-item">
-          <button *ngIf="logged" (click)="getClient()" class="nav-link">
+          <button
+            *ngIf="logged"
+            (click)="getClient()"
+            class="btn btn-link nav-link"
+          >
             Mon Compte
           </button>
         </li>
