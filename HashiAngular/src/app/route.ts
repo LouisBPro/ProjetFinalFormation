@@ -1,14 +1,13 @@
-import { ChoixRestaurantComponent } from "./choix-restaurant/choix-restaurant.component";
-import { ChoixRestaurantService } from "./services/choix-restaurant.service";
-import { ClientComponent } from "./client/client/client.component";
-import { AuthService } from "./services/auth.service";
-import { EditClientComponent } from "./client/edit-client/edit-client.component";
-import { InscriptionComponent } from "./inscription/inscription.component";
-import { HomeComponent } from "./home/home.component";
-import { Routes } from "@angular/router";
-import { PlatsComponent } from "./plats/plats.component";
-import { LoginComponent } from "./login/login.component";
-import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
+import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
+import { ClientComponent } from './client/client/client.component';
+import { AuthService } from './services/auth.service';
+import { EditClientComponent } from './client/edit-client/edit-client.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { HomeComponent } from './home/home.component';
+import { Routes } from '@angular/router';
+import { PlatsComponent } from './plats/plats.component';
+import { LoginComponent } from './login/login.component';
+import { EditPlatComponent } from './plats/edit-plat/edit-plat.component';
 
 export const route: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,26 +28,34 @@ export const route: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'client/:client', component: ClientComponent },
+  {
+    path: 'client/:client',
+    component: ClientComponent,
+    canActivate: [AuthService],
+  },
   {
     path: 'client/edit/:client',
     component: EditClientComponent,
     canActivate: [AuthService],
   },
-  { path: "client/edit", component: EditClientComponent },
-  { path: "inscription", component: InscriptionComponent },
   {
-    path: "restaurants",
+    path: 'client/edit',
+    component: EditClientComponent,
+    canActivate: [AuthService],
+  },
+  { path: 'inscription', component: InscriptionComponent },
+  {
+    path: 'restaurants',
     component: ChoixRestaurantComponent,
     canActivate: [AuthService],
   },
   {
-    path: "restaurants/choisir",
+    path: 'restaurants/choisir',
     component: ChoixRestaurantComponent,
     canActivate: [AuthService],
   },
   {
-    path: "restaurants/choisir/:id",
+    path: 'restaurants/choisir/:id',
     component: ChoixRestaurantComponent,
     canActivate: [AuthService],
   },
