@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Embeddable
 public class Adresse {
 	@JsonView(JsonViews.Common.class)
-	private int numero;
+	private String numero;
 	@JsonView(JsonViews.Common.class)
 	private String rue;
 	@Column(length = 20)
@@ -17,7 +17,7 @@ public class Adresse {
 	@JsonView(JsonViews.Common.class)
 	private String ville;
 
-	public Adresse(int numero, String rue, String codePostal, String ville) {
+	public Adresse(String numero, String rue, String codePostal, String ville) {
 		this.numero = numero;
 		this.rue = rue;
 		this.codePostal = codePostal;
@@ -28,11 +28,11 @@ public class Adresse {
 
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -65,7 +65,7 @@ public class Adresse {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codePostal == null) ? 0 : codePostal.hashCode());
-		result = prime * result + numero;
+		result = prime * result + ((numero== null) ? 0 : numero.hashCode());
 		result = prime * result + ((rue == null) ? 0 : rue.hashCode());
 		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
 		return result;

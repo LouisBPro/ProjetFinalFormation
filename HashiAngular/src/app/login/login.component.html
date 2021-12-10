@@ -1,27 +1,31 @@
 <div class="container">
-  <h2>Connexion</h2>
   <br/>
-  <div *ngIf="showMessage" class="col-sm-4 alert alert-danger">
-    {{ message }}
+  <div class="card mx-auto shadow p-3 mb-5" style="width: 40%; line-height: 0.3cm;">
+    <div class="card-body">
+      <h1 class="card-title text-center">Connexion</h1>
+      <br/>
+      <div *ngIf="showMessage" class="col-sm-12 alert alert-danger">
+        {{ message }}
+      </div>
+      <div class="form-group" class="col-sm-12">
+        <input [(ngModel)]="login" class="form-control" placeholder="Nom d'utilisateur"/>
+      </div>
+      <br/>
+      <div class="form-group" class="col-sm-12">
+        <input type="password" [(ngModel)]="password" class="form-control" placeholder="Mot de passe"/>
+      </div>
+      <br/>
+      <br/>
+      <div>
+        <button (click)="check()" class="btn btn-primary">connexion</button>
+        &nbsp;
+        <a routerLink="/inscription" routerLinkActive="active" class="btn btn-outline-success"
+        >inscription</a>
+        &nbsp;
+        <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-outline-warning"
+          >retour accueil</a
+        >
+      </div>
+    </div>
   </div>
-  <div class="form-group" class="col-sm-4">
-    <label>Nom d'utilisateur:</label>
-    <input [(ngModel)]="login" class="form-control" placeholder="Nom d'utilisateur"/>
-  </div>
-  <div class="form-group" class="col-sm-4">
-    <label>Mot de passe:</label>
-    <input type="password" [(ngModel)]="password" class="form-control" placeholder="Mot de passe"/>
-  </div>
-  <br/>
-  <div>
-    <button (click)="check()" class="btn btn-primary">envoyer</button>
-    &nbsp;
-    <a routerLink="/inscription" routerLinkActive="active" class="btn btn-outline-success"
-    >inscription</a>
-    &nbsp;
-    <a [routerLink]="['/home']" routerLinkActive="active" class="btn btn-outline-warning"
-      >retour acceuil</a
-    >
-  </div>
-  <br/>
 </div>

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  check() {
+   check() {
     this.authService.auth(this.login, this.password).subscribe(
       (ok) => {
         this.showMessage = false;

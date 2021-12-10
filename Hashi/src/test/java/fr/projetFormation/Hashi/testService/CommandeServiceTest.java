@@ -44,7 +44,7 @@ public class CommandeServiceTest {
 		Client cl = new Client();
 		cl.setEmail("jjj@kkk.com");
 		cl.setNom("jkj");
-		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
+		cl.setAdresse(new Adresse("1", "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
 		clientService.create(cl);
 
@@ -61,7 +61,7 @@ public class CommandeServiceTest {
 		platService.save(plat2);
 
 		Restaurant resto1 = new Restaurant();
-		Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
+		Adresse adresse1 = new Adresse("10", "Rue Saint Anne", "35000", "Rennes");
 		resto1.setNom("Restaurant - Saint Anne");
 		resto1.setAdresse(adresse1);
 		restaurantService.save(resto1);
@@ -89,7 +89,7 @@ public class CommandeServiceTest {
 		Client cl = new Client();
 		cl.setEmail("jjj@kkk.com");
 		cl.setNom("jkj");
-		cl.setAdresse(new Adresse(1, "rue", "35200", "Rennes"));
+		cl.setAdresse(new Adresse("1", "rue", "35200", "Rennes"));
 		cl.setPrenom("grdsf");
 		clientService.create(cl);
 		List<Commande> c = commandeService.byClientWithLigneCommande(cl);
@@ -99,7 +99,7 @@ public class CommandeServiceTest {
 //	@Test
 	public void testByRestaurant() {
 		Restaurant resto1 = new Restaurant();
-		Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
+		Adresse adresse1 = new Adresse("10", "Rue Saint Anne", "35000", "Rennes");
 		resto1.setNom("Restaurant - Saint Anne");
 		resto1.setAdresse(adresse1);
 		restaurantService.save(resto1);
@@ -109,7 +109,7 @@ public class CommandeServiceTest {
 //	@Test
 	public void testByRestaurantAndStatut() {
 		Restaurant resto1 = new Restaurant();
-		Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
+		Adresse adresse1 = new Adresse("10", "Rue Saint Anne", "35000", "Rennes");
 		resto1.setNom("Restaurant - Saint Anne");
 		resto1.setAdresse(adresse1);
 		restaurantService.save(resto1);

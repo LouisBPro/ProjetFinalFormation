@@ -58,7 +58,7 @@ public class RestaurantServiceTest {
         userClient.setPassword("client");
 
         Client client = new Client();
-        client.setAdresse(new Adresse(5,"Square marcel bozzuffi", "35000", "Rennes"));
+        client.setAdresse(new Adresse("5","Square marcel bozzuffi", "35000", "Rennes"));
         client.setEmail("client@gmail.com");
         client.setNom("Client");
         client.setPrenom("Client");
@@ -100,7 +100,7 @@ public class RestaurantServiceTest {
         platService.save(plat2);
 
         Restaurant resto1 = new Restaurant();
-        Adresse adresse1 = new Adresse(10, "Rue Saint Anne", "35000", "Rennes");
+        Adresse adresse1 = new Adresse("10", "Rue Saint Anne", "35000", "Rennes");
         resto1.setNom("Restaurant - Saint Anne");
         resto1.setAdresse(adresse1);
 

@@ -31,48 +31,56 @@ export class InscriptionComponent implements OnInit {
     this._form = new FormGroup({
       prenom: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
-        Validators.maxLength(200),
+        Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
+        Validators.maxLength(50),
       ]),
       nom: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
-        Validators.maxLength(200),
+        Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
+        Validators.maxLength(50),
       ]),
       email: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
         Validators.email,
-        Validators.maxLength(200),
+        Validators.maxLength(100),
       ]),
       numero: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
-        // Validators.maxLength(200),
+        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
+        Validators.maxLength(50),
       ]),
       rue: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
+        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
         Validators.maxLength(200),
       ]),
       codePostal: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
-        // Validators.maxLength(200),
+        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
+        Validators.maxLength(50),
       ]),
       ville: new FormControl('', [
         Validators.required,
-        // Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{2,})*$/),
-        Validators.maxLength(200),
+        Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
+        Validators.maxLength(100),
       ]),
-      login: new FormControl('', Validators.required, this.checkLogin()),
+      login: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
+          Validators.maxLength(20),
+        ],
+        this.checkLogin()
+      ),
       passwordGroup: new FormGroup(
         {
           password: new FormControl('', [
             Validators.required,
-            // Validators.pattern(
-            // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9$@#_-]{5,25})$/
-            // ),
+            Validators.pattern(
+              /^[a-zA-ZÀ-ÿ0-9]{5,}$/
+            ),
+            Validators.maxLength(30),
           ]),
           confirm: new FormControl(''),
         },
