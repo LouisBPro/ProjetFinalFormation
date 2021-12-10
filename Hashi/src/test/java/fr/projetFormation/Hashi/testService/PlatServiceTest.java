@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.projetFormation.Hashi.entities.Plat;
-import fr.projetFormation.Hashi.exceptions.PlatException;
 import fr.projetFormation.Hashi.services.PlatService;
 
 @SpringBootTest

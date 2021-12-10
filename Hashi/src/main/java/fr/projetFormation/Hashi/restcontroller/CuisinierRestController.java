@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.entities.JsonViews;
-import fr.projetFormation.Hashi.entities.User;
+
 import fr.projetFormation.Hashi.services.CuisinierService;
 
 @RestController

@@ -1,6 +1,5 @@
   package fr.projetFormation.Hashi.repositories;
 
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
