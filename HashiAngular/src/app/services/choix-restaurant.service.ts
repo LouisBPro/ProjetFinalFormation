@@ -13,7 +13,6 @@ export class ChoixRestaurantService {
     return new HttpHeaders({
       Authorization: "Basic " + sessionStorage.getItem("token"),
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
     });
   }
   public allRestaurant(): Observable<Restaurant[]> {
@@ -21,6 +20,11 @@ export class ChoixRestaurantService {
   }
   public getById(id: number): Observable<Restaurant> {
     return this.http.get<Restaurant>(this.url + "/" + id, {
+      headers: this.httpHeaders,
+    });
+  }
+  public getPlatById(id: number): Observable<Restaurant> {
+    return this.http.get<Restaurant>(this.url + "/ligneCarte/" + id, {
       headers: this.httpHeaders,
     });
   }

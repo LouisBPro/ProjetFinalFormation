@@ -10,19 +10,19 @@ import { LoginComponent } from './login/login.component';
 import { EditPlatComponent } from './plats/edit-plat/edit-plat.component';
 
 export const route: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: "home", component: HomeComponent },
   {
-    path: 'plats',
+    path: "plats",
     component: PlatsComponent,
     canActivate: [AuthService],
   },
   {
-    path: 'plats/edit',
+    path: "plats/edit",
     component: EditPlatComponent,
     canActivate: [AuthService],
   },
   {
-    path: 'plats/edit/:id',
+    path: "plats/edit/:id",
     component: EditPlatComponent,
     canActivate: [AuthService],
   },

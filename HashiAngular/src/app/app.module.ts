@@ -14,6 +14,7 @@ import { ClientComponent } from "./client/client/client.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
+import { ChoisirComponent } from './choix-restaurant/choisir/choisir.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.co
     ClientComponent,
     EditPlatComponent,
     InscriptionComponent,
-    ChoixRestaurantComponent
+    ChoixRestaurantComponent,
+    ChoisirComponent
   ],
   imports: [
     BrowserModule,

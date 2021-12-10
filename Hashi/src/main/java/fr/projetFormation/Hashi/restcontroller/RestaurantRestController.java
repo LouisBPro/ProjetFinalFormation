@@ -72,6 +72,11 @@ public class RestaurantRestController {
         restaurantEnBase.setNom(restaurant.getNom());
         return restaurantService.save(restaurantEnBase);
     }
+    @GetMapping("/ligneCarte/{restaurantId}")
+    @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+    public Restaurant byIdWithLigneCarte(@PathVariable("restaurantId") Long restaurantId) {
+		return restaurantService.byIdWithLigneCarte(restaurantId);
+	}
 
     @DeleteMapping("/ligneCarte/{restaurantId}/{platId}")
     @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
