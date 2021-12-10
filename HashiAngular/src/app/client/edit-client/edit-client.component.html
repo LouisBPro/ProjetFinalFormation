@@ -14,7 +14,7 @@
   <ng-container *ngIf="!client.id">
     <div class="form-group">
       <label>login</label>
-      <input [(ngModel)]="client.login" class="form-control" />
+      <input [(ngModel)]="client.user.login" class="form-control" />
     </div>
     <div class="form-group">
       <label>password</label>
@@ -23,19 +23,19 @@
   </ng-container>
   <div class="form-group">
     <label>numero de rue</label>
-    <input [(ngModel)]="client.numero" class="form-control" />
+    <input [(ngModel)]="client.adresse.numero" class="form-control" />
   </div>
   <div class="form-group">
     <label>nom de rue</label>
-    <input [(ngModel)]="client.rue" class="form-control" />
+    <input [(ngModel)]="client.adresse.rue" class="form-control" />
   </div>
   <div class="form-group">
     <label>code postal</label>
-    <input [(ngModel)]="client.codePostal" class="form-control" />
+    <input [(ngModel)]="client.adresse.codePostal" class="form-control" />
   </div>
   <div class="form-group">
     <label>ville</label>
-    <input [(ngModel)]="client.ville" class="form-control" />
+    <input [(ngModel)]="client.adresse.ville" class="form-control" />
   </div>
   <div>
     <button (click)="save()" class="btn btn-outline-success">

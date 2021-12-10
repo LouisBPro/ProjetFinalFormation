@@ -1,17 +1,17 @@
-import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "./../services/auth.service";
-import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from './../services/auth.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  login: string = "";
-  password: string = "";
+  login: string = '';
+  password: string = '';
   showMessage = false;
-  message = "";
+  message = '';
 
   constructor(
     private authService: AuthService,
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedroute.queryParams.subscribe((params) => {
-      if (!!params["error"]) {
-        if (params["error"]) {
-          this.message = "authentification requise";
+      if (!!params['error']) {
+        if (params['error']) {
+          this.message = 'authentification requise';
           this.showMessage = true;
         }
       }
@@ -36,17 +36,19 @@ export class LoginComponent implements OnInit {
         this.showMessage = false;
         sessionStorage.setItem('token', btoa(this.login + ':' + this.password));
         sessionStorage.setItem('login', this.login);
+        sessionStorage.setItem('id', ok['personne']['id']);
+
         // TODO roles
         if (!!ok['client']) {
           sessionStorage.setItem('role', 'client');
         } else {
-          sessionStorage.setItem("role", "admin");
+          sessionStorage.setItem('role', 'admin');
         }
-        if (!!localStorage.getItem("valider")) {
-          localStorage.removeItem("valider");
-          this.router.navigate(["/valider"]);
+        if (!!localStorage.getItem('valider')) {
+          localStorage.removeItem('valider');
+          this.router.navigate(['/valider']);
         } else {
-          this.router.navigate(["/home"]);
+          this.router.navigate(['/home']);
         }
       },
       (error) => {

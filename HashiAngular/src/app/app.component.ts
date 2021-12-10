@@ -1,22 +1,29 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { ClientService } from './services/client.service';
+import { Client } from './model/client';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "HashiAngular";
+  title = 'HashiAngular';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private clientService: ClientService) {}
 
   logout() {
     sessionStorage.clear();
-    this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
   }
 
   get logged(): boolean {
-    return !!sessionStorage.getItem("token") ? true : false;
+    return !!sessionStorage.getItem('token') ? true : false;
+  }
+
+  getClient() {
+    console.log(sessionStorage.getItem('id'));
+    this.router.navigate(['/client/' + sessionStorage.getItem('id')]);
   }
 }

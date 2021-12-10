@@ -15,9 +15,11 @@ export class ClientService {
     return new HttpHeaders({
       Authorisation: 'Basic' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     });
   }
-  public byId(id: number): Observable<Client> {
+
+  public byId(id: number): Observable<any> {
     return this.http.get<Client>(`${ClientService.URL}/${id}`, {
       headers: this.httpHeaders,
     });
@@ -39,12 +41,12 @@ export class ClientService {
       prenom: client.prenom,
       nom: client.nom,
       email: client.email,
-      user: { login: client.login, password: password },
+      user: { login: client.user.login, password: password },
       adresse: {
-        numero: client.numero,
-        rue: client.rue,
-        codePostal: client.codePostal,
-        ville: client.ville,
+        numero: client.adresse.numero,
+        rue: client.adresse.rue,
+        codePostal: client.adresse.codePostal,
+        ville: client.adresse.ville,
       },
     };
     return this.http.post<Client>(ClientService.URL, o, {

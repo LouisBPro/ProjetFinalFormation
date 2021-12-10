@@ -1,14 +1,13 @@
+import { Adresse } from './adresse';
+import { User } from './user';
 export class Client {
   constructor(
+    private _user: User,
+    private _adresse: Adresse,
     private _id?: number | undefined,
     private _prenom?: string | undefined,
     private _nom?: string | undefined,
-    private _email?: string | undefined,
-    private _login?: string | undefined,
-    private _numero?: number | undefined,
-    private _rue?: string | undefined,
-    private _codePostal?: string | undefined,
-    private _ville?: string | undefined
+    private _email?: string | undefined
   ) {}
 
   /**
@@ -44,46 +43,6 @@ export class Client {
   }
 
   /**
-   * Getter login
-   * @return {string}
-   */
-  public get login(): string | undefined {
-    return this._login;
-  }
-
-  /**
-   * Getter numero
-   * @return {number}
-   */
-  public get numero(): number | undefined {
-    return this._numero;
-  }
-
-  /**
-   * Getter rue
-   * @return {string}
-   */
-  public get rue(): string | undefined {
-    return this._rue;
-  }
-
-  /**
-   * Getter codePostal
-   * @return {string}
-   */
-  public get codePostal(): string | undefined {
-    return this._codePostal;
-  }
-
-  /**
-   * Getter ville
-   * @return {string}
-   */
-  public get ville(): string | undefined {
-    return this._ville;
-  }
-
-  /**
    * Setter id
    * @param {number} value
    */
@@ -116,42 +75,34 @@ export class Client {
   }
 
   /**
-   * Setter login
-   * @param {string} value
+   * Getter adresse
+   * @return {Adresse}
    */
-  public set login(value: string | undefined) {
-    this._login = value;
+  public get adresse(): Adresse {
+    return this._adresse;
   }
 
   /**
-   * Setter numero
-   * @param {number} value
+   * Setter adresse
+   * @param {Adresse} value
    */
-  public set numero(value: number | undefined) {
-    this._numero = value;
+  public set adresse(value: Adresse) {
+    this._adresse = value;
   }
 
   /**
-   * Setter rue
-   * @param {string} value
+   * Getter user
+   * @return {User}
    */
-  public set rue(value: string | undefined) {
-    this._rue = value;
+  public get user(): User {
+    return this._user;
   }
 
   /**
-   * Setter codePostal
-   * @param {string} value
+   * Setter user
+   * @param {User} value
    */
-  public set codePostal(value: string | undefined) {
-    this._codePostal = value;
-  }
-
-  /**
-   * Setter ville
-   * @param {string} value
-   */
-  public set ville(value: string | undefined) {
-    this._ville = value;
+  public set user(value: User) {
+    this._user = value;
   }
 }

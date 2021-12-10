@@ -12,6 +12,8 @@ import { debounceTime, map } from 'rxjs/operators';
 import { Client } from 'src/app/model/client';
 import { ClientService } from '../services/client.service';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
+import { Adresse } from '../model/adresse';
 
 @Component({
   selector: 'app-inscription',
@@ -21,7 +23,11 @@ import { Router } from '@angular/router';
 export class InscriptionComponent implements OnInit {
   _form: FormGroup;
 
-  constructor(private clientService: ClientService, private router: Router, private authService : AuthService) {
+  constructor(
+    private clientService: ClientService,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this._form = new FormGroup({
       prenom: new FormControl('', [
         Validators.required,
@@ -65,7 +71,7 @@ export class InscriptionComponent implements OnInit {
           password: new FormControl('', [
             Validators.required,
             // Validators.pattern(
-              // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9$@#_-]{5,25})$/
+            // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9$@#_-]{5,25})$/
             // ),
           ]),
           confirm: new FormControl(''),
@@ -75,8 +81,7 @@ export class InscriptionComponent implements OnInit {
     });
   }
 
-  get form(): { [key: string]: AbstractControl; }
-  {
+  get form(): { [key: string]: AbstractControl } {
     return this._form.controls;
   }
 
@@ -96,7 +101,8 @@ export class InscriptionComponent implements OnInit {
     if (formGroup.controls['password'].errors) {
       return null;
     }
-    return formGroup.controls['password'].value != formGroup.controls['confirm'].value
+    return formGroup.controls['password'].value !=
+      formGroup.controls['confirm'].value
       ? { checkNotEquals: true }
       : null;
   }
@@ -105,41 +111,57 @@ export class InscriptionComponent implements OnInit {
     this.clientService
       .insert(
         new Client(
+          new User(this.form['login'].value),
+          new Adresse(
+            this.form['numero'].value,
+            this.form['rue'].value,
+            this.form['codePostal'].value,
+            this.form['ville'].value
+          ),
           undefined,
           this.form['prenom'].value,
           this.form['nom'].value,
-          this.form['email'].value,
-          this.form['login'].value,
-          this.form['numero'].value,
-          this.form['rue'].value,
-          this.form['codePostal'].value,
-          this.form['ville'].value
+          this.form['email'].value
         ),
         this.form['passwordGroup'].get('password')!.value
       )
-      .subscribe((client) => {
-        this.authService.auth(this.form['login'].value, this.form['passwordGroup'].get('password')!.value).subscribe(
-          (ok) => {
-            sessionStorage.setItem('token', btoa(this.form['login'].value + ':' + this.form['passwordGroup'].get('password')!.value));
-            sessionStorage.setItem('login', this.form['login'].value);
-            // TODO roles
-            if (!!ok['client']) {
-              sessionStorage.setItem('role', 'client');
-            } else {
-              sessionStorage.setItem('role', 'admin');
-            }
-            if (!!localStorage.getItem('valider')) {
-              localStorage.removeItem('valider');
-              this.router.navigate(['/valider']);
-            } else {
-              this.router.navigate(['/home']);
-            }
-          }
-        );
-      },
-      (error) => {
-        console.log("erreur création compte client");
-      });
+      .subscribe(
+        (client) => {
+          this.authService
+            .auth(
+              this.form['login'].value,
+              this.form['passwordGroup'].get('password')!.value
+            )
+            .subscribe((ok) => {
+              sessionStorage.setItem(
+                'token',
+                btoa(
+                  this.form['login'].value +
+                    ':' +
+                    this.form['passwordGroup'].get('password')!.value
+                )
+              );
+              sessionStorage.setItem('login', this.form['login'].value);
+              sessionStorage.setItem('id', ok['personne']['id']);
+
+              // TODO roles
+              if (!!ok['client']) {
+                sessionStorage.setItem('role', 'client');
+              } else {
+                sessionStorage.setItem('role', 'admin');
+              }
+              if (!!localStorage.getItem('valider')) {
+                localStorage.removeItem('valider');
+                this.router.navigate(['/valider']);
+              } else {
+                this.router.navigate(['/home']);
+              }
+            });
+        },
+        (error) => {
+          console.log('erreur création compte client');
+        }
+      );
   }
 
   ngOnInit(): void {}

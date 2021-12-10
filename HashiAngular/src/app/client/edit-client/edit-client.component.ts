@@ -2,6 +2,8 @@ import { ClientService } from './../../services/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from './../../model/client';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user';
+import { Adresse } from 'src/app/model/adresse';
 
 @Component({
   selector: 'app-edit-client',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-client.component.css'],
 })
 export class EditClientComponent implements OnInit {
-  client: Client = new Client();
+  client: Client = new Client(new User(), new Adresse());
   password: string = '';
 
   constructor(
@@ -19,13 +21,13 @@ export class EditClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (!!params['client']) {
-        this.clientService.byId(params['client']).subscribe((client) => {
+    if (!!sessionStorage.getItem('id')) {
+      this.clientService
+        .byId(sessionStorage.getItem('id') as unknown as number)
+        .subscribe((client) => {
           this.client = client;
         });
-      }
-    });
+    }
   }
 
   save() {
