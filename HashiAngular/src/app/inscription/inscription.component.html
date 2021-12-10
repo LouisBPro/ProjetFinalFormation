@@ -121,10 +121,10 @@
             placeholder="Nom d'utilisateur*"
           />
           <div
-            *ngIf="form['login'].dirty && form['login'].invalid"
-            class="alert alert-danger"
+          *ngIf="form['login'].dirty && form['login'].invalid"
+          class="alert alert-danger"
           >
-            Login incorrect
+            Nom d'utilisateur incorrect ou déjà pris
           </div>
         </div>
         <ng-container formGroupName="passwordGroup">
