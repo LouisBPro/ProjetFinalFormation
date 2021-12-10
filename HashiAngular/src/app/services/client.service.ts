@@ -41,12 +41,12 @@ export class ClientService {
       prenom: client.prenom,
       nom: client.nom,
       email: client.email,
-      user: { login: client.user.login, password: password },
+      user: { login: client.user!.login, password: password },
       adresse: {
-        numero: client.adresse.numero,
-        rue: client.adresse.rue,
-        codePostal: client.adresse.codePostal,
-        ville: client.adresse.ville,
+        numero: client.adresse!.numero,
+        rue: client.adresse!.rue,
+        codePostal: client.adresse!.codePostal,
+        ville: client.adresse!.ville,
       },
     };
     return this.http.post<Client>(ClientService.URL, o, {
@@ -54,9 +54,21 @@ export class ClientService {
     });
   }
 
-  public update(client: Client): Observable<Client> {
-    console.log(client);
-    return this.http.put<Client>(`${ClientService.URL}/${client.id}`, client, {
+  public update(client: Client, password: string): Observable<Client> {
+    const o = {
+      id: client.id,
+      prenom: client.prenom,
+      nom: client.nom,
+      email: client.email,
+      user: { login: client.user!.login, password: password },
+      adresse: {
+        numero: client.adresse!.numero,
+        rue: client.adresse!.rue,
+        codePostal: client.adresse!.codePostal,
+        ville: client.adresse!.ville,
+      },
+    };
+    return this.http.put<Client>(`${ClientService.URL}/${client.id}`, o, {
       headers: this.httpHeaders,
     });
   }

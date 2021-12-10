@@ -51,6 +51,15 @@ public class ClientService {
 	}
 
 	public Client update(Client client) {
+		User user = client.getUser();
+		if (user.getPassword() != "") {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		}else {
+			user.setPassword(userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new).getPassword());
+		}
+		user.setRoles(Arrays.asList(Role.ROLE_CLIENT));
+		user.setEnable(true);
+		userRepository.save(user);
 		return clientRepository.save(client);
 	}
 

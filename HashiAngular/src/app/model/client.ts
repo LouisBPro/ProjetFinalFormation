@@ -2,8 +2,8 @@ import { Adresse } from './adresse';
 import { User } from './user';
 export class Client {
   constructor(
-    private _user: User,
-    private _adresse: Adresse,
+    private _user?: User | undefined,
+    private _adresse?: Adresse | undefined,
     private _id?: number | undefined,
     private _prenom?: string | undefined,
     private _nom?: string | undefined,
@@ -78,7 +78,7 @@ export class Client {
    * Getter adresse
    * @return {Adresse}
    */
-  public get adresse(): Adresse {
+  public get adresse(): Adresse | undefined {
     return this._adresse;
   }
 
@@ -86,7 +86,7 @@ export class Client {
    * Setter adresse
    * @param {Adresse} value
    */
-  public set adresse(value: Adresse) {
+  public set adresse(value: Adresse | undefined) {
     this._adresse = value;
   }
 
@@ -94,7 +94,7 @@ export class Client {
    * Getter user
    * @return {User}
    */
-  public get user(): User {
+  public get user(): User | undefined {
     return this._user;
   }
 
@@ -102,7 +102,7 @@ export class Client {
    * Setter user
    * @param {User} value
    */
-  public set user(value: User) {
+  public set user(value: User | undefined) {
     this._user = value;
   }
 }

@@ -1,51 +1,177 @@
-<div class="container">
-  <div class="form-group">
-    <label>id</label>
-    <input [(ngModel)]="client.id" readonly class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>prenom</label>
-    <input [(ngModel)]="client.prenom" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>nom</label>
-    <input [(ngModel)]="client.nom" class="form-control" />
-  </div>
-  <ng-container *ngIf="!client.id">
-    <div class="form-group">
-      <label>login</label>
-      <input [(ngModel)]="client.user.login" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label>password</label>
-      <input type="password" [(ngModel)]="password" class="form-control" />
-    </div>
-  </ng-container>
-  <div class="form-group">
-    <label>numero de rue</label>
-    <input [(ngModel)]="client.adresse.numero" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>nom de rue</label>
-    <input [(ngModel)]="client.adresse.rue" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>code postal</label>
-    <input [(ngModel)]="client.adresse.codePostal" class="form-control" />
-  </div>
-  <div class="form-group">
-    <label>ville</label>
-    <input [(ngModel)]="client.adresse.ville" class="form-control" />
-  </div>
-  <div>
-    <button (click)="save()" class="btn btn-outline-success">
-      enregistrer
-    </button>
-    <a
-      [routerLink]="['/client', client.id]"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
+<div class="container-fluid">
+  <br />
+  <form (ngSubmit)="save()" [formGroup]="_form">
+    <div
+      class="card mx-auto shadow p-3 mb-5"
+      style="width: 40%; line-height: 0.3cm"
     >
-  </div>
+      <div class="card-body">
+        <h1 class="card-title text-center">Editer</h1>
+        <br />
+        <h5 class="card-text">Informations personnelles:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="prenom"
+            placeholder="Prénom*"
+          />
+        </div>
+        <div
+          *ngIf="form['prenom'].dirty && form['prenom'].invalid"
+          class="alert alert-danger"
+        >
+          Prénom incorrect
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="nom"
+            placeholder="Nom*"
+          />
+          <div
+            *ngIf="form['nom'].dirty && form['nom'].invalid"
+            class="alert alert-danger"
+          >
+            Nom incorrect
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email*"
+          />
+          <div
+            *ngIf="form['email'].dirty && form['email'].invalid"
+            class="alert alert-danger"
+          >
+            Email incorrect
+          </div>
+        </div>
+        <br />
+        <h5 class="card-text">Adresse:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="numero"
+            placeholder="Numéro*"
+          />
+          <div
+            *ngIf="form['numero'].dirty && form['numero'].invalid"
+            class="alert alert-danger"
+          >
+            Numéro incorrect
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="rue"
+            placeholder="Rue*"
+          />
+          <div
+            *ngIf="form['rue'].dirty && form['rue'].invalid"
+            class="alert alert-danger"
+          >
+            Rue incorrecte
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="codePostal"
+            placeholder="Code postal*"
+          />
+          <div
+            *ngIf="form['codePostal'].dirty && form['codePostal'].invalid"
+            class="alert alert-danger"
+          >
+            Code postal incorrect
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="ville"
+            placeholder="Ville*"
+          />
+          <div
+            *ngIf="form['ville'].dirty && form['ville'].invalid"
+            class="alert alert-danger"
+          >
+            Ville incorrecte
+          </div>
+        </div>
+        <br />
+        <h5 class="card-text">Compte:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            readonly
+            formControlName="login"
+            placeholder="Nom d'utilisateur*"
+          />
+          <div
+            *ngIf="form['login'].dirty && form['login'].invalid"
+            class="alert alert-danger"
+          >
+            Login incorrect
+          </div>
+        </div>
+        <ng-container formGroupName="passwordGroup">
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Mot de passe*"
+            />
+            <div
+              *ngIf="
+                form['passwordGroup'].dirty && form['passwordGroup'].invalid
+              "
+              class="alert alert-danger"
+            >
+              Mot de passe incorrect ou différent
+            </div>
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirm"
+              placeholder="Confirmer le mot de passe"
+            />
+          </div>
+        </ng-container>
+        <br />
+        <br />
+        <div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="_form.invalid"
+          >
+            enregistrer</button
+          >&nbsp;
+          <a
+            [routerLink]="['/client', client.id]"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >annuler</a
+          >
+        </div>
+      </div>
+      <br />
+      <span> &nbsp; &nbsp;*Champs obligatoires</span>
+    </div>
+  </form>
 </div>

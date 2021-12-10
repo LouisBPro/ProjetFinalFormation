@@ -11,7 +11,7 @@ import { Adresse } from 'src/app/model/adresse';
   styleUrls: ['./client.component.css'],
 })
 export class ClientComponent implements OnInit {
-  client: Client = new Client(new User(), new Adresse());
+  client: Client = new Client();
 
   constructor(
     private clientService: ClientService,

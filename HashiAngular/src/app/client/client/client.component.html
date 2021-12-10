@@ -27,7 +27,7 @@
     <h6>Login :</h6>
   </div>
   <div class="col-sm-6">
-    <p>{{ client.user.login }}</p>
+    <p>{{ client.user!.login }}</p>
   </div>
 </div>
 <div class="row">
@@ -35,13 +35,13 @@
     <h6>N° :</h6>
   </div>
   <div class="col-sm-2">
-    <p>{{ client.adresse.numero }}</p>
+    <p>{{ client.adresse!.numero }}</p>
   </div>
   <div class="col-sm-2">
     <h6>Rue :</h6>
   </div>
   <div class="col-sm-6">
-    <p>{{ client.adresse.rue }}</p>
+    <p>{{ client.adresse!.rue }}</p>
   </div>
 </div>
 <div class="row">
@@ -49,13 +49,13 @@
     <h6>Code Postal :</h6>
   </div>
   <div class="col-sm-4">
-    <p>{{ client.adresse.codePostal }}</p>
+    <p>{{ client.adresse!.codePostal }}</p>
   </div>
   <div class="col-sm-2">
     <h6>Ville :</h6>
   </div>
   <div class="col-sm-4">
-    <p>{{ client.adresse.ville }}</p>
+    <p>{{ client.adresse!.ville }}</p>
   </div>
 </div>
 <a

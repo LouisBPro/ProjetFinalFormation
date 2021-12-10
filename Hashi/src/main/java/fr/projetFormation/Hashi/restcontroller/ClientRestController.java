@@ -51,6 +51,7 @@ public class ClientRestController {
 		clientEnBase.setPrenom(client.getPrenom());
         clientEnBase.setEmail(client.getEmail());
         clientEnBase.getUser().setLogin(client.getUser().getLogin());
+        clientEnBase.getUser().setPassword(client.getUser().getPassword());
         clientEnBase.getAdresse().setNumero(client.getAdresse().getNumero());
         clientEnBase.getAdresse().setRue(client.getAdresse().getRue());
         clientEnBase.getAdresse().setCodePostal(client.getAdresse().getCodePostal());
