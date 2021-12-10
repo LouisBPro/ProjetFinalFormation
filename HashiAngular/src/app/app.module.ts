@@ -13,6 +13,7 @@ import { EditClientComponent } from "./client/edit-client/edit-client.component"
 import { ClientComponent } from "./client/client/client.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     EditClientComponent,
     ClientComponent,
     EditPlatComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ChoixRestaurantComponent
   ],
   imports: [
     BrowserModule,

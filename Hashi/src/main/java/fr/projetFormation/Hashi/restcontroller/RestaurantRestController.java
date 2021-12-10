@@ -46,6 +46,11 @@ public class RestaurantRestController {
     public List<Restaurant> byVilleOrCodePostal(@PathVariable("location") String location) {
         return restaurantService.byVilleOrCodePostal(location);
     }
+    @GetMapping("")
+    @JsonView(JsonViews.Common.class)
+    public List<Restaurant> all() {
+        return restaurantService.all();
+    }
 
     @PostMapping("")
     @JsonView(JsonViews.RestaurantAvecEmployes.class)
