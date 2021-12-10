@@ -1,6 +1,7 @@
 package fr.projetFormation.Hashi.restcontroller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.projetFormation.Hashi.entities.JsonViews;
+import fr.projetFormation.Hashi.entities.LigneCarte;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.services.PlatService;
 import fr.projetFormation.Hashi.services.RestaurantService;
@@ -74,8 +76,8 @@ public class RestaurantRestController {
     }
     @GetMapping("/ligneCarte/{restaurantId}")
     @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
-    public Restaurant byIdWithLigneCarte(@PathVariable("restaurantId") Long restaurantId) {
-		return restaurantService.byIdWithLigneCarte(restaurantId);
+    public Set<LigneCarte> byIdWithLigneCarte(@PathVariable("restaurantId") Long restaurantId) {
+		return restaurantService.byIdWithLigneCarte(restaurantId).getLignesCarte();
 	}
 
     @DeleteMapping("/ligneCarte/{restaurantId}/{platId}")

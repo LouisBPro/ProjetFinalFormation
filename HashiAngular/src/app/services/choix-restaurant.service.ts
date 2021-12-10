@@ -1,3 +1,4 @@
+import { LigneCarte } from "./../model/ligne-carte";
 import { Restaurant } from "./../model/restaurant";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -23,8 +24,8 @@ export class ChoixRestaurantService {
       headers: this.httpHeaders,
     });
   }
-  public getPlatById(id: number): Observable<Restaurant> {
-    return this.http.get<Restaurant>(this.url + "/ligneCarte/" + id, {
+  public getPlatById(id: number): Observable<LigneCarte[]> {
+    return this.http.get<LigneCarte[]>(this.url + "/ligneCarte/" + id, {
       headers: this.httpHeaders,
     });
   }

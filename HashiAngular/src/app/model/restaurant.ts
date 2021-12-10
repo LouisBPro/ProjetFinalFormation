@@ -1,11 +1,11 @@
+import { LigneCarte } from "./ligne-carte";
+import { Adresse } from "src/app/model/adresse";
 export class Restaurant {
   constructor(
+    private _adresse?: Adresse | undefined,
+    private _ligneCarte?: LigneCarte | undefined,
     private _id?: number | undefined,
-    private _nom?: string | undefined,
-    private _numero?: number | undefined,
-    private _rue?: string | undefined,
-    private _codePostal?: string | undefined,
-    private _ville?: string | undefined
+    private _nom?: string | undefined // private _codePostal?: string | undefined, // private _numero?: number | undefined, // private _rue?: string | undefined, // private _ville?: string | undefined
   ) {}
 
   /**
@@ -25,38 +25,6 @@ export class Restaurant {
   }
 
   /**
-   * Getter numero
-   * @return {number}
-   */
-  public get numero(): number | undefined {
-    return this._numero;
-  }
-
-  /**
-   * Getter rue
-   * @return {string}
-   */
-  public get rue(): string | undefined {
-    return this._rue;
-  }
-
-  /**
-   * Getter codePostal
-   * @return {string}
-   */
-  public get codePostal(): string | undefined {
-    return this._codePostal;
-  }
-
-  /**
-   * Getter ville
-   * @return {string}
-   */
-  public get ville(): string | undefined {
-    return this._ville;
-  }
-
-  /**
    * Setter id
    * @param {number} value
    */
@@ -71,36 +39,97 @@ export class Restaurant {
   public set nom(value: string | undefined) {
     this._nom = value;
   }
-
   /**
-   * Setter numero
-   * @param {number} value
+   * Getter adresse
+   * @return {Adresse}
    */
-  public set numero(value: number | undefined) {
-    this._numero = value;
+  public get adresse(): Adresse | undefined {
+    return this._adresse;
   }
 
   /**
-   * Setter rue
-   * @param {string} value
+   * Setter adresse
+   * @param {Adresse} value
    */
-  public set rue(value: string | undefined) {
-    this._rue = value;
+  public set adresse(value: Adresse | undefined) {
+    this._adresse = value;
+  }
+  /**
+   * Getter ligneCarte
+   * @return {LigneCarte}
+   */
+  public get ligneCarte(): LigneCarte | undefined {
+    return this._ligneCarte;
   }
 
   /**
-   * Setter codePostal
-   * @param {string} value
+   * Setter ligneCarte
+   * @param {LigneCarte} value
    */
-  public set codePostal(value: string | undefined) {
-    this._codePostal = value;
+  public set ligneCarte(value: LigneCarte | undefined) {
+    this._ligneCarte = value;
   }
+  // /**
+  //  * Getter numero
+  //  * @return {number}
+  //  */
+  // public get numero(): number | undefined {
+  //   return this._numero;
+  // }
 
-  /**
-   * Setter ville
-   * @param {string} value
-   */
-  public set ville(value: string | undefined) {
-    this._ville = value;
-  }
+  // /**
+  //  * Getter rue
+  //  * @return {string}
+  //  */
+  // public get rue(): string | undefined {
+  //   return this._rue;
+  // }
+
+  // /**
+  //  * Getter codePostal
+  //  * @return {string}
+  //  */
+  // public get codePostal(): string | undefined {
+  //   return this._codePostal;
+  // }
+
+  // /**
+  //  * Getter ville
+  //  * @return {string}
+  //  */
+  // public get ville(): string | undefined {
+  //   return this._ville;
+  // }
+
+  // /**
+  //  * Setter numero
+  //  * @param {number} value
+  //  */
+  // public set numero(value: number | undefined) {
+  //   this._numero = value;
+  // }
+
+  // /**
+  //  * Setter rue
+  //  * @param {string} value
+  //  */
+  // public set rue(value: string | undefined) {
+  //   this._rue = value;
+  // }
+
+  // /**
+  //  * Setter codePostal
+  //  * @param {string} value
+  //  */
+  // public set codePostal(value: string | undefined) {
+  //   this._codePostal = value;
+  // }
+
+  // /**
+  //  * Setter ville
+  //  * @param {string} value
+  //  */
+  // public set ville(value: string | undefined) {
+  //   this._ville = value;
+  // }
 }
