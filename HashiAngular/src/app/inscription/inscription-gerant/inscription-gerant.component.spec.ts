@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InscriptionComponent } from './inscription.component';
+import { InscriptionGerantComponent } from './inscription-gerant.component';
 
-describe('InscriptionComponent', () => {
-  let component: InscriptionComponent;
-  let fixture: ComponentFixture<InscriptionComponent>;
+describe('InscriptionGerantComponent', () => {
+  let component: InscriptionGerantComponent;
+  let fixture: ComponentFixture<InscriptionGerantComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InscriptionComponent ]
+      declarations: [ InscriptionGerantComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InscriptionComponent);
+    fixture = TestBed.createComponent(InscriptionGerantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

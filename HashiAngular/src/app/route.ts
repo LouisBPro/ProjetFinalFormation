@@ -1,14 +1,17 @@
+import { InscriptionGeneraleComponent } from './Inscription/inscription-generale/inscription-generale.component';
 import { ChoisirComponent } from "./choix-restaurant/choisir/choisir.component";
 import { ChoixRestaurantComponent } from "./choix-restaurant/choix-restaurant.component";
 import { ClientComponent } from "./client/client/client.component";
 import { AuthService } from "./services/auth.service";
 import { EditClientComponent } from "./client/edit-client/edit-client.component";
-import { InscriptionComponent } from "./inscription/inscription.component";
 import { HomeComponent } from "./home/home.component";
 import { Routes } from "@angular/router";
 import { PlatsComponent } from "./plats/plats.component";
 import { LoginComponent } from "./login/login.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
+import { InscriptionClientComponent } from './Inscription/inscription-client/inscription-client.component';
+import { InscriptionGerantComponent } from './Inscription/inscription-gerant/inscription-gerant.component';
+import { InscriptionCuisinierComponent } from './Inscription/inscription-cuisinier/inscription-cuisinier.component';
 
 export const route: Routes = [
   { path: "home", component: HomeComponent },
@@ -44,7 +47,10 @@ export const route: Routes = [
     component: EditClientComponent,
     canActivate: [AuthService],
   },
-  { path: "inscription", component: InscriptionComponent },
+  { path: "inscription", component: InscriptionGeneraleComponent },
+  { path: "inscription/client", component: InscriptionClientComponent },
+  { path: "inscription/gerant", component: InscriptionGerantComponent },
+  { path: "inscription/cuisinier", component: InscriptionCuisinierComponent },
   {
     path: "restaurants",
     component: ChoixRestaurantComponent,

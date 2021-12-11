@@ -17,12 +17,10 @@ export class ChoixRestaurantService {
     });
   }
   public allRestaurant(): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(this.url, { headers: this.httpHeaders });
+    return this.http.get<Restaurant[]>(this.url);
   }
   public getById(id: number): Observable<Restaurant> {
-    return this.http.get<Restaurant>(this.url + "/" + id, {
-      headers: this.httpHeaders,
-    });
+    return this.http.get<Restaurant>(this.url + "/" + id);
   }
   public getPlatById(id: number): Observable<LigneCarte[]> {
     return this.http.get<LigneCarte[]>(this.url + "/ligneCarte/" + id, {

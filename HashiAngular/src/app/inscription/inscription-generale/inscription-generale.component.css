@@ -1,0 +1,11 @@
+.button {
+  border-radius: 8px;
+  background-color: #f60100;
+  border: 1px solid orangered;
+  color: white;
+}
+.button:hover {
+  /* Green */
+  background-color: white;
+  color: #f60100;
+}

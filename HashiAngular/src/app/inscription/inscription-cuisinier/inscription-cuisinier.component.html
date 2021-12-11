@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <br />
+  <form (ngSubmit)="save()" [formGroup]="_form">
+    <div
+      class="card mx-auto shadow p-3 mb-5"
+      style="width: 40%; line-height: 0.3cm"
+    >
+      <div class="card-body">
+        <h1 class="card-title text-center">Inscription</h1>
+        <br />
+        <h5 class="card-text">Informations personnelles:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="prenom"
+            placeholder="Prénom*"
+          />
+        </div>
+        <div
+          *ngIf="form['prenom'].dirty && form['prenom'].invalid"
+          class="alert alert-danger"
+        >
+          Prénom incorrect
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="nom"
+            placeholder="Nom*"
+          />
+          <div
+            *ngIf="form['nom'].dirty && form['nom'].invalid"
+            class="alert alert-danger"
+          >
+            Nom incorrect
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email*"
+          />
+          <div
+            *ngIf="form['email'].dirty && form['email'].invalid"
+            class="alert alert-danger"
+          >
+            Email incorrect
+          </div>
+        </div>
+        <br />
+
+        <h5 class="card-text">Restaurant :</h5>
+        <div class="form-group">
+          <select class="form-control" formControlName="restaurant">
+            <option></option>
+            <option
+              *ngFor="let restaurant of restaurants | async"
+              value="{{ restaurant.id }}"
+            >
+              {{ restaurant.nom }} ({{ restaurant.adresse?.ville }})
+            </option>
+          </select>
+          <div
+            *ngIf="form['restaurant'].dirty && form['restaurant'].invalid"
+            class="alert alert-danger"
+          >
+            Restaurant incorrect
+          </div>
+        </div>
+
+        <br />
+        <h5 class="card-text">Compte:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="login"
+            placeholder="Nom d'utilisateur*"
+          />
+          <div
+            *ngIf="form['login'].dirty && form['login'].invalid"
+            class="alert alert-danger"
+          >
+            Nom d'utilisateur incorrect ou déjà pris
+          </div>
+        </div>
+        <ng-container formGroupName="passwordGroup">
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Mot de passe*"
+            />
+            <div
+              *ngIf="
+                form['passwordGroup'].dirty && form['passwordGroup'].invalid
+              "
+              class="alert alert-danger"
+            >
+              Mot de passe incorrect ou différent
+            </div>
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirm"
+              placeholder="Confirmer le mot de passe"
+            />
+          </div>
+        </ng-container>
+        <br />
+        <br />
+        <div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="_form.invalid"
+          >
+            enregistrer</button
+          >&nbsp;
+          <a
+            [routerLink]="['/inscription']"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >retour</a
+          >
+        </div>
+      </div>
+      <br />
+      <span> &nbsp; &nbsp;*Champs obligatoires</span>
+    </div>
+  </form>
+</div>

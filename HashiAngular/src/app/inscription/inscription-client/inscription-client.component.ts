@@ -1,4 +1,4 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import {
   AbstractControl,
@@ -10,17 +10,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { Client } from 'src/app/model/client';
-import { ClientService } from '../services/client.service';
+import { ClientService } from '../../services/client.service';
 import { Router } from '@angular/router';
-import { User } from '../model/user';
-import { Adresse } from '../model/adresse';
+import { User } from '../../model/user';
+import { Adresse } from '../../model/adresse';
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.css'],
+  selector: 'app-inscription-client',
+  templateUrl: './inscription-client.component.html',
+  styleUrls: ['./inscription-client.component.css'],
 })
-export class InscriptionComponent implements OnInit {
+export class InscriptionClientComponent{
   _form: FormGroup;
 
   constructor(
@@ -158,28 +158,12 @@ export class InscriptionComponent implements OnInit {
               } else {
                 sessionStorage.setItem('role', 'admin');
               }
-              if (!!localStorage.getItem('valider')) {
-                localStorage.removeItem('valider');
-                this.router.navigate(['/valider']);
-              } else {
-                this.router.navigate(['/home']);
-              }
+              this.router.navigate(['/home']);
             });
         },
         (error) => {
           console.log('erreur création compte client');
         }
       );
-  }
-
-  ngOnInit(): void {}
-
-  nomErrorMessage() {
-    if (this.form['nom']!.hasError('required')) {
-      return 'nom obligatoire';
-    } else if (this.form['nom']!.hasError('pattern')) {
-      return 'uniquement des lettres avec espace ou -';
-    }
-    return 'maximum 200 caracteres';
   }
 }
