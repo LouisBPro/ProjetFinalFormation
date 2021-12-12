@@ -1,4 +1,4 @@
-  package fr.projetFormation.Hashi.repositories;
+package fr.projetFormation.Hashi.repositories;
 
 
 import javax.transaction.Transactional;

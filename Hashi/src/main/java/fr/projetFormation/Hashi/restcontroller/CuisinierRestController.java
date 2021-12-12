@@ -37,6 +37,12 @@ public class CuisinierRestController {
 		return cuisinierService.byId(id);
 	}
 
+	@GetMapping("")
+    @JsonView(JsonViews.Common.class)
+    public List<Cuisinier> all() {
+        return cuisinier.all();
+    }
+
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)

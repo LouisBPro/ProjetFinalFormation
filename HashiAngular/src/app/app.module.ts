@@ -18,6 +18,7 @@ import { InscriptionGeneraleComponent } from "./Inscription/inscription-generale
 import { InscriptionCuisinierComponent } from "./Inscription/inscription-cuisinier/inscription-cuisinier.component";
 import { InscriptionGerantComponent } from "./Inscription/inscription-gerant/inscription-gerant.component";
 import { InscriptionClientComponent } from "./Inscription/inscription-client/inscription-client.component";
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InscriptionClientComponent } from "./Inscription/inscription-client/ins
     InscriptionCuisinierComponent,
     InscriptionClientComponent,
     ChoixRestaurantComponent,
-    ChoisirComponent
+    ChoisirComponent,
+    CreateRestaurantComponent
   ],
   imports: [
     BrowserModule,
