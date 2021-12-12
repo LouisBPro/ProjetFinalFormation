@@ -20,7 +20,7 @@ import { User } from '../../model/user';
   templateUrl: './inscription-cuisinier.component.html',
   styleUrls: ['./inscription-cuisinier.component.css'],
 })
-export class InscriptionCuisinierComponent implements OnInit{
+export class InscriptionCuisinierComponent implements OnInit {
   _form: FormGroup;
   restaurants: Observable<Restaurant[]> | undefined = undefined;
 
@@ -28,7 +28,7 @@ export class InscriptionCuisinierComponent implements OnInit{
     private cuisinierService: CuisinierService,
     private router: Router,
     private authService: AuthService,
-    private restaurantService : ChoixRestaurantService
+    private restaurantService: ChoixRestaurantService
   ) {
     this._form = new FormGroup({
       prenom: new FormControl('', [
@@ -46,9 +46,7 @@ export class InscriptionCuisinierComponent implements OnInit{
         Validators.email,
         Validators.maxLength(100),
       ]),
-      restaurant : new FormControl('', [
-        Validators.required,
-      ]),
+      restaurant: new FormControl(''),
       login: new FormControl(
         '',
         [
@@ -62,9 +60,7 @@ export class InscriptionCuisinierComponent implements OnInit{
         {
           password: new FormControl('', [
             Validators.required,
-            Validators.pattern(
-              /^[a-zA-ZÀ-ÿ0-9]{5,}$/
-            ),
+            Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
             Validators.maxLength(30),
           ]),
           confirm: new FormControl(''),
@@ -105,7 +101,8 @@ export class InscriptionCuisinierComponent implements OnInit{
   }
 
   save() {
-    this.restaurantService.getById(this.form['restaurant'].value).subscribe((restau) =>{
+    // Si on a pas de restaurant
+    if (this.form['restaurant'].value == '') {
       this.cuisinierService
         .insert(
           new Cuisinier(
@@ -114,7 +111,6 @@ export class InscriptionCuisinierComponent implements OnInit{
             this.form['prenom'].value,
             this.form['nom'].value,
             this.form['email'].value,
-            restau
           ),
           this.form['passwordGroup'].get('password')!.value
         )
@@ -149,9 +145,59 @@ export class InscriptionCuisinierComponent implements OnInit{
             console.log('erreur création compte cuisinier');
           }
         );
-    }, (erreur) =>{
-      console.log('restaurant non trouvé dans la BDD');
     }
-    )
+    // Si on a un restaurant
+    else {
+      this.restaurantService.getById(this.form['restaurant'].value).subscribe(
+        (restau) => {
+          this.cuisinierService
+            .insert(
+              new Cuisinier(
+                new User(this.form['login'].value),
+                undefined,
+                this.form['prenom'].value,
+                this.form['nom'].value,
+                this.form['email'].value,
+                restau
+              ),
+              this.form['passwordGroup'].get('password')!.value
+            )
+            .subscribe(
+              (cuisinier) => {
+                this.authService
+                  .auth(
+                    this.form['login'].value,
+                    this.form['passwordGroup'].get('password')!.value
+                  )
+                  .subscribe((ok) => {
+                    sessionStorage.setItem(
+                      'token',
+                      btoa(
+                        this.form['login'].value +
+                          ':' +
+                          this.form['passwordGroup'].get('password')!.value
+                      )
+                    );
+                    sessionStorage.setItem('login', this.form['login'].value);
+                    sessionStorage.setItem('id', ok['personne']['id']);
+                    // TODO roles
+                    if (!!ok['cuisinier']) {
+                      sessionStorage.setItem('role', 'cuisinier');
+                    } else {
+                      sessionStorage.setItem('role', 'admin');
+                    }
+                    this.router.navigate(['/home']);
+                  });
+              },
+              (error) => {
+                console.log('erreur création compte cuisinier');
+              }
+            );
+        },
+        (erreur) => {
+          console.log('restaurant non trouvé dans la BDD');
+        }
+      );
+    }
   }
 }

@@ -14,11 +14,12 @@ import { ClientComponent } from "./client/client/client.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
 import { ChoisirComponent } from './choix-restaurant/choisir/choisir.component';
-import { InscriptionGeneraleComponent } from "./Inscription/inscription-generale/inscription-generale.component";
-import { InscriptionCuisinierComponent } from "./Inscription/inscription-cuisinier/inscription-cuisinier.component";
-import { InscriptionGerantComponent } from "./Inscription/inscription-gerant/inscription-gerant.component";
-import { InscriptionClientComponent } from "./Inscription/inscription-client/inscription-client.component";
-import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
+import { InscriptionGeneraleComponent } from "./inscription/inscription-generale/inscription-generale.component";
+import { InscriptionCuisinierComponent } from "./inscription/inscription-cuisinier/inscription-cuisinier.component";
+import { InscriptionGerantComponent } from "./inscription/inscription-gerant/inscription-gerant.component";
+import { InscriptionClientComponent } from "./inscription/inscription-client/inscription-client.component";
+import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant.component";
+// import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 
 @NgModule({
   declarations: [

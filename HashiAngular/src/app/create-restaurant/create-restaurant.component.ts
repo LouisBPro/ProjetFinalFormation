@@ -22,6 +22,10 @@ import { Cuisinier } from '../model/cuisinier';
   templateUrl: './create-restaurant.component.html',
   styleUrls: ['./create-restaurant.component.css'],
 })
+// Ici j'ai pas fini :
+// faut tester si ça affiche bien les cuisiniers qui sont disponibles car j'ai pas essayé ma requete
+// faut pouvoir choisir plusieurs cuisiniers et mettre cette liste dans le create
+// faut aussi gerer pour la carte
 export class CreateRestaurantComponent implements OnInit{
   _form: FormGroup;
   cuisiniers: Observable<Cuisinier[]> | undefined = undefined;
@@ -57,11 +61,12 @@ export class CreateRestaurantComponent implements OnInit{
         Validators.required,
         Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
         Validators.maxLength(100),
-      ])
+      ]),
+      cuisinier: new FormControl('')
     });
   }
   ngOnInit(): void {
-    this.cuisiniers = this.cuisinierService.;
+    this.cuisiniers = this.cuisinierService.allCuisinierAvailable();
   }
 
   get form(): { [key: string]: AbstractControl } {
@@ -72,15 +77,12 @@ export class CreateRestaurantComponent implements OnInit{
     this.restaurantService
       .insert(
         new Restaurant(
-          new User(this.form['login'].value),
           new Adresse(
             this.form['numero'].value,
             this.form['rue'].value,
             this.form['codePostal'].value,
             this.form['ville'].value
           ),
-          undefined,
-          this.form['prenom'].value,
           this.form['nom'].value,
           this.form['email'].value
         ),

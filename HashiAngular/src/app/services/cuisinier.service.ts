@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cuisinier } from '../model/cuisinier';
+import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,12 @@ export class CuisinierService {
     return this.http.get<boolean>(
       'http://localhost:8080/hashi/api/user/' + login
     );
+  }
+
+  public allCuisinierAvailable(): Observable<Cuisinier[]>{
+    return this.http.get<Cuisinier[]>(CuisinierService.URL, {
+      headers: this.httpHeaders,
+    });
   }
 
   public insert(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {

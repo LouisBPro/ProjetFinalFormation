@@ -1,6 +1,8 @@
 package fr.projetFormation.Hashi.repositories;
 
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +22,8 @@ public interface CuisinierRepository extends JpaRepository<Cuisinier, Long>{
 	@Transactional
 	@Query("delete from Cuisinier c where c.restaurant=:restaurant")
 	void deleteByRestaurant(@Param("restaurant") Restaurant restaurant);
+
+	// tous les cuisiniers n'ayant pas de restaurant
+	@Query("select c from Cuisinier where c.restaurant=null")
+	List<Cuisinier> findAllAvailable();
 }

@@ -8,21 +8,6 @@
       <div class="card-body">
         <h1 class="card-title text-center">Inscription</h1>
         <br />
-        <h5 class="card-text">Informations personnelles:</h5>
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="prenom"
-            placeholder="Prénom*"
-          />
-        </div>
-        <div
-          *ngIf="form['prenom'].dirty && form['prenom'].invalid"
-          class="alert alert-danger"
-        >
-          Prénom incorrect
-        </div>
-        <br />
         <div class="form-group">
           <input
             class="form-control"
@@ -34,21 +19,6 @@
             class="alert alert-danger"
           >
             Nom incorrect
-          </div>
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            type="email"
-            class="form-control"
-            formControlName="email"
-            placeholder="Email*"
-          />
-          <div
-            *ngIf="form['email'].dirty && form['email'].invalid"
-            class="alert alert-danger"
-          >
-            Email incorrect
           </div>
         </div>
         <br />
@@ -113,49 +83,24 @@
           </div>
         </div>
         <br />
-        <h5 class="card-text">Compte:</h5>
+        <h5 class="card-text">Cuisinier :</h5>
         <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="login"
-            placeholder="Nom d'utilisateur*"
-          />
+          <select class="form-control" formControlName="cuisinier">
+            <option></option>
+            <option
+              *ngFor="let cuisinier of cuisiniers | async"
+              value="{{ cuisinier.id }}"
+            >
+              {{ cuisinier.prenom }} {{cuisinier.nom}}
+            </option>
+          </select>
           <div
-            *ngIf="form['login'].dirty && form['login'].invalid"
+            *ngIf="form['cuisinier'].dirty && form['cuisinier'].invalid"
             class="alert alert-danger"
           >
-            Nom d'utilisateur incorrect ou déjà pris
+            Cuisinier incorrect
           </div>
         </div>
-        <ng-container formGroupName="passwordGroup">
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="password"
-              placeholder="Mot de passe*"
-            />
-            <div
-              *ngIf="
-                form['passwordGroup'].dirty && form['passwordGroup'].invalid
-              "
-              class="alert alert-danger"
-            >
-              Mot de passe incorrect ou différent
-            </div>
-          </div>
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="confirm"
-              placeholder="Confirmer le mot de passe"
-            />
-          </div>
-        </ng-container>
-        <br />
         <br />
         <div>
           <button

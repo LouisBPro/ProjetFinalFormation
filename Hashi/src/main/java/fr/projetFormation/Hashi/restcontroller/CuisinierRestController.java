@@ -1,5 +1,7 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +39,10 @@ public class CuisinierRestController {
 		return cuisinierService.byId(id);
 	}
 
-	@GetMapping("")
+	@GetMapping("/available")
     @JsonView(JsonViews.Common.class)
-    public List<Cuisinier> all() {
-        return cuisinier.all();
+    public List<Cuisinier> allAvailable() {
+        return cuisinierService.allAvailable();
     }
 
 	@PostMapping("")
