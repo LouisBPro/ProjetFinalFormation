@@ -15,6 +15,15 @@
     <label>prix</label>
     <input type="number" [(ngModel)]="plat.prix" class="form-control" />
   </div>
+
+  <div>
+    <img [src]="imgURL" height="200" *ngIf="imgURL" />
+    <input type="file" (change)="onFileChanged($event)" text />
+  </div>
+  <! — upload image — >
+  <input type="button" (click)="onUpload()" value="upload" />
+  {{ receivedImageData | json}}
+  <img [src]="convertedImage" />
   <div class="form-group">
     <button (click)="save()" class="btn btn-outline-success">
       enregistrer

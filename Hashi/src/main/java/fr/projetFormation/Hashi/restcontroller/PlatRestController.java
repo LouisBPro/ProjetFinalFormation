@@ -1,11 +1,13 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -17,9 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.Plat;
@@ -63,5 +66,19 @@ public class PlatRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id){
     	platService.delete(platService.byId(id));
+    }
+    @PostMapping(value="/update/{id}",consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+    @JsonView(JsonViews.Common.class)
+	public String updatePhoto(@RequestParam("file") MultipartFile file,@PathVariable("id") Long id) throws IOException{
+    	try {
+    		Plat platEnBase = platService.byId(id);
+        	byte[] image = file.getBytes();
+        	platEnBase.setPhoto(image);
+        	platService.update(platEnBase);
+        	return "success";
+		} catch (Exception e) {
+			 return "error";
+		}
+    	
     }
 }

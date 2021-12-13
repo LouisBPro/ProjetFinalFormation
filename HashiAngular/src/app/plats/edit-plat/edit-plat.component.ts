@@ -2,6 +2,7 @@ import { Plat } from "./../../model/plat";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PlatService } from "src/app/services/plat.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-edit-plat",
@@ -10,10 +11,20 @@ import { PlatService } from "src/app/services/plat.service";
 })
 export class EditPlatComponent implements OnInit {
   plat: Plat = new Plat();
+  fileName = "";
+  title = "ImageUploaderFrontEnd";
+  public selectedFile: any;
+  public event1: any;
+  imgURL: any;
+  receivedImageData: any;
+  base64Data: any;
+  convertedImage: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private platService: PlatService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +51,27 @@ export class EditPlatComponent implements OnInit {
 
   goList() {
     this.router.navigate(["/plats"]);
+  }
+  public onFileChanged(event: any) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+
+    // Below part is used to display the selected image
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => {
+      this.imgURL = reader.result;
+    };
+  }
+  onUpload() {
+    this.platService.Upload(this.plat, this.selectedFile).subscribe(
+      (res) => {
+        console.log(res);
+        this.receivedImageData = res;
+        // this.base64Data = this.receivedImageData.pic;
+        // this.convertedImage = "data:image/jpeg;base64," + this.base64Data;
+      },
+      (err) => console.log("Error Occured duringng saving: " + err)
+    );
   }
 }

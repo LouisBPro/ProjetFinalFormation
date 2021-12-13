@@ -2,3 +2,26 @@
   height: 100vh;
   width: 100vw;
 }
+.file-input {
+  display: none;
+}
+input[type="file"] {
+  -webkit-appearance: none;
+  -webkit-rtl-ordering: left;
+  text-align: left;
+}
+input[type="file"]::-webkit-file-upload-button {
+  -webkit-appearance: none;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#d2d0d0),
+    to(#f0f0f0)
+  );
+  background-image: -moz-linear-gradient(90deg, #d2d0d0 0%, #f0f0f0 100%);
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  float: right;
+  margin: 0 0 0 10px;
+}

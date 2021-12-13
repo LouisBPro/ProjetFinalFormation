@@ -45,4 +45,15 @@ export class PlatService {
     console.log(o);
     return this.http.post<Plat>(this.url, o, { headers: this.httpHeaders });
   }
+  public Upload(plat: Plat, selectedFile: any) {
+    const uploadData = new FormData();
+    uploadData.append("myFile", selectedFile, selectedFile.name);
+    return this.http.post(
+      "http://localhost:8080/api/plat/update/" + plat.id,
+      uploadData,
+      {
+        headers: this.httpHeaders,
+      }
+    );
+  }
 }
