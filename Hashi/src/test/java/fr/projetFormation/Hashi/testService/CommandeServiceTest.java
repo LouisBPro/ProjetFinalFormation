@@ -73,7 +73,7 @@ public class CommandeServiceTest {
 		restaurantService.save(resto1);
 
 		Commande c = new Commande();
-		c.setClient(cl);
+		// c.setClient(cl);
 		c.setStatut(Statut.Validated);
 		c.setRestaurant(resto1);
 

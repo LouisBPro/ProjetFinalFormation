@@ -42,7 +42,7 @@ export class RecapComponent implements OnInit, AfterContentChecked {
   }
 
   goValider() {
-    localStorage.setItem('valider', 'valider');
-    localStorage.setItem('totalPanier', this.total as unknown as string);
+    // localStorage.setItem('valider', 'valider');
+    // localStorage.setItem('totalPanier', this.total as unknown as string);
   }
 }

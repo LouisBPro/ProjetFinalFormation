@@ -31,14 +31,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeRequests()
 					.antMatchers(HttpMethod.OPTIONS).permitAll()
-					.antMatchers(HttpMethod.GET, "/api/user/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/client/**").permitAll() 
-					.antMatchers(HttpMethod.GET, "/api/client/**").permitAll()
-					.antMatchers(HttpMethod.PUT, "/api/client/**").permitAll()
-					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/cuisinier/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/gerant/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/commande/**").hasAnyRole("CLIENT")
+					// POST
+					.antMatchers(HttpMethod.POST, "/api/client/**").permitAll() // inscription
+					.antMatchers(HttpMethod.POST, "/api/cuisinier/**").permitAll() // inscription
+					.antMatchers(HttpMethod.POST, "/api/gerant/**").permitAll() // inscription
+					.antMatchers(HttpMethod.POST, "/api/commande/**").hasAnyRole("CLIENT") // pour qu'un client commande
+					// GET
+					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour commander avant d'être authentifié
+					.antMatchers(HttpMethod.GET, "/api/user/{login}").permitAll() // pour vérifier que le login est dispo
+					.antMatchers(HttpMethod.GET, "/api/client/**").permitAll()// pour qu'un client voit ses infos
+					// PUT
+					.antMatchers(HttpMethod.PUT, "/api/client/**").hasAnyRole("CLIENT") // pour qu'un client se update
 					.antMatchers(HttpMethod.GET, "/api/commande/**").permitAll()
 					.antMatchers("/api/auth").authenticated()
 					.antMatchers("/api/**").hasAnyRole("ADMIN","CLIENT","CUISINIER","GERANT")

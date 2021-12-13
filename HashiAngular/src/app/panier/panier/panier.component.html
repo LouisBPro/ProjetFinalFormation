@@ -54,22 +54,22 @@
   </div>
 </div>
 <div class="card mt-0 mx-5 p-3 fixed-bottom">
-  <a *ngIf="this.panierEmpty" class="disabled btn btn-success">Commander</a>
-  <a
-    *ngIf="!this.panierEmpty"
-    [routerLink]="['../recap']"
-    routerLinkActive="active"
-    class="btn btn-success"
-    disabled
-    >Commander</a
-  >
-  &nbsp;
-  <a
-    [routerLink]="['../../../restaurants']"
-    routerLinkActive="active"
-    class="btn btn-warning"
-    disabled
-  >
-    Retour</a
-  >
+<a *ngIf="this.panierEmpty" class="disabled btn btn-success">Commander</a>
+<a
+  *ngIf="!this.panierEmpty"
+  [routerLink]="['../../recap']"
+  routerLinkActive="active"
+  class="btn btn-success"
+  disabled
+  >Commander</a
+>
+&nbsp;
+<a
+  [routerLink]="['../../../restaurants']"
+  routerLinkActive="active"
+  class="btn btn-warning"
+  disabled
+>
+  Retour</a
+>
 </div>

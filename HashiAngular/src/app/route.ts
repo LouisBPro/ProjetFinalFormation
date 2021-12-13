@@ -71,12 +71,12 @@ export const route: Routes = [
     canActivate: [AuthService],
   },
   {
-    path: 'panier/:id/recap',
+    path: 'panier/recap',
     component: RecapComponent,
     canActivate: [AuthService],
   },
   {
-    path: 'panier/:id/valider',
+    path: 'panier/valider',
     component: ValiderComponent,
     canActivate: [AuthService],
   },

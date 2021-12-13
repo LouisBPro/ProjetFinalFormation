@@ -15,11 +15,9 @@ export class ValiderPanierService {
 
   public enregistrer(
     restaurant: Restaurant,
-    prixTotal: string | null
+    prixTotal: string | null,
+    panier: Map<string, number>
   ): Observable<any> {
-    let panier: Map<string, number> = new Map(
-      JSON.parse(localStorage.getItem('panier')!)
-    );
     const lignesCommande: any[] = [];
     panier.forEach((value: number, key: string) => {
       let o = {

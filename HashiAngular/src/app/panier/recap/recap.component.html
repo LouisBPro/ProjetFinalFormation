@@ -4,6 +4,7 @@
       <tr>
         <td>Nom</td>
         <td>Prix</td>
+        <td>Restaurant</td>
         <td>Quantite</td>
         <td>Total</td>
       </tr>
@@ -12,11 +13,13 @@
       <tr *ngFor="let lc of ligneCarte; let index = index">
         <td>{{ lc.id!.plat!.nom }}</td>
         <td>{{ lc.id!.plat!.prix }}€</td>
+        <td>{{lc.id!.restaurant!.nom}}</td>
         <td>{{ quantites[index] }}</td>
         <td>{{ prixTotaux[index] }}€</td>
       </tr>
       <tr></tr>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td>Total panier</td>
@@ -34,7 +37,7 @@
   >
   &nbsp;
   <a
-    [routerLink]="['../choix']"
+    [routerLink]="['../../home']"
     routerLinkActive="active"
     class="btn btn-warning"
     disabled
