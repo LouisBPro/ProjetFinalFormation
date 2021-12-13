@@ -18,6 +18,8 @@ import { InscriptionGeneraleComponent } from "./Inscription/inscription-generale
 import { InscriptionCuisinierComponent } from "./Inscription/inscription-cuisinier/inscription-cuisinier.component";
 import { InscriptionGerantComponent } from "./Inscription/inscription-gerant/inscription-gerant.component";
 import { InscriptionClientComponent } from "./Inscription/inscription-client/inscription-client.component";
+import { ValiderComponent } from './panier/valider/valider.component';
+import { RecapComponent } from './panier/recap/recap.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { InscriptionClientComponent } from "./Inscription/inscription-client/ins
     InscriptionClientComponent,
     ChoixRestaurantComponent,
     ChoisirComponent,
+    RecapComponent,
+    ValiderComponent
   ],
   imports: [
     BrowserModule,
