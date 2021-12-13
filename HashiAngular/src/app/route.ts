@@ -1,3 +1,4 @@
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { ChoisirComponent } from "./choix-restaurant/choisir/choisir.component";
 import { ChoixRestaurantComponent } from "./choix-restaurant/choix-restaurant.component";
 import { ClientComponent } from "./client/client/client.component";
@@ -59,6 +60,11 @@ export const route: Routes = [
   {
     path: "restaurants/choisir",
     component: ChoisirComponent,
+    canActivate: [AuthService],
+  },
+  {
+    path: "restaurants/create",
+    component: CreateRestaurantComponent,
     canActivate: [AuthService],
   },
   {

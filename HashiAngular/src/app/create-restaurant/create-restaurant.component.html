@@ -6,7 +6,7 @@
       style="width: 40%; line-height: 0.3cm"
     >
       <div class="card-body">
-        <h1 class="card-title text-center">Inscription</h1>
+        <h1 class="card-title text-center">Nouveau restaurant</h1>
         <br />
         <div class="form-group">
           <input
@@ -83,22 +83,22 @@
           </div>
         </div>
         <br />
-        <h5 class="card-text">Cuisinier :</h5>
+        <h5 class="card-text">Cuisiniers :</h5>
         <div class="form-group">
-          <select class="form-control" formControlName="cuisinier">
+          <select class="form-control" formControlName="cuisiniers" multiple>
             <option></option>
             <option
-              *ngFor="let cuisinier of cuisiniers | async"
+              *ngFor="let cuisinier of cuisiniersAvailable | async"
               value="{{ cuisinier.id }}"
             >
               {{ cuisinier.prenom }} {{cuisinier.nom}}
             </option>
           </select>
           <div
-            *ngIf="form['cuisinier'].dirty && form['cuisinier'].invalid"
+            *ngIf="form['cuisiniers'].dirty && form['cuisiniers'].invalid"
             class="alert alert-danger"
           >
-            Cuisinier incorrect
+            Cuisinier(s) incorrect(s)
           </div>
         </div>
         <br />

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cuisinier } from '../model/cuisinier';
-import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +38,7 @@ export class CuisinierService {
   }
 
   public allCuisinierAvailable(): Observable<Cuisinier[]>{
-    return this.http.get<Cuisinier[]>(CuisinierService.URL, {
+    return this.http.get<Cuisinier[]>(`${CuisinierService.URL}/available`, {
       headers: this.httpHeaders,
     });
   }

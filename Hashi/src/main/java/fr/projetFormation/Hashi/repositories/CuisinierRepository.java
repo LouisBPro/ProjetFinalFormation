@@ -24,6 +24,6 @@ public interface CuisinierRepository extends JpaRepository<Cuisinier, Long>{
 	void deleteByRestaurant(@Param("restaurant") Restaurant restaurant);
 
 	// tous les cuisiniers n'ayant pas de restaurant
-	@Query("select c from Cuisinier where c.restaurant=null")
+	@Query("select c from Cuisinier c where c.restaurant=null")
 	List<Cuisinier> findAllAvailable();
 }

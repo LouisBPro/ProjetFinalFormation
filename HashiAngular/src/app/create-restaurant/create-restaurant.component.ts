@@ -23,18 +23,18 @@ import { Cuisinier } from '../model/cuisinier';
   styleUrls: ['./create-restaurant.component.css'],
 })
 // Ici j'ai pas fini :
-// faut tester si ça affiche bien les cuisiniers qui sont disponibles car j'ai pas essayé ma requete
-// faut pouvoir choisir plusieurs cuisiniers et mettre cette liste dans le create
+// Je me prends une erreur 400 quand je veux insert mon restaurant.. => c'est parceque je dois faire un getById des cuistots que je prends.. (voir save)
 // faut aussi gerer pour la carte
-export class CreateRestaurantComponent implements OnInit{
+export class CreateRestaurantComponent implements OnInit {
   _form: FormGroup;
-  cuisiniers: Observable<Cuisinier[]> | undefined = undefined;
+  cuisiniersAvailable: Observable<Cuisinier[]> | undefined = undefined;
+  cuisiniersRecrutes : Observable<Cuisinier[]> | undefined = undefined;
 
   constructor(
     private restaurantService: ChoixRestaurantService,
     private router: Router,
     private authService: AuthService,
-    private cuisinierService : CuisinierService
+    private cuisinierService: CuisinierService
   ) {
     this._form = new FormGroup({
       nom: new FormControl('', [
@@ -62,11 +62,11 @@ export class CreateRestaurantComponent implements OnInit{
         Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
         Validators.maxLength(100),
       ]),
-      cuisinier: new FormControl('')
+      cuisiniers: new FormControl(''),
     });
   }
   ngOnInit(): void {
-    this.cuisiniers = this.cuisinierService.allCuisinierAvailable();
+    this.cuisiniersAvailable = this.cuisinierService.allCuisinierAvailable();
   }
 
   get form(): { [key: string]: AbstractControl } {
@@ -74,51 +74,30 @@ export class CreateRestaurantComponent implements OnInit{
   }
 
   save() {
-    this.restaurantService
-      .insert(
-        new Restaurant(
-          new Adresse(
-            this.form['numero'].value,
-            this.form['rue'].value,
-            this.form['codePostal'].value,
-            this.form['ville'].value
-          ),
-          this.form['nom'].value,
-          this.form['email'].value
-        ),
-        this.form['passwordGroup'].get('password')!.value
-      )
-      .subscribe(
-        (restaurant) => {
-          this.authService
-            .auth(
-              this.form['login'].value,
-              this.form['passwordGroup'].get('password')!.value
-            )
-            .subscribe((ok) => {
-              sessionStorage.setItem(
-                'token',
-                btoa(
-                  this.form['login'].value +
-                    ':' +
-                    this.form['passwordGroup'].get('password')!.value
-                )
-              );
-              sessionStorage.setItem('login', this.form['login'].value);
-              sessionStorage.setItem('id', ok['personne']['id']);
+    this.form['cuisiniers'].value?.forEach( (id: number) => {
+      this.cuisinierService.byId(id).subscribe((ok) => {
+        this.cuisiniersRecrutes
+      })
+    });
 
-              // TODO roles
-              if (!!ok['restaurant']) {
-                sessionStorage.setItem('role', 'restaurant');
-              } else {
-                sessionStorage.setItem('role', 'admin');
-              }
-              this.router.navigate(['/home']);
-            });
-        },
-        (error) => {
-          console.log('erreur création compte restaurant');
-        }
-      );
+    this.restaurantService.insert(
+      new Restaurant(
+        new Adresse(
+          this.form['numero'].value,
+          this.form['rue'].value,
+          this.form['codePostal'].value,
+          this.form['ville'].value
+        ),
+        undefined,
+        undefined,
+        this.form['nom'].value,
+        undefined,
+        this.form['cuisiniers'].value
+      )
+    ).subscribe((restaurant) => {
+      console.log("Restaurant created !")
+    }, (error) => {
+      console.log("Erreur création de restaurant");
+    });
   }
 }
