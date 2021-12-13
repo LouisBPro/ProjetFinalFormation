@@ -68,6 +68,7 @@ export class ClientService {
         ville: client.adresse!.ville,
       },
     };
+    console.log(o);
     return this.http.put<Client>(`${ClientService.URL}/${client.id}`, o, {
       headers: this.httpHeaders,
     });

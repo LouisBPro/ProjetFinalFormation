@@ -49,13 +49,15 @@ public class ClientRestController {
 		Client clientEnBase = clientService.byId(id);
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
-        clientEnBase.setEmail(client.getEmail());
-        clientEnBase.getUser().setLogin(client.getUser().getLogin());
-        clientEnBase.getUser().setPassword(client.getUser().getPassword());
-        clientEnBase.getAdresse().setNumero(client.getAdresse().getNumero());
-        clientEnBase.getAdresse().setRue(client.getAdresse().getRue());
-        clientEnBase.getAdresse().setCodePostal(client.getAdresse().getCodePostal());
-        clientEnBase.getAdresse().setVille(client.getAdresse().getVille());
+		clientEnBase.setEmail(client.getEmail());
+		clientEnBase.getUser().setLogin(client.getUser().getLogin());
+		if (client.getUser().getPassword() != "") {
+			clientEnBase.getUser().setPassword(client.getUser().getPassword());
+		}
+		clientEnBase.getAdresse().setNumero(client.getAdresse().getNumero());
+		clientEnBase.getAdresse().setRue(client.getAdresse().getRue());
+		clientEnBase.getAdresse().setCodePostal(client.getAdresse().getCodePostal());
+		clientEnBase.getAdresse().setVille(client.getAdresse().getVille());
 		return clientService.update(clientEnBase);
 	}
 

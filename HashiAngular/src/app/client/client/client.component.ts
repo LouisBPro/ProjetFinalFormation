@@ -1,9 +1,9 @@
+import { Adresse } from './../../model/adresse';
 import { ActivatedRoute } from '@angular/router';
 import { Client } from './../../model/client';
 import { ClientService } from './../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
-import { Adresse } from 'src/app/model/adresse';
 
 @Component({
   selector: 'app-client',

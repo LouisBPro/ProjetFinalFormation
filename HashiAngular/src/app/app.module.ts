@@ -1,6 +1,6 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -22,6 +22,8 @@ import { RecapComponent } from './panier/recap/recap.component';
 import { ValiderComponent } from './panier/valider/valider.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PanierComponent } from './panier/panier/panier.component';
+import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
+import { CommandesClientComponent } from './client/commandes-client/commandes-client.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { PanierComponent } from './panier/panier/panier.component';
     RecapComponent,
     ValiderComponent,
     PanierComponent
+    ParametresClientComponent,
+    CommandesClientComponent,
   ],
   imports: [
     BrowserModule,

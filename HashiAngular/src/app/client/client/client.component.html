@@ -1,74 +1,99 @@
-<div class="card m-5 p-5">
-  <div class="row">
-    <div class="col-sm-3">
-      <h6>Prenom :</h6>
-    </div>
-    <div class="col-sm-6">
-      <p>{{ client.prenom }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      <h6>Nom :</h6>
-    </div>
-    <div class="col-sm-6">
-      <p>{{ client.nom }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      <h6>Email :</h6>
-    </div>
-    <div class="col-sm-6">
-      <p>{{ client.email }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      <h6>Login :</h6>
-    </div>
-    <div class="col-sm-6">
-      <p>{{ client.user!.login }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <h6>N° :</h6>
-    </div>
+<div class="container-fluid">
+  <br />
+  <form>
     <div
-      class="col-sm-2"
-      style="font-family: Verdana, Geneva, Tahoma, sans-serif;"
+      class="card mx-auto shadow p-3 mb-5"
+      style="width: 40%; line-height: 0.3cm"
     >
-      <p>{{ client.adresse!.numero }}</p>
+      <div class="card-body">
+        <br />
+        <h5 class="card-text">Informations personnelles:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="prenom"
+            readonly
+            value="{{ client.prenom }}"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="nom"
+            readonly
+            value="{{ client.nom }}"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            readonly
+            value="{{ client.email }}"
+          />
+        </div>
+        <br />
+        <h5 class="card-text">Adresse:</h5>
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="numero"
+            readonly
+            [(ngModel)]="client.adresse!.numero"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="rue"
+            readonly
+            value="{{ client.adresse!.rue }}"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="codePostal"
+            readonly
+            value="{{ client.adresse!.codePostal }}"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="ville"
+            readonly
+            value="{{ client.adresse!.ville }}"
+          />
+        </div>
+        <br />
+        <h5 class="card-text">Compte:</h5>
+        <div class="form-group">
+          <h6>Login :</h6>
+          <input
+            class="form-control"
+            readonly
+            formControlName="login"
+            value="{{ client.user!.login }}"
+          />
+        </div>
+        <br />
+        <br />
+        <div>
+          <a
+            class="btn btn-outline-primary"
+            [routerLink]="['/client', 'edit', client.id]"
+            routerLinkActive="active"
+            >editer</a
+          >
+        </div>
+      </div>
     </div>
-    <div class="col-sm-2">
-      <h6>Rue :</h6>
-    </div>
-    <div class="col-sm-6">
-      <p>{{ client.adresse!.rue }}</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <h6>Code Postal :</h6>
-    </div>
-    <div
-      class="col-sm-4"
-      style="font-family: Verdana, Geneva, Tahoma, sans-serif;"
-    >
-      <p>{{ client.adresse!.codePostal }}</p>
-    </div>
-    <div class="col-sm-2">
-      <h6>Ville :</h6>
-    </div>
-    <div class="col-sm-4">
-      <p>{{ client.adresse!.ville }}</p>
-    </div>
-  </div>
-  <a
-    class="btn btn-outline-primary"
-    [routerLink]="['/client', 'edit', client.id]"
-    routerLinkActive="active"
-    >editer</a
-  >
+  </form>
 </div>

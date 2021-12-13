@@ -20,7 +20,7 @@ import { Adresse } from '../../model/adresse';
   templateUrl: './inscription-client.component.html',
   styleUrls: ['./inscription-client.component.css'],
 })
-export class InscriptionClientComponent{
+export class InscriptionClientComponent {
   _form: FormGroup;
 
   constructor(
@@ -77,9 +77,7 @@ export class InscriptionClientComponent{
         {
           password: new FormControl('', [
             Validators.required,
-            Validators.pattern(
-              /^[a-zA-ZÀ-ÿ0-9]{5,}$/
-            ),
+            Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
             Validators.maxLength(30),
           ]),
           confirm: new FormControl(''),
@@ -119,17 +117,17 @@ export class InscriptionClientComponent{
     this.clientService
       .insert(
         new Client(
+          undefined,
+          this.form['prenom'].value,
+          this.form['nom'].value,
+          this.form['email'].value,
           new User(this.form['login'].value),
           new Adresse(
             this.form['numero'].value,
             this.form['rue'].value,
             this.form['codePostal'].value,
             this.form['ville'].value
-          ),
-          undefined,
-          this.form['prenom'].value,
-          this.form['nom'].value,
-          this.form['email'].value
+          )
         ),
         this.form['passwordGroup'].get('password')!.value
       )

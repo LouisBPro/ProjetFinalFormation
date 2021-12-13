@@ -2,12 +2,12 @@ import { Adresse } from './adresse';
 import { User } from './user';
 export class Client {
   constructor(
-    private _user?: User | undefined,
-    private _adresse?: Adresse | undefined,
     private _id?: number | undefined,
     private _prenom?: string | undefined,
     private _nom?: string | undefined,
-    private _email?: string | undefined
+    private _email?: string | undefined,
+    private _user?: User | undefined,
+    private _adresse?: Adresse | undefined
   ) {}
 
   /**

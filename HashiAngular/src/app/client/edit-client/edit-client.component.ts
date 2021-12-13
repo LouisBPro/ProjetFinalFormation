@@ -22,6 +22,7 @@ export class EditClientComponent implements OnInit {
   client: Client = new Client();
   password: string = '';
   _form: FormGroup;
+  _edition: boolean = false;
 
   constructor(
     private clientService: ClientService,
@@ -78,6 +79,10 @@ export class EditClientComponent implements OnInit {
     });
   }
 
+  get edition(): boolean {
+    return this._edition;
+  }
+
   get form(): { [key: string]: AbstractControl } {
     return this._form.controls;
   }
@@ -100,57 +105,41 @@ export class EditClientComponent implements OnInit {
     }
   }
 
+  goEditer() {
+    this._edition = true;
+  }
+
+  goAnnuler() {
+    this._edition = false;
+  }
+
   save() {
+    var password;
+    if (this.form['passwordGroup'].get('password')!.value == '') {
+      password = '';
+    } else {
+      password = this.form['passwordGroup'].get('password')!.value;
+    }
     this.clientService
       .update(
         new Client(
+          this.client.id,
+          this.form['prenom'].value,
+          this.form['nom'].value,
+          this.form['email'].value,
           new User(this.form['login'].value),
-
           new Adresse(
             this.form['numero'].value,
             this.form['rue'].value,
             this.form['codePostal'].value,
             this.form['ville'].value
-          ),
-          this.client.id,
-          this.form['prenom'].value,
-          this.form['nom'].value,
-          this.form['email'].value
+          )
         ),
-        this.form['passwordGroup'].get('password')!.value
+        password
       )
       .subscribe(
         (client) => {
-          this.authService
-            .auth(
-              this.form['login'].value,
-              this.form['passwordGroup'].get('password')!.value
-            )
-            .subscribe((ok) => {
-              sessionStorage.setItem(
-                'token',
-                btoa(
-                  this.form['login'].value +
-                    ':' +
-                    this.form['passwordGroup'].get('password')!.value
-                )
-              );
-              sessionStorage.setItem('login', this.form['login'].value);
-              sessionStorage.setItem('id', ok['personne']['id']);
-
-              // TODO roles
-              if (!!ok['client']) {
-                sessionStorage.setItem('role', 'client');
-              } else {
-                sessionStorage.setItem('role', 'admin');
-              }
-              // if (!!localStorage.getItem('valider')) {
-              //   localStorage.removeItem('valider');
-              //   this.router.navigate(['/valider']);
-              // } else {
-                this.router.navigate(['/home']);
-              // }
-            });
+          this.goAnnuler();
         },
         (error) => {
           console.log('erreur modification compte client');

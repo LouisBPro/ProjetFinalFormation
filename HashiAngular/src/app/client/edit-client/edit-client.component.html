@@ -6,7 +6,8 @@
       style="width: 40%; line-height: 0.3cm"
     >
       <div class="card-body">
-        <h1 class="card-title text-center">Editer</h1>
+        <h1 *ngIf="edition" class="card-title text-center">Editer</h1>
+        <h1 *ngIf="!edition" class="card-title text-center">Paramètres</h1>
         <br />
         <h5 class="card-text">Informations personnelles:</h5>
         <div class="form-group">
@@ -14,6 +15,7 @@
             class="form-control"
             formControlName="prenom"
             placeholder="Prénom*"
+            [readonly]="!edition"
           />
         </div>
         <div
@@ -28,6 +30,7 @@
             class="form-control"
             formControlName="nom"
             placeholder="Nom*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['nom'].dirty && form['nom'].invalid"
@@ -43,6 +46,7 @@
             class="form-control"
             formControlName="email"
             placeholder="Email*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['email'].dirty && form['email'].invalid"
@@ -58,6 +62,7 @@
             class="form-control"
             formControlName="numero"
             placeholder="Numéro*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['numero'].dirty && form['numero'].invalid"
@@ -72,6 +77,7 @@
             class="form-control"
             formControlName="rue"
             placeholder="Rue*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['rue'].dirty && form['rue'].invalid"
@@ -86,6 +92,7 @@
             class="form-control"
             formControlName="codePostal"
             placeholder="Code postal*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['codePostal'].dirty && form['codePostal'].invalid"
@@ -100,6 +107,7 @@
             class="form-control"
             formControlName="ville"
             placeholder="Ville*"
+            [readonly]="!edition"
           />
           <div
             *ngIf="form['ville'].dirty && form['ville'].invalid"
@@ -124,7 +132,7 @@
             Login incorrect
           </div>
         </div>
-        <ng-container formGroupName="passwordGroup">
+        <ng-container *ngIf="edition" formGroupName="passwordGroup">
           <br />
           <div class="form-group">
             <input
@@ -155,19 +163,20 @@
         <br />
         <br />
         <div>
+          <button *ngIf="!edition" (click)="goEditer()" class="btn btn-success">
+            editer
+          </button>
           <button
+            *ngIf="edition"
             type="submit"
             class="btn btn-success"
             [disabled]="_form.invalid"
           >
             enregistrer</button
           >&nbsp;
-          <a
-            [routerLink]="['/client', client.id]"
-            routerLinkActive="active"
-            class="btn btn-outline-warning"
-            >annuler</a
-          >
+          <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-success">
+            annuler
+          </button>
         </div>
       </div>
       <br />

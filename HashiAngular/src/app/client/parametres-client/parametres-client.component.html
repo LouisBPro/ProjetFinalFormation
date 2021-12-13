@@ -1,0 +1,8 @@
+<button (click)="getParams()" class="btn btn-primary" [disabled]="parametre">
+  Paramètres
+</button>
+<button (click)="getCommandes()" class="btn btn-primary" [disabled]="commandes">
+  Mes commandes
+</button>
+<div *ngIf="parametre"><app-edit-client></app-edit-client></div>
+<div *ngIf="commandes"><app-commandes-client></app-commandes-client></div>

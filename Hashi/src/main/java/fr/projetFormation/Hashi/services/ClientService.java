@@ -52,14 +52,11 @@ public class ClientService {
 
 	public Client update(Client client) {
 		User user = client.getUser();
+		User userEnBase = userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new);
 		if (user.getPassword() != "") {
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
-		}else {
-			user.setPassword(userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new).getPassword());
+			userEnBase.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
-		user.setRoles(Arrays.asList(Role.ROLE_CLIENT));
-		user.setEnable(true);
-		userRepository.save(user);
+		userRepository.save(userEnBase);
 		return clientRepository.save(client);
 	}
 
