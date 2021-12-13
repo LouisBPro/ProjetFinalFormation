@@ -1,7 +1,7 @@
 <form (ngSubmit)="save()" [formGroup]="_form">
   <div
     class="card mx-auto shadow p-3 mb-5"
-    style="width: 60%; line-height: 0.3cm;"
+    style="width: 60%; line-height: 0.3cm"
   >
     <div class="card-body">
       <h1 *ngIf="edition" class="card-title text-center">Editer</h1>
@@ -140,9 +140,7 @@
             placeholder="Mot de passe*"
           />
           <div
-            *ngIf="
-                form['passwordGroup'].dirty && form['passwordGroup'].invalid
-              "
+            *ngIf="form['passwordGroup'].dirty && form['passwordGroup'].invalid"
             class="alert alert-danger"
           >
             Mot de passe incorrect ou différent
@@ -157,53 +155,7 @@
             placeholder="Confirmer le mot de passe"
           />
         </div>
-        <ng-container *ngIf="edition" formGroupName="passwordGroup">
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="password"
-              placeholder="Mot de passe*"
-            />
-            <div
-              *ngIf="
-                form['passwordGroup'].dirty && form['passwordGroup'].invalid
-              "
-              class="alert alert-danger"
-            >
-              Mot de passe incorrect ou différent
-            </div>
-          </div>
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="confirm"
-              placeholder="Confirmer le mot de passe"
-            />
-          </div>
-        </ng-container>
-        <br />
-        <br />
-        <div>
-          <button *ngIf="!edition" (click)="goEditer()" class="btn btn-success">
-            editer
-          </button>
-          <button
-            *ngIf="edition"
-            type="submit"
-            class="btn btn-success"
-            [disabled]="_form.invalid"
-          >
-            enregistrer</button
-          >&nbsp;
-          <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-warning">
-            annuler
-          </button>
-        </div>
-      </div>
+      </ng-container>
       <br />
       <br />
       <div>
@@ -218,7 +170,7 @@
         >
           enregistrer</button
         >&nbsp;
-        <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-success">
+        <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-warning">
           annuler
         </button>
       </div>

@@ -1,4 +1,5 @@
 import { LigneCommandePk } from './ligne-commande-pk';
+
 import { Plat } from './plat';
 export class LigneCommande {
   private _id?: LigneCommandePk | undefined;
