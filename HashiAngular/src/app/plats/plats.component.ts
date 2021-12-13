@@ -1,3 +1,4 @@
+import { DomSanitizer } from "@angular/platform-browser";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Plat } from "../model/plat";
@@ -10,7 +11,10 @@ import { PlatService } from "../services/plat.service";
 })
 export class PlatsComponent implements OnInit {
   plats: Observable<Plat[]> | undefined = undefined;
-  constructor(private platService: PlatService) {}
+  constructor(
+    private platService: PlatService,
+    public sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.plats = this.platService.allPlats();

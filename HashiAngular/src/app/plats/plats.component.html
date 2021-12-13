@@ -14,7 +14,12 @@
           <td style="font-family: Coco-Light;">{{ p.nom }}</td>
           <td style="font-family: Coco-Light;">{{ p.description }}</td>
           <td style="text-align: center;">{{ p.prix }}</td>
-          <td>{{ p.photo }}</td>
+          <td>
+            <img
+              [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/PNG;base64,'+p.photo) "
+              width="200px"
+            />
+          </td>
           <td>
             <a
               [routerLink]="['/plats','edit', p.id]"
