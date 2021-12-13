@@ -1,4 +1,4 @@
-import { InscriptionGeneraleComponent } from './inscription/inscription-generale/inscription-generale.component';
+import { InscriptionGeneraleComponent } from "./inscription/inscription-generale/inscription-generale.component";
 import { ChoisirComponent } from "./choix-restaurant/choisir/choisir.component";
 import { ChoixRestaurantComponent } from "./choix-restaurant/choix-restaurant.component";
 import { ClientComponent } from "./client/client/client.component";
@@ -9,9 +9,9 @@ import { Routes } from "@angular/router";
 import { PlatsComponent } from "./plats/plats.component";
 import { LoginComponent } from "./login/login.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
-import { InscriptionClientComponent } from './inscription/inscription-client/inscription-client.component';
-import { InscriptionGerantComponent } from './inscription/inscription-gerant/inscription-gerant.component';
-import { InscriptionCuisinierComponent } from './inscription/inscription-cuisinier/inscription-cuisinier.component';
+import { InscriptionClientComponent } from "./inscription/inscription-client/inscription-client.component";
+import { InscriptionGerantComponent } from "./inscription/inscription-gerant/inscription-gerant.component";
+import { InscriptionCuisinierComponent } from "./inscription/inscription-cuisinier/inscription-cuisinier.component";
 
 export const route: Routes = [
   { path: "home", component: HomeComponent },
