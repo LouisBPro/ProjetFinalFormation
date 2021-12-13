@@ -1,4 +1,11 @@
-iframe {
-  display: block;
-  border-style: none;
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.card:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+#map {
+  filter: grayscale(100%) invert(92%) contrast(83%);
 }

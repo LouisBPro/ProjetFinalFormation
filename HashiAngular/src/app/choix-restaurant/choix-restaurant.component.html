@@ -1,39 +1,38 @@
 <div class="card-group m-5 p-3">
   <div class="card p-3" *ngFor="let r of restaurants | async">
-    <div align="center">
-      <iframe
-        width="80%"
-        height="80%"
-        style="border: 0;"
-        loading="lazy"
-        allowfullscreen
-        [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyAg6ror6YtboDnNHbSQIHyHvRdDM7YJjm8&q='+r.adresse!.codePostal+r.adresse!.numero+r.adresse!.rue)"
-      >
-      </iframe>
-    </div>
-    <ng-template #elseBlock>
-      <img
-        class="card-img-top"
-        src="/../../assets/images/default_plat.png"
-        alt="image plat"
-      />
-    </ng-template>
-    <div class="card-body">
-      <h5 class="card-title">{{ r.nom }}</h5>
-      <p class="card-text">
-        {{ r.adresse!.numero }} {{ r.adresse!.rue }} {{ r.adresse!.ville }} {{
-        r.adresse!.codePostal }}
-      </p>
-      <p class="card-text">
-        <small class="text-muted"
-          ><a
-            [routerLink]="['/panier', r.id,'choix']"
-            routerLinkActive="active"
-            class="btn btn-outline-info"
-            >choisir</a
-          ></small
+    <a
+      [routerLink]="['/panier', r.id,'choix']"
+      routerLinkActive="active"
+      style="text-decoration: none;"
+    >
+      <div align="center">
+        <iframe
+          id="map"
+          width="450"
+          height="250"
+          style="border: 0;"
+          loading="lazy"
+          allowfullscreen
+          [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyAg6ror6YtboDnNHbSQIHyHvRdDM7YJjm8&q='+r.adresse!.codePostal+r.adresse!.numero+r.adresse!.rue)"
         >
-      </p>
-    </div>
+        </iframe>
+      </div>
+
+      <div class="card-body">
+        <h5
+          class="card-title"
+          style="font-family: hakubo, Verdana, Geneva, Tahoma, sans-serif;"
+        >
+          {{ r.nom }}
+        </h5>
+        <p
+          class="card-text"
+          style="font-family: Verdana, Geneva, Tahoma, sans-serif;"
+        >
+          {{ r.adresse!.numero }} {{ r.adresse!.rue }} {{ r.adresse!.ville }} {{
+          r.adresse!.codePostal }}
+        </p>
+      </div>
+    </a>
   </div>
 </div>

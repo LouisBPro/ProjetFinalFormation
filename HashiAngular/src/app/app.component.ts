@@ -35,4 +35,12 @@ export class AppComponent {
       return false;
     }
   }
+  get roleClient(): Boolean {
+    const role = sessionStorage.getItem("role");
+    if (role == "client") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

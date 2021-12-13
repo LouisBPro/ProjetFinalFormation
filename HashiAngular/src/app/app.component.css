@@ -18,6 +18,22 @@
   src: url(src/assets/font/cocosharp/Coco-Sharp-Extralight-trial.ttf)
     format("truetype");
 }
+@font-face {
+  font-family: go3v2;
+  src: url(src/assets/font/go3v2.ttf) format("truetype");
+}
+@font-face {
+  font-family: takoyaki;
+  src: url(src/assets/font/TAKOYAKI.ttf) format("truetype");
+}
+@font-face {
+  font-family: hakubo;
+  src: url(src/assets/font/Hakubo.ttf) format("truetype");
+}
+@font-face {
+  font-family: hakubo;
+  src: url(src/assets/font/FONTSHUI.TTF) format("truetype");
+}
 .nav-link-danger {
   display: block;
   padding: 0.5rem 1rem;
