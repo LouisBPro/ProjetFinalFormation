@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +21,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.projetFormation.Hashi.entities.Client;
 import fr.projetFormation.Hashi.entities.JsonViews;
+import fr.projetFormation.Hashi.exceptions.ClientException;
 import fr.projetFormation.Hashi.services.ClientService;
+import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/client")
@@ -32,8 +35,12 @@ public class ClientRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.PersonneWithUser.class)
-	public Client byId(@PathVariable("id") Long id) {
-		return clientService.byId(id);
+	public Client byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+		// if (cUD.getUser().getPersonne().getId().equals(id)){
+			return clientService.byId(id);
+		// } else {
+			// throw new ClientException();
+		// }
 	}
 
 	@PostMapping("")

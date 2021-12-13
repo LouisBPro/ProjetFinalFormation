@@ -23,11 +23,17 @@ export class PanierComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
+
       if (!!params["id"]) {
-        this.choixRestaurantService
+        this.choixRestaurantService.getById(params["id"]).subscribe((restaurant)=>{
+          this.choixRestaurantService
           .getPlatById(params["id"])
           .subscribe((result) => {
             this.ligneCarte = result;
+            this.ligneCarte.forEach(lc => {
+              lc.id!.restaurant = restaurant;
+            });
+          })
           });
       }
     });

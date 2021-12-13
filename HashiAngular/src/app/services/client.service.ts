@@ -25,6 +25,7 @@ export class ClientService {
       headers: this.httpHeaders,
     });
   }
+
   public delete(id: number): Observable<any> {
     return this.http.delete<Client[]>(`${ClientService.URL}/${id}`, {
       headers: this.httpHeaders,
