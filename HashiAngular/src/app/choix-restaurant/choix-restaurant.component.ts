@@ -1,3 +1,4 @@
+import { DomSanitizer } from "@angular/platform-browser";
 import { ChoixRestaurantService } from "./../services/choix-restaurant.service";
 import { Restaurant } from "./../model/restaurant";
 import { Component, OnInit } from "@angular/core";
@@ -10,7 +11,10 @@ import { Observable } from "rxjs";
 })
 export class ChoixRestaurantComponent implements OnInit {
   restaurants: Observable<Restaurant[]> | undefined = undefined;
-  constructor(private choixRestaurantService: ChoixRestaurantService) {}
+  constructor(
+    private choixRestaurantService: ChoixRestaurantService,
+    public sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.restaurants = this.choixRestaurantService.allRestaurant();
