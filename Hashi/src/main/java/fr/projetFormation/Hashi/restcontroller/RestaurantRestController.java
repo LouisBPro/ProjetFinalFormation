@@ -26,6 +26,7 @@ import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.LigneCarte;
 import fr.projetFormation.Hashi.entities.Restaurant;
+import fr.projetFormation.Hashi.services.CuisinierService;
 import fr.projetFormation.Hashi.services.GerantService;
 import fr.projetFormation.Hashi.services.PlatService;
 import fr.projetFormation.Hashi.services.RestaurantService;
@@ -42,6 +43,8 @@ public class RestaurantRestController {
     private PlatService platService;
     @Autowired
     private GerantService gerantService;
+    @Autowired
+    private CuisinierService cuisinierService;
 
     @GetMapping("/{id}")
     @JsonView(JsonViews.RestaurantAvecTout.class)
@@ -65,10 +68,12 @@ public class RestaurantRestController {
     public Restaurant create(@AuthenticationPrincipal CustomUserDetails cUD, @Valid @RequestBody Restaurant restaurant, BindingResult br) {
         Gerant gerantConnecte = gerantService.byId(cUD.getUser().getPersonne().getId());
         restaurant.setGerant(gerantConnecte);
+        Restaurant restau = restaurantService.save(restaurant);
         restaurant.getCuisiniers().forEach(c->{
             c.setRestaurant(restaurant);
+            cuisinierService.update(c);
         });
-        return restaurantService.save(restaurant);
+        return restau;
     }
 
     @PutMapping("/{id}")
