@@ -28,7 +28,7 @@ import { Cuisinier } from '../model/cuisinier';
 export class CreateRestaurantComponent implements OnInit {
   _form: FormGroup;
   cuisiniersAvailable: Observable<Cuisinier[]> | undefined = undefined;
-  cuisiniersRecrutes : Observable<Cuisinier[]> | undefined = undefined;
+  cuisiniersRecrutes : Cuisinier[] | undefined = undefined;
 
   constructor(
     private restaurantService: ChoixRestaurantService,
@@ -76,9 +76,9 @@ export class CreateRestaurantComponent implements OnInit {
   save() {
     this.form['cuisiniers'].value?.forEach( (id: number) => {
       this.cuisinierService.byId(id).subscribe((ok) => {
-        this.cuisiniersRecrutes
+        this.cuisiniersRecrutes?.push(ok);
       })
-    });
+    }); // ICI on doit insérer le cuisinier que quand tout est plein
 
     this.restaurantService.insert(
       new Restaurant(
