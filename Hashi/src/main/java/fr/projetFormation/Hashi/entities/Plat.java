@@ -32,6 +32,7 @@ public class Plat {
 	private String description;
 	// @Lob
 	@Column(name = "plat_photo")
+	@JsonView(JsonViews.Common.class)
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.plat")
 	private Set<LigneCommande> lignesCommande = new HashSet<LigneCommande>();

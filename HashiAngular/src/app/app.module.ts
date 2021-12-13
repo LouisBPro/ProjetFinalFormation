@@ -18,8 +18,6 @@ import { InscriptionGeneraleComponent } from "./Inscription/inscription-generale
 import { InscriptionCuisinierComponent } from "./Inscription/inscription-cuisinier/inscription-cuisinier.component";
 import { InscriptionGerantComponent } from "./Inscription/inscription-gerant/inscription-gerant.component";
 import { InscriptionClientComponent } from "./Inscription/inscription-client/inscription-client.component";
-import { MatIconModule } from "@angular/material/icon";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -43,8 +41,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule,
-    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

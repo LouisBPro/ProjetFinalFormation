@@ -1,8 +1,11 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -80,5 +83,15 @@ public class PlatRestController {
 			 return "error";
 		}
     	
+    }
+    @GetMapping(value="/update/{id}",consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+    @JsonView(JsonViews.Common.class)
+	public Image Photo(@PathVariable("id") Long id) throws IOException{
+    	
+    		Plat platEnBase = platService.byId(id);
+    		ImageIcon imageIcon = new ImageIcon(platEnBase.getPhoto());
+        	
+        	return imageIcon.getImage();
+		
     }
 }
