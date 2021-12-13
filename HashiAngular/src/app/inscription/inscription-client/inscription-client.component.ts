@@ -149,12 +149,22 @@ export class InscriptionClientComponent {
               );
               sessionStorage.setItem('login', this.form['login'].value);
               sessionStorage.setItem('id', ok['personne']['id']);
-
-              // TODO roles
-              if (!!ok['client']) {
-                sessionStorage.setItem('role', 'client');
-              } else {
-                sessionStorage.setItem('role', 'admin');
+              switch (ok['roles'][0]) {
+                case 'ROLE_CLIENT':
+                  sessionStorage.setItem('role', 'client');
+                  break;
+                case 'ROLE_CUISINIER':
+                  sessionStorage.setItem('role', 'cuisinier');
+                  break;
+                case 'ROLE_GERANT':
+                  sessionStorage.setItem('role', 'gerant');
+                  break;
+                case 'ROLE_ADMIN':
+                  sessionStorage.setItem('role', 'admin');
+                  break;
+                default:
+                  sessionStorage.setItem('role', 'none');
+                  break;
               }
               this.router.navigate(['/home']);
             });

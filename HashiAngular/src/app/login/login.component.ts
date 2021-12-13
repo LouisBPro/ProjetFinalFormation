@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-   check() {
+  check() {
     this.authService.auth(this.login, this.password).subscribe(
       (ok) => {
         this.showMessage = false;
@@ -38,18 +38,24 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('login', this.login);
         sessionStorage.setItem('id', ok['personne']['id']);
 
-        // TODO roles
-        if (!!ok['client']) {
-          sessionStorage.setItem('role', 'client');
-        } else {
-          sessionStorage.setItem('role', 'admin');
+        switch (ok['roles'][0]) {
+          case 'ROLE_CLIENT':
+            sessionStorage.setItem('role', 'client');
+            break;
+          case 'ROLE_CUISINIER':
+            sessionStorage.setItem('role', 'cuisinier');
+            break;
+          case 'ROLE_GERANT':
+            sessionStorage.setItem('role', 'gerant');
+            break;
+          case 'ROLE_ADMIN':
+            sessionStorage.setItem('role', 'admin');
+            break;
+          default:
+            sessionStorage.setItem('role', 'none');
+            break;
         }
-        // if (!!localStorage.getItem('valider')) {
-        //   localStorage.removeItem('valider');
-        //   this.router.navigate(['/valider']);
-        // } else {
-          this.router.navigate(['/home']);
-        // }
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.message = "erreur d'authentification";
