@@ -12,12 +12,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { EditClientComponent } from "./client/edit-client/edit-client.component";
 import { ClientComponent } from "./client/client/client.component";
 import { EditPlatComponent } from "./plats/edit-plat/edit-plat.component";
-import { ChoixRestaurantComponent } from "./choix-restaurant/choix-restaurant.component";
-import { ChoisirComponent } from "./choix-restaurant/choisir/choisir.component";
-import { InscriptionGeneraleComponent } from "./Inscription/inscription-generale/inscription-generale.component";
-import { InscriptionCuisinierComponent } from "./Inscription/inscription-cuisinier/inscription-cuisinier.component";
-import { InscriptionGerantComponent } from "./Inscription/inscription-gerant/inscription-gerant.component";
-import { InscriptionClientComponent } from "./Inscription/inscription-client/inscription-client.component";
+import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
+import { ChoisirComponent } from './choix-restaurant/choisir/choisir.component';
+import { InscriptionGeneraleComponent } from "./inscription/inscription-generale/inscription-generale.component";
+import { InscriptionCuisinierComponent } from "./inscription/inscription-cuisinier/inscription-cuisinier.component";
+import { InscriptionGerantComponent } from "./inscription/inscription-gerant/inscription-gerant.component";
+import { InscriptionClientComponent } from "./inscription/inscription-client/inscription-client.component";
+import { RecapComponent } from './panier/recap/recap.component';
+import { ValiderComponent } from './panier/valider/valider.component';
 import { MatIconModule } from "@angular/material/icon";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -36,6 +38,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     InscriptionClientComponent,
     ChoixRestaurantComponent,
     ChoisirComponent,
+    RecapComponent,
+    ValiderComponent
   ],
   imports: [
     BrowserModule,
