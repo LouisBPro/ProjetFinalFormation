@@ -41,8 +41,12 @@
           data-bs-toggle="collapse"
           data-bs-target="#navbarText"
         >
-          <a routerLink="/plats" routerLinkActive="active" class="nav-link"
-            >choix plats</a
+          <a
+            *ngIf="roleGerant"
+            routerLink="/plats"
+            routerLinkActive="active"
+            class="nav-link"
+            >listes des plats</a
           >
         </li>
         <li
@@ -50,8 +54,8 @@
           data-bs-toggle="collapse"
           data-bs-target="#navbarText"
         >
-          <a routerLink=" " routerLinkActive="active" class="nav-link"
-            >commander</a
+          <a routerLink="/panier" routerLinkActive="active" class="nav-link"
+            >panier</a
           >
         </li>
         <li

@@ -1,4 +1,4 @@
-<div class="card-group m-5 p-3">
+<div class="card-group mt-5 mx-5 p-3">
   <div class="card p-3" *ngFor="let lc of ligneCarte; let index = index">
     <div *ngIf="lc.id!.plat!.photo; else elseBlock">
       <img
@@ -29,42 +29,47 @@
       </div>
       <div *ngIf="getQuantite(index) == undefined">0</div>
       <div ng-if="l.disponibilite == true">
-        <button (click)="addPanier(index)" class="btn btn-outline-info">
-          Choisir
+        <button
+          (click)="addPanier(index)"
+          class="btn btn-outline-info rounded-circle"
+        >
+          +
         </button>
         <button
           *ngIf="getQuantite(index) > 0"
           (click)="remove(lc)"
-          class="btn btn-outline-warning"
+          class="btn btn-outline-warning rounded-circle"
         >
-          retirer
+          -
         </button>
         <button
           *ngIf="getQuantite(index) == 0 || getQuantite(index) == undefined"
           (click)="remove(lc)"
-          class="btn btn-outline-secondary disabled"
+          class="btn btn-outline-secondary disabled rounded-circle"
         >
-          retirer
+          -
         </button>
       </div>
     </div>
   </div>
 </div>
-<a *ngIf="this.panierEmpty" class="disabled btn btn-success">Commander</a>
-<a
-  *ngIf="!this.panierEmpty"
-  [routerLink]="['../recap']"
-  routerLinkActive="active"
-  class="btn btn-success"
-  disabled
-  >Commander</a
->
-&nbsp;
-<a
-  [routerLink]="['../../../restaurants']"
-  routerLinkActive="active"
-  class="btn btn-warning"
-  disabled
->
-  Retour</a
->
+<div class="card mt-0 mx-5 p-3 fixed-bottom">
+  <a *ngIf="this.panierEmpty" class="disabled btn btn-success">Commander</a>
+  <a
+    *ngIf="!this.panierEmpty"
+    [routerLink]="['../recap']"
+    routerLinkActive="active"
+    class="btn btn-success"
+    disabled
+    >Commander</a
+  >
+  &nbsp;
+  <a
+    [routerLink]="['../../../restaurants']"
+    routerLinkActive="active"
+    class="btn btn-warning"
+    disabled
+  >
+    Retour</a
+  >
+</div>
