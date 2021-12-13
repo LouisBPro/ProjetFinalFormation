@@ -1,3 +1,4 @@
+import { Commande } from './../model/commande';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -72,5 +73,23 @@ export class ClientService {
     return this.http.put<Client>(`${ClientService.URL}/${client.id}`, o, {
       headers: this.httpHeaders,
     });
+  }
+
+  public getCommandesByClient(client: Client): Observable<Commande[]> {
+    return this.http.get<Commande[]>(
+      `http://localhost:8080/hashi/api/commande/client/${client.id}`,
+      {
+        headers: this.httpHeaders,
+      }
+    );
+  }
+
+  public getCommandesById(id: number): Observable<Commande> {
+    return this.http.get<Commande>(
+      `http://localhost:8080/hashi/api/commande/${id}`,
+      {
+        headers: this.httpHeaders,
+      }
+    );
   }
 }

@@ -1,1 +1,48 @@
-<p>commandes-client works!</p>
+<div class="card mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Date</td>
+        <td>Prix total</td>
+        <td>Statut</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of commandes | async">
+        <td>{{ c.date }}</td>
+        <td>{{ c.prixTotal }}</td>
+        <td>{{ c.statut }}</td>
+        <td>
+          <button (click)="getDetails(c.id!)" class="btn btn-outline-info">
+            Détails
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card m-5 p-3">
+    <table class="table" *ngIf="afficherDetails">
+      <thead>
+        <tr>
+          <td>Nom</td>
+          <td>Prix</td>
+          <td>Quantité</td>
+          <td>Prix total</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ligne of commandeDetaillee.lignesCommande">
+          <td>{{ ligne.id!.plat!.nom }}</td>
+          <td>{{ ligne.id!.plat!.prix }}</td>
+          <td>{{ ligne.quantite }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{ commandeDetaillee.prixTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

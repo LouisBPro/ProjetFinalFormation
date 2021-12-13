@@ -157,7 +157,53 @@
             placeholder="Confirmer le mot de passe"
           />
         </div>
-      </ng-container>
+        <ng-container *ngIf="edition" formGroupName="passwordGroup">
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Mot de passe*"
+            />
+            <div
+              *ngIf="
+                form['passwordGroup'].dirty && form['passwordGroup'].invalid
+              "
+              class="alert alert-danger"
+            >
+              Mot de passe incorrect ou différent
+            </div>
+          </div>
+          <br />
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirm"
+              placeholder="Confirmer le mot de passe"
+            />
+          </div>
+        </ng-container>
+        <br />
+        <br />
+        <div>
+          <button *ngIf="!edition" (click)="goEditer()" class="btn btn-success">
+            editer
+          </button>
+          <button
+            *ngIf="edition"
+            type="submit"
+            class="btn btn-success"
+            [disabled]="_form.invalid"
+          >
+            enregistrer</button
+          >&nbsp;
+          <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-warning">
+            annuler
+          </button>
+        </div>
+      </div>
       <br />
       <br />
       <div>

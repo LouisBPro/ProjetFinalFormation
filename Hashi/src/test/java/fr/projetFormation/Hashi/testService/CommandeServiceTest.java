@@ -19,6 +19,7 @@ import fr.projetFormation.Hashi.entities.LigneCommandePK;
 import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.entities.Statut;
+import fr.projetFormation.Hashi.entities.User;
 import fr.projetFormation.Hashi.services.ClientService;
 import fr.projetFormation.Hashi.services.CommandeService;
 import fr.projetFormation.Hashi.services.PlatService;
@@ -41,12 +42,17 @@ public class CommandeServiceTest {
 
 	@Test
 	public void testSave() {
-		Client cl = new Client();
-		cl.setEmail("jjj@kkk.com");
-		cl.setNom("jkj");
-		cl.setAdresse(new Adresse("1", "rue", "35200", "Rennes"));
-		cl.setPrenom("grdsf");
-		clientService.create(cl);
+//		User userClient = new User();
+//		userClient.setId(1000L);
+//        userClient.setLogin("client");
+//        userClient.setPassword("client");
+//		Client cl = new Client();
+//		cl.setEmail("jjj@kkk.com");
+//		cl.setNom("jkj");
+//		cl.setAdresse(new Adresse("1", "rue", "35200", "Rennes"));
+//		cl.setPrenom("grdsf");
+//		cl.setUser(userClient);
+//		clientService.create(cl);
 
 		Plat plat1 = new Plat();
 		plat1.setDescription("C'est un super bon plat !");
