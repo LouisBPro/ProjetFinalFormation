@@ -1,8 +1,25 @@
-<button (click)="getParams()" class="btn btn-primary" [disabled]="parametre">
+<ul class="nav nav-tabs nav-fill mt-3">
+  <li class="nav-item">
+    <button
+      class="nav-link active"
+      (click)="getParams()"
+      [disabled]="parametre"
+      aria-current="page"
+    >
+      Paramètres
+    </button>
+  </li>
+  <li class="nav-item">
+    <button (click)="getCommandes()" class="nav-link">Mes commandes</button>
+  </li>
+</ul>
+<!-- <button (click)="getParams()" class="btn btn-primary" [disabled]="parametre">
   Paramètres
 </button>
 <button (click)="getCommandes()" class="btn btn-primary" [disabled]="commandes">
   Mes commandes
-</button>
-<div *ngIf="parametre"><app-edit-client></app-edit-client></div>
-<div *ngIf="commandes"><app-commandes-client></app-commandes-client></div>
+</button> -->
+<div class="mt-3" *ngIf="parametre"><app-edit-client></app-edit-client></div>
+<div class="mt-3" *ngIf="commandes">
+  <app-commandes-client></app-commandes-client>
+</div>

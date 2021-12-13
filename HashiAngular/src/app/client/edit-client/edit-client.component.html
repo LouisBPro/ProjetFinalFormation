@@ -1,186 +1,183 @@
-<div class="container-fluid">
-  <br />
-  <form (ngSubmit)="save()" [formGroup]="_form">
-    <div
-      class="card mx-auto shadow p-3 mb-5"
-      style="width: 40%; line-height: 0.3cm"
-    >
-      <div class="card-body">
-        <h1 *ngIf="edition" class="card-title text-center">Editer</h1>
-        <h1 *ngIf="!edition" class="card-title text-center">Paramètres</h1>
-        <br />
-        <h5 class="card-text">Informations personnelles:</h5>
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="prenom"
-            placeholder="Prénom*"
-            [readonly]="!edition"
-          />
-        </div>
+<form (ngSubmit)="save()" [formGroup]="_form">
+  <div
+    class="card mx-auto shadow p-3 mb-5"
+    style="width: 60%; line-height: 0.3cm;"
+  >
+    <div class="card-body">
+      <h1 *ngIf="edition" class="card-title text-center">Editer</h1>
+      <h1 *ngIf="!edition" class="card-title text-center">Paramètres</h1>
+      <br />
+      <h5 class="card-text">Informations personnelles:</h5>
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="prenom"
+          placeholder="Prénom*"
+          [readonly]="!edition"
+        />
+      </div>
+      <div
+        *ngIf="form['prenom'].dirty && form['prenom'].invalid"
+        class="alert alert-danger"
+      >
+        Prénom incorrect
+      </div>
+      <br />
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="nom"
+          placeholder="Nom*"
+          [readonly]="!edition"
+        />
         <div
-          *ngIf="form['prenom'].dirty && form['prenom'].invalid"
+          *ngIf="form['nom'].dirty && form['nom'].invalid"
           class="alert alert-danger"
         >
-          Prénom incorrect
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="nom"
-            placeholder="Nom*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['nom'].dirty && form['nom'].invalid"
-            class="alert alert-danger"
-          >
-            Nom incorrect
-          </div>
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            type="email"
-            class="form-control"
-            formControlName="email"
-            placeholder="Email*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['email'].dirty && form['email'].invalid"
-            class="alert alert-danger"
-          >
-            Email incorrect
-          </div>
-        </div>
-        <br />
-        <h5 class="card-text">Adresse:</h5>
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="numero"
-            placeholder="Numéro*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['numero'].dirty && form['numero'].invalid"
-            class="alert alert-danger"
-          >
-            Numéro incorrect
-          </div>
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="rue"
-            placeholder="Rue*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['rue'].dirty && form['rue'].invalid"
-            class="alert alert-danger"
-          >
-            Rue incorrecte
-          </div>
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="codePostal"
-            placeholder="Code postal*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['codePostal'].dirty && form['codePostal'].invalid"
-            class="alert alert-danger"
-          >
-            Code postal incorrect
-          </div>
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="ville"
-            placeholder="Ville*"
-            [readonly]="!edition"
-          />
-          <div
-            *ngIf="form['ville'].dirty && form['ville'].invalid"
-            class="alert alert-danger"
-          >
-            Ville incorrecte
-          </div>
-        </div>
-        <br />
-        <h5 class="card-text">Compte:</h5>
-        <div class="form-group">
-          <input
-            class="form-control"
-            readonly
-            formControlName="login"
-            placeholder="Nom d'utilisateur*"
-          />
-          <div
-            *ngIf="form['login'].dirty && form['login'].invalid"
-            class="alert alert-danger"
-          >
-            Login incorrect
-          </div>
-        </div>
-        <ng-container *ngIf="edition" formGroupName="passwordGroup">
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="password"
-              placeholder="Mot de passe*"
-            />
-            <div
-              *ngIf="
-                form['passwordGroup'].dirty && form['passwordGroup'].invalid
-              "
-              class="alert alert-danger"
-            >
-              Mot de passe incorrect ou différent
-            </div>
-          </div>
-          <br />
-          <div class="form-group">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="confirm"
-              placeholder="Confirmer le mot de passe"
-            />
-          </div>
-        </ng-container>
-        <br />
-        <br />
-        <div>
-          <button *ngIf="!edition" (click)="goEditer()" class="btn btn-success">
-            editer
-          </button>
-          <button
-            *ngIf="edition"
-            type="submit"
-            class="btn btn-success"
-            [disabled]="_form.invalid"
-          >
-            enregistrer</button
-          >&nbsp;
-          <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-success">
-            annuler
-          </button>
+          Nom incorrect
         </div>
       </div>
       <br />
-      <span> &nbsp; &nbsp;*Champs obligatoires</span>
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Email*"
+          [readonly]="!edition"
+        />
+        <div
+          *ngIf="form['email'].dirty && form['email'].invalid"
+          class="alert alert-danger"
+        >
+          Email incorrect
+        </div>
+      </div>
+      <br />
+      <h5 class="card-text">Adresse:</h5>
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="numero"
+          placeholder="Numéro*"
+          [readonly]="!edition"
+        />
+        <div
+          *ngIf="form['numero'].dirty && form['numero'].invalid"
+          class="alert alert-danger"
+        >
+          Numéro incorrect
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="rue"
+          placeholder="Rue*"
+          [readonly]="!edition"
+        />
+        <div
+          *ngIf="form['rue'].dirty && form['rue'].invalid"
+          class="alert alert-danger"
+        >
+          Rue incorrecte
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="codePostal"
+          placeholder="Code postal*"
+          [readonly]="!edition"
+        />
+        <div
+          *ngIf="form['codePostal'].dirty && form['codePostal'].invalid"
+          class="alert alert-danger"
+        >
+          Code postal incorrect
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <input
+          class="form-control"
+          formControlName="ville"
+          placeholder="Ville*"
+          [readonly]="!edition"
+        />
+        <div
+          *ngIf="form['ville'].dirty && form['ville'].invalid"
+          class="alert alert-danger"
+        >
+          Ville incorrecte
+        </div>
+      </div>
+      <br />
+      <h5 class="card-text">Compte:</h5>
+      <div class="form-group">
+        <input
+          class="form-control"
+          readonly
+          formControlName="login"
+          placeholder="Nom d'utilisateur*"
+        />
+        <div
+          *ngIf="form['login'].dirty && form['login'].invalid"
+          class="alert alert-danger"
+        >
+          Login incorrect
+        </div>
+      </div>
+      <ng-container *ngIf="edition" formGroupName="passwordGroup">
+        <br />
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Mot de passe*"
+          />
+          <div
+            *ngIf="
+                form['passwordGroup'].dirty && form['passwordGroup'].invalid
+              "
+            class="alert alert-danger"
+          >
+            Mot de passe incorrect ou différent
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confirm"
+            placeholder="Confirmer le mot de passe"
+          />
+        </div>
+      </ng-container>
+      <br />
+      <br />
+      <div>
+        <button *ngIf="!edition" (click)="goEditer()" class="btn btn-success">
+          editer
+        </button>
+        <button
+          *ngIf="edition"
+          type="submit"
+          class="btn btn-success"
+          [disabled]="_form.invalid"
+        >
+          enregistrer</button
+        >&nbsp;
+        <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-success">
+          annuler
+        </button>
+      </div>
     </div>
-  </form>
-</div>
+    <br />
+    <span> &nbsp; &nbsp;*Champs obligatoires</span>
+  </div>
+</form>
