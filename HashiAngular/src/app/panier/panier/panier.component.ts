@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LigneCarte } from 'src/app/model/ligne-carte';
 import { ChoixRestaurantService } from 'src/app/services/choix-restaurant.service';
@@ -16,6 +17,7 @@ export class PanierComponent implements OnInit {
   constructor(
     private choixRestaurantService: ChoixRestaurantService,
     private activatedRoute: ActivatedRoute,
+    public sanitizer: DomSanitizer,
     private router: Router
   ) {}
 

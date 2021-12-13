@@ -11,7 +11,6 @@ import { PlatService } from "../services/plat.service";
 })
 export class HomeComponent implements OnInit {
   plats: Plat[] = [];
-  image: any;
 
   constructor(
     private platService: PlatService,
