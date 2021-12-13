@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,7 @@ import fr.projetFormation.Hashi.entities.Statut;
 import fr.projetFormation.Hashi.services.ClientService;
 import fr.projetFormation.Hashi.services.CommandeService;
 import fr.projetFormation.Hashi.services.RestaurantService;
+import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/commande")
@@ -93,10 +95,12 @@ public class CommandeRestController {
 
     @PostMapping("")
     @JsonView(JsonViews.Common.class)
-    public Commande create(@Valid @RequestBody Commande commande, BindingResult br) {
+    public Commande create(@Valid @RequestBody Commande commande, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
         commande.getLignesCommande().forEach(lc -> {
             lc.getId().setCommande(commande);
         });
+        // On set le client actuellement connecté comme client de la commande
+        commande.setClient(clientService.byId(cUD.getUser().getPersonne().getId()));
         return commandeService.save(commande);
     }
 

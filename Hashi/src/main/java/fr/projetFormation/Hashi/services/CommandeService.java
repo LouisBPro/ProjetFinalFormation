@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import fr.projetFormation.Hashi.entities.Client;
 import fr.projetFormation.Hashi.entities.Commande;
+import fr.projetFormation.Hashi.entities.LigneCommande;
 import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.entities.Statut;
@@ -29,6 +30,11 @@ public class CommandeService {
 	private Validator validator;
 
 	public Commande save(Commande commande) {
+
+		System.out.println("size lc = " + commande.getLigneCommandes().size());
+		for (LigneCommande lc : commande.getLigneCommandes()) {
+			System.out.println("Quantite = " + lc.getQuantite() + "\n Produit = " + lc.getId());
+		}
 		Set<ConstraintViolation<Commande>> violations = validator.validate(commande);
 		if (violations.isEmpty()) {
 			commandeRepository.save(commande);

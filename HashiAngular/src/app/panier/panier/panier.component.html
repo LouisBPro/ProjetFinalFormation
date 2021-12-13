@@ -1,0 +1,78 @@
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Nom</td>
+        <td>Description</td>
+        <td>Prix</td>
+        <td>Quantité</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of ligneCarte; let index = index">
+        <td>{{ l.id!.plat!.nom }}</td>
+        <td>{{ l.id!.plat!.description }}</td>
+        <td>{{ l.id!.plat!.prix }}$</td>
+        <td *ngIf="getQuantite(index) > 0">
+          {{ getQuantite(index) }}
+        </td>
+        <td *ngIf="getQuantite(index) == undefined">0</td>
+        <td ng-if="l.disponibilite == true">
+          <button (click)="addPanier(index)" class="btn btn-outline-info">
+            Choisir
+          </button>
+          <!-- <a
+            [routerLink]="['/restaurants','choisir', l.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-info"
+          >choisir</a
+          > -->
+        </td>
+        <td>
+          <button
+            *ngIf="getQuantite(index) > 0"
+            (click)="remove(l)"
+            class="btn btn-outline-warning"
+          >
+            retirer
+          </button>
+          <button
+            *ngIf="getQuantite(index) == 0 || getQuantite(index) == undefined"
+            (click)="remove(l)"
+            class="btn btn-outline-secondary disabled"
+          >
+            retirer
+          </button>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <div class="form-group">
+    <button (click)="" class="btn btn-outline-success">
+      enregistrer
+    </button>
+    <a
+      [routerLink]="['/plats']"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div> -->
+  <a *ngIf="this.panierEmpty" class="disabled btn btn-success">Commander</a>
+  <a
+    *ngIf="!this.panierEmpty"
+    [routerLink]="['../recap']"
+    routerLinkActive="active"
+    class="btn btn-success"
+    disabled
+    >Commander</a
+  >
+  &nbsp;
+  <a [routerLink]="['../../../restaurants']"
+  routerLinkActive="active"
+  class="btn btn-warning"
+  disabled>
+  Retour</a>
+</div>

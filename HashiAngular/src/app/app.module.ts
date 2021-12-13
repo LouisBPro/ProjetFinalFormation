@@ -18,8 +18,10 @@ import { InscriptionGeneraleComponent } from "./inscription/inscription-generale
 import { InscriptionCuisinierComponent } from "./inscription/inscription-cuisinier/inscription-cuisinier.component";
 import { InscriptionGerantComponent } from "./inscription/inscription-gerant/inscription-gerant.component";
 import { InscriptionClientComponent } from "./inscription/inscription-client/inscription-client.component";
-import { ValiderComponent } from "./panier/valider/valider.component";
-import { RecapComponent } from "./panier/recap/recap.component";
+import { RecapComponent } from './panier/recap/recap.component';
+import { ValiderComponent } from './panier/valider/valider.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PanierComponent } from './panier/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RecapComponent } from "./panier/recap/recap.component";
     ChoisirComponent,
     RecapComponent,
     ValiderComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,

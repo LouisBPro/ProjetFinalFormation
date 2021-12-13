@@ -144,12 +144,12 @@ export class EditClientComponent implements OnInit {
               } else {
                 sessionStorage.setItem('role', 'admin');
               }
-              if (!!localStorage.getItem('valider')) {
-                localStorage.removeItem('valider');
-                this.router.navigate(['/valider']);
-              } else {
+              // if (!!localStorage.getItem('valider')) {
+              //   localStorage.removeItem('valider');
+              //   this.router.navigate(['/valider']);
+              // } else {
                 this.router.navigate(['/home']);
-              }
+              // }
             });
         },
         (error) => {

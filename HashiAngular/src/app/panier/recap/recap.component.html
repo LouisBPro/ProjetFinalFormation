@@ -1,1 +1,44 @@
-<p>recap works!</p>
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Nom</td>
+        <td>Prix</td>
+        <td>Quantite</td>
+        <td>Total</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lc of ligneCarte; let index = index">
+        <td>{{ lc.id!.plat!.nom }}</td>
+        <td>{{ lc.id!.plat!.prix }}</td>
+        <td>{{ quantites[index] }}</td>
+        <td>{{ prixTotaux[index] }}</td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total panier</td>
+        <td>{{ getTotal() }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <a
+    [routerLink]="['../valider']"
+    routerLinkActive="active"
+    (click)="goValider()"
+    class="btn btn-success"
+  >
+    Valider</a
+  >
+  &nbsp;
+  <a
+    [routerLink]="['../choix']"
+    routerLinkActive="active"
+    class="btn btn-warning"
+    disabled
+  >
+    Retour</a
+  >
+</div>

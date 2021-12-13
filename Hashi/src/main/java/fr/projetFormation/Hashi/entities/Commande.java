@@ -142,10 +142,6 @@ public class Commande {
 		return restaurant;
 	}
 
-	public void setResto(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
-
 	public int getVersion() {
 		return version;
 	}
