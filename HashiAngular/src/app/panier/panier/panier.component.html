@@ -19,35 +19,41 @@
       />
     </ng-template>
     <div class="card-body">
-      <h5 class="card-title">{{ lc.id!.plat!.nom }}</h5>
+      <h3
+        class="card-title"
+        style="
+          font-family: hakubo, Verdana, Geneva, Tahoma, sans-serif;
+          text-transform: uppercase;
+        "
+      >
+        {{ lc.id!.plat!.nom }}
+      </h3>
       <p class="card-text">{{ lc.id!.plat!.description }}</p>
       <p class="card-text">
         <small class="text-muted">{{ lc.id!.plat!.prix }}€</small>
       </p>
+
       <div *ngIf="getQuantite(index) > 0">
         {{ getQuantite(index) }}
       </div>
       <div *ngIf="getQuantite(index) == undefined">0</div>
-      <div ng-if="l.disponibilite == true">
-        <button
-          (click)="addPanier(index)"
-          class="btn btn-outline-info rounded-circle"
-        >
-          +
+      <div align="center" ng-if="l.disponibilite == true">
+        <button (click)="addPanier(index)" class="btn">
+          <img src="https://img.icons8.com/ios/50/000000/add--v1.png" />
         </button>
         <button
           *ngIf="getQuantite(index) > 0"
           (click)="remove(lc)"
-          class="btn btn-outline-warning rounded-circle"
+          class="btn rounded-circle"
         >
-          -
+          <img src="https://img.icons8.com/ios/50/000000/minus.png" />
         </button>
         <button
           *ngIf="getQuantite(index) == 0 || getQuantite(index) == undefined"
           (click)="remove(lc)"
-          class="btn btn-outline-secondary disabled rounded-circle"
+          class="btn disabled rounded-circle"
         >
-          -
+          <img src="https://img.icons8.com/ios/50/000000/minus.png" />
         </button>
       </div>
     </div>
