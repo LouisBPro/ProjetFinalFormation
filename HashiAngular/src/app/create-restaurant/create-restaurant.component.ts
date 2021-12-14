@@ -74,15 +74,19 @@ export class CreateRestaurantComponent implements OnInit {
   }
 
   save() {
-    this.form['cuisiniers'].value?.forEach( (id: number) => {
-      this.cuisinierService.byId(id).subscribe((ok) => {
-        this.cuisiniersRecrutes?.push(ok);
-        if (this.cuisiniersRecrutes?.length == this.form['cuisiniers'].value.length){
-          this.insert();
-          console.log("Insert ! " + this.cuisiniersRecrutes?.length);
-        }
-      })
-    });
+    if (this.form['cuisiniers'].value?.length > 0){
+      this.form['cuisiniers'].value?.forEach( (id: number) => {
+          this.cuisinierService.byId(id).subscribe((ok) => {
+            this.cuisiniersRecrutes?.push(ok);
+            if (this.cuisiniersRecrutes?.length == this.form['cuisiniers'].value.length){
+              this.insert();
+            }
+          })
+      });
+    } else{
+      this.cuisiniersRecrutes=[];
+      this.insert();
+    }
   }
 
   insert(){
@@ -101,7 +105,7 @@ export class CreateRestaurantComponent implements OnInit {
         this.cuisiniersRecrutes
       )
     ).subscribe((restaurant) => {
-      console.log("Restaurant created !");
+      this.router.navigate(['/home']);
     }, (error) => {
       console.log("Erreur création de restaurant");
     });

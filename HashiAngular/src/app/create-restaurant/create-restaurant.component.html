@@ -86,7 +86,6 @@
         <h5 class="card-text">Cuisiniers :</h5>
         <div class="form-group">
           <select class="form-control" formControlName="cuisiniers" multiple>
-            <option></option>
             <option
               *ngFor="let cuisinier of cuisiniersAvailable | async"
               value="{{ cuisinier.id }}"

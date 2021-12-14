@@ -13,7 +13,7 @@ export class CuisinierService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     });
@@ -57,9 +57,7 @@ export class CuisinierService {
       user: { login: cuisinier.user!.login, password: password },
       restaurant : cuisinier.restaurant
     };
-    return this.http.post<Cuisinier>(CuisinierService.URL, o, {
-      headers: this.httpHeaders,
-    });
+    return this.http.post<Cuisinier>(CuisinierService.URL, o);
   }
 
   public updateLocal(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {

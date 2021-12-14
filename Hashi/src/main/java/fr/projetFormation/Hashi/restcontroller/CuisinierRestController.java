@@ -47,6 +47,12 @@ public class CuisinierRestController {
 		return cuisinierService.byId(cUD.getUser().getPersonne().getId());
 	}
 
+	@GetMapping("/available")
+	@JsonView(JsonViews.Common.class)
+	public List<Cuisinier> allAvailable(){
+		return cuisinierService.allAvailable();
+	}
+
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)

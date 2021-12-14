@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.LigneCarte;
@@ -70,8 +71,9 @@ public class RestaurantRestController {
         restaurant.setGerant(gerantConnecte);
         Restaurant restau = restaurantService.save(restaurant);
         restaurant.getCuisiniers().forEach(c->{
-            c.setRestaurant(restaurant);
-            cuisinierService.update(c);
+            Cuisinier cuisinierEnBase = cuisinierService.byId(c.getId());
+            cuisinierEnBase.setRestaurant(restaurant);
+            cuisinierService.update(cuisinierEnBase);
         });
         return restau;
     }
