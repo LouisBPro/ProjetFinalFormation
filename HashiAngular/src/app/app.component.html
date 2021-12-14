@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana;"
+    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana"
       ><img
         src="../../assets/images/back.jpg"
         alt=""
@@ -65,7 +65,16 @@
             />
             <span
               *ngIf="etatPanier"
-              class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+              class="
+                position-absolute
+                top-0
+                start-100
+                translate-middle
+                p-2
+                bg-danger
+                border border-light
+                rounded-circle
+              "
             >
               <span class="visually-hidden">New alerts</span>
             </span>
@@ -77,8 +86,8 @@
           data-bs-target="#navbarText"
         >
           <button
-            *ngIf="roleClient"
-            (click)="getClient()"
+            *ngIf="logged"
+            (click)="getCompte()"
             class="btn btn-link nav-link"
           >
             Mon Compte

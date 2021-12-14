@@ -13,7 +13,7 @@ export class GerantService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     });
@@ -49,7 +49,7 @@ export class GerantService {
       nom: gerant.nom,
       email: gerant.email,
       user: { login: gerant.user!.login, password: password },
-      restaurants : gerant.restaurants
+      restaurants: gerant.restaurants,
     };
     return this.http.post<Gerant>(GerantService.URL, o);
   }
@@ -61,14 +61,10 @@ export class GerantService {
       nom: gerant.nom,
       email: gerant.email,
       user: { login: gerant.user!.login, password: password },
-      restaurants : gerant.restaurants
+      restaurants: gerant.restaurants,
     };
-    return this.http.put<Gerant>(
-      `${GerantService.URL}/local`,
-      o,
-      {
-        headers: this.httpHeaders,
-      }
-    );
+    return this.http.put<Gerant>(`${GerantService.URL}/local`, o, {
+      headers: this.httpHeaders,
+    });
   }
 }

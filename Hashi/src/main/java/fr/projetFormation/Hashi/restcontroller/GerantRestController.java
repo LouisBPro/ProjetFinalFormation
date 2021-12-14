@@ -33,14 +33,14 @@ public class GerantRestController {
     private GerantService gerantService;
 
     @GetMapping("/{id}")
-    @JsonView(JsonViews.Common.class)
+    @JsonView(JsonViews.PersonneWithUser.class)
     public Gerant byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
         System.out.println(cUD.getUser().getLogin());
         return gerantService.byId(id);
     }
 
     @GetMapping("/local")
-    @JsonView(JsonViews.Common.class)
+    @JsonView(JsonViews.PersonneWithUser.class)
     public Gerant byId(@AuthenticationPrincipal CustomUserDetails cUD) {
         return gerantService.byId(cUD.getUser().getPersonne().getId());
     }

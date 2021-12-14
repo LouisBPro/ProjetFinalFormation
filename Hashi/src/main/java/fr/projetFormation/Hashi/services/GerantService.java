@@ -52,6 +52,7 @@ public class GerantService {
 	public void delete(Gerant gerant) {
 		Gerant gerantEnBase = gerantRepository.findById(gerant.getId()).orElseThrow(GerantException::new);
 		gerantRepository.delete(gerantEnBase);
+		userRepository.delete(gerantEnBase.getUser());
 	}
 
 	public void delete(Long id) {

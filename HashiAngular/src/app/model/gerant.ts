@@ -2,11 +2,11 @@ import { Restaurant } from './restaurant';
 import { User } from './user';
 export class Gerant {
   constructor(
-    private _user?: User | undefined,
     private _id?: number | undefined,
     private _prenom?: string | undefined,
     private _nom?: string | undefined,
     private _email?: string | undefined,
+    private _user?: User | undefined,
     private _restaurants?: Restaurant[] | undefined
   ) {}
 
@@ -74,7 +74,6 @@ export class Gerant {
     this._email = value;
   }
 
-
   /**
    * Getter user
    * @return {User}
@@ -99,7 +98,7 @@ export class Gerant {
     this._restaurants = value;
   }
 
-  public addRestaurant(restaurant : Restaurant){
+  public addRestaurant(restaurant: Restaurant) {
     this._restaurants?.push(restaurant);
   }
 }

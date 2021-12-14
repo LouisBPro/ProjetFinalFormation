@@ -53,6 +53,7 @@ public class CuisinierService {
 		Cuisinier cuisinierEnBase = cuisinierRepository.findById(cuisinier.getId())
 				.orElseThrow(CuisinierException::new);
 		cuisinierRepository.delete(cuisinierEnBase);
+		userRepository.delete(cuisinierEnBase.getUser());
 	}
 
 	public void delete(Long id) {

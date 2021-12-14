@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs nav-fill mt-3">
+  <li class="nav-item">
+    <button
+      class="nav-link active"
+      (click)="getParams()"
+      [disabled]="parametre"
+      aria-current="page"
+    >
+      Paramètres
+    </button>
+  </li>
+</ul>
+<div class="mt-3" *ngIf="parametre"><app-edit-gerant></app-edit-gerant></div>
+<div class="mt-3" *ngIf="restaurants"></div>

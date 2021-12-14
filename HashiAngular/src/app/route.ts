@@ -1,11 +1,9 @@
+import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { RecapComponent } from './panier/recap/recap.component';
 import { InscriptionGeneraleComponent } from './inscription/inscription-generale/inscription-generale.component';
-import { ChoisirComponent } from './choix-restaurant/choisir/choisir.component';
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
-import { ClientComponent } from './client/client/client.component';
 import { AuthService } from './services/auth.service';
-import { EditClientComponent } from './client/edit-client/edit-client.component';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 import { PlatsComponent } from './plats/plats.component';
@@ -42,13 +40,8 @@ export const route: Routes = [
     canActivate: [AuthService],
   },
   {
-    path: 'client/edit/:client',
-    component: EditClientComponent,
-    canActivate: [AuthService],
-  },
-  {
-    path: 'client/edit',
-    component: EditClientComponent,
+    path: 'gerant',
+    component: ParametresGerantComponent,
     canActivate: [AuthService],
   },
   { path: 'inscription', component: InscriptionGeneraleComponent },

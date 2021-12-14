@@ -1,3 +1,7 @@
+import { User } from 'src/app/model/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { GerantService } from './../../services/gerant.service';
 import {
   FormGroup,
   FormControl,
@@ -5,27 +9,22 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { ClientService } from './../../services/client.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Client } from './../../model/client';
+import { Gerant } from 'src/app/model/gerant';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user';
-import { Adresse } from 'src/app/model/adresse';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-edit-client',
-  templateUrl: './edit-client.component.html',
-  styleUrls: ['./edit-client.component.css'],
+  selector: 'app-edit-gerant',
+  templateUrl: './edit-gerant.component.html',
+  styleUrls: ['./edit-gerant.component.css'],
 })
-export class EditClientComponent implements OnInit {
-  client: Client = new Client();
+export class EditGerantComponent implements OnInit {
+  gerant: Gerant = new Gerant();
   password: string = '';
   _form: FormGroup;
   _edition: boolean = false;
 
   constructor(
-    private clientService: ClientService,
+    private gerantService: GerantService,
     private router: Router,
     private authService: AuthService
   ) {
@@ -43,26 +42,6 @@ export class EditClientComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.email,
-        Validators.maxLength(100),
-      ]),
-      numero: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
-        Validators.maxLength(50),
-      ]),
-      rue: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
-        Validators.maxLength(200),
-      ]),
-      codePostal: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9À-ÿ]{1,}((\s|-)[a-zA-Z0-9À-ÿ]{1,})*$/),
-        Validators.maxLength(50),
-      ]),
-      ville: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-ZÀ-ÿ]{1,}((\s|-)[a-zA-ZÀ-ÿ]{1,})*$/),
         Validators.maxLength(100),
       ]),
       login: new FormControl(''),
@@ -88,16 +67,12 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.clientService.local().subscribe((client) => {
-      this.client = client;
-      this.form['prenom'].setValue(this.client.prenom);
-      this.form['nom'].setValue(this.client.nom);
-      this.form['email'].setValue(this.client.email);
-      this.form['login'].setValue(this.client.user!.login);
-      this.form['numero'].setValue(this.client.adresse!.numero);
-      this.form['rue'].setValue(this.client.adresse!.rue);
-      this.form['codePostal'].setValue(this.client.adresse!.codePostal);
-      this.form['ville'].setValue(this.client.adresse!.ville);
+    this.gerantService.local().subscribe((gerant) => {
+      this.gerant = gerant;
+      this.form['prenom'].setValue(this.gerant.prenom);
+      this.form['nom'].setValue(this.gerant.nom);
+      this.form['email'].setValue(this.gerant.email);
+      this.form['login'].setValue(this.gerant.user!.login);
     });
   }
 
@@ -116,20 +91,14 @@ export class EditClientComponent implements OnInit {
     } else {
       password = this.form['passwordGroup'].get('password')!.value;
     }
-    this.clientService
+    this.gerantService
       .updateLocal(
-        new Client(
-          this.client.id,
+        new Gerant(
+          this.gerant.id,
           this.form['prenom'].value,
           this.form['nom'].value,
           this.form['email'].value,
-          new User(this.form['login'].value),
-          new Adresse(
-            this.form['numero'].value,
-            this.form['rue'].value,
-            this.form['codePostal'].value,
-            this.form['ville'].value
-          )
+          new User(this.form['login'].value)
         ),
         password
       )
@@ -138,7 +107,7 @@ export class EditClientComponent implements OnInit {
           this.goAnnuler();
         },
         (error) => {
-          console.log('erreur modification compte client');
+          console.log('erreur modification compte gerant');
         }
       );
   }
@@ -155,7 +124,7 @@ export class EditClientComponent implements OnInit {
   }
 
   deleteLocal() {
-    this.clientService.deleteLocal().subscribe((o) => {
+    this.gerantService.deleteLocal().subscribe((o) => {
       sessionStorage.clear();
       localStorage.clear();
       this.router.navigate(['/home']);

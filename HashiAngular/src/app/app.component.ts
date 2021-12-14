@@ -28,9 +28,12 @@ export class AppComponent {
     return !!sessionStorage.getItem('token') ? true : false;
   }
 
-  getClient() {
-    console.log(sessionStorage.getItem('id'));
-    this.router.navigate(['/client']);
+  getCompte() {
+    if (this.roleClient) {
+      this.router.navigate(['/client']);
+    } else if (this.roleGerant) {
+      this.router.navigate(['/gerant']);
+    }
   }
 
   get roleGerant(): Boolean {

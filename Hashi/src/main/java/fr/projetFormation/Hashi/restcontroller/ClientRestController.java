@@ -83,7 +83,7 @@ public class ClientRestController {
 
 	@DeleteMapping("/local")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+	public void delete( @AuthenticationPrincipal CustomUserDetails cUD) {
 		clientService.delete(cUD.getUser().getPersonne().getId());
 	}
 

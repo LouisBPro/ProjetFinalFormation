@@ -23,6 +23,8 @@ import { ValiderComponent } from './panier/valider/valider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PanierComponent } from './panier/panier/panier.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
+import { EditGerantComponent } from './gerant/edit-gerant/edit-gerant.component';
+import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ParametresClientComponent } from './client/parametres-client/parametres
     PanierComponent,
     ParametresClientComponent,
     CommandesClientComponent,
+    EditGerantComponent,
+    ParametresGerantComponent,
   ],
   imports: [
     BrowserModule,

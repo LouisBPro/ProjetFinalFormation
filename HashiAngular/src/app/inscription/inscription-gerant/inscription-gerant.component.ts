@@ -20,14 +20,14 @@ import { User } from '../../model/user';
   templateUrl: './inscription-gerant.component.html',
   styleUrls: ['./inscription-gerant.component.css'],
 })
-export class InscriptionGerantComponent{
+export class InscriptionGerantComponent {
   _form: FormGroup;
 
   constructor(
     private gerantService: GerantService,
     private router: Router,
     private authService: AuthService,
-    private restaurantService : ChoixRestaurantService
+    private restaurantService: ChoixRestaurantService
   ) {
     this._form = new FormGroup({
       prenom: new FormControl('', [
@@ -58,9 +58,7 @@ export class InscriptionGerantComponent{
         {
           password: new FormControl('', [
             Validators.required,
-            Validators.pattern(
-              /^[a-zA-ZÀ-ÿ0-9]{5,}$/
-            ),
+            Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
             Validators.maxLength(30),
           ]),
           confirm: new FormControl(''),
@@ -97,58 +95,58 @@ export class InscriptionGerantComponent{
   }
 
   save() {
-      this.gerantService
-        .insert(
-          new Gerant(
-            new User(this.form['login'].value),
-            undefined,
-            this.form['prenom'].value,
-            this.form['nom'].value,
-            this.form['email'].value,
-          ),
-          this.form['passwordGroup'].get('password')!.value
-        )
-        .subscribe(
-          (gerant) => {
-            this.authService
-              .auth(
-                this.form['login'].value,
-                this.form['passwordGroup'].get('password')!.value
-              )
-              .subscribe((ok) => {
-                sessionStorage.setItem(
-                  'token',
-                  btoa(
-                    this.form['login'].value +
-                      ':' +
-                      this.form['passwordGroup'].get('password')!.value
-                  )
-                );
-                sessionStorage.setItem('login', this.form['login'].value);
-                sessionStorage.setItem('id', ok['personne']['id']);
-                switch (ok['roles'][0]) {
-                  case 'ROLE_CLIENT':
-                    sessionStorage.setItem('role', 'client');
-                    break;
-                  case 'ROLE_CUISINIER':
-                    sessionStorage.setItem('role', 'cuisinier');
-                    break;
-                  case 'ROLE_GERANT':
-                    sessionStorage.setItem('role', 'gerant');
-                    break;
-                  case 'ROLE_ADMIN':
-                    sessionStorage.setItem('role', 'admin');
-                    break;
-                  default:
-                    sessionStorage.setItem('role', 'none');
-                    break;
-                }
-                this.router.navigate(['/home']);
-              });
-          },
-          (error) => {
-            console.log('erreur création compte gerant');
-          }
-        );
+    this.gerantService
+      .insert(
+        new Gerant(
+          undefined,
+          this.form['prenom'].value,
+          this.form['nom'].value,
+          this.form['email'].value,
+          new User(this.form['login'].value)
+        ),
+        this.form['passwordGroup'].get('password')!.value
+      )
+      .subscribe(
+        (gerant) => {
+          this.authService
+            .auth(
+              this.form['login'].value,
+              this.form['passwordGroup'].get('password')!.value
+            )
+            .subscribe((ok) => {
+              sessionStorage.setItem(
+                'token',
+                btoa(
+                  this.form['login'].value +
+                    ':' +
+                    this.form['passwordGroup'].get('password')!.value
+                )
+              );
+              sessionStorage.setItem('login', this.form['login'].value);
+              sessionStorage.setItem('id', ok['personne']['id']);
+              switch (ok['roles'][0]) {
+                case 'ROLE_CLIENT':
+                  sessionStorage.setItem('role', 'client');
+                  break;
+                case 'ROLE_CUISINIER':
+                  sessionStorage.setItem('role', 'cuisinier');
+                  break;
+                case 'ROLE_GERANT':
+                  sessionStorage.setItem('role', 'gerant');
+                  break;
+                case 'ROLE_ADMIN':
+                  sessionStorage.setItem('role', 'admin');
+                  break;
+                default:
+                  sessionStorage.setItem('role', 'none');
+                  break;
+              }
+              this.router.navigate(['/home']);
+            });
+        },
+        (error) => {
+          console.log('erreur création compte gerant');
+        }
+      );
   }
 }
