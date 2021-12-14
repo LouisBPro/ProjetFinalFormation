@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.services.GerantService;
+import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/gerant")
@@ -32,7 +34,8 @@ public class GerantRestController {
 
     @GetMapping("/{id}")
     @JsonView(JsonViews.Common.class)
-    public Gerant byId(@PathVariable("id") Long id) {
+    public Gerant byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+        System.out.println(cUD.getUser().getLogin());
         return gerantService.byId(id);
     }
 

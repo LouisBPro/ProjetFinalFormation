@@ -35,7 +35,7 @@ public class CommandeService {
 		for (LigneCommande lc : commande.getLigneCommandes()) {
 			System.out.println("Quantite = " + lc.getQuantite() + "\n Produit = " + lc.getId());
 		}
-		Set<ConstraintViolation<Commande>> violations = validator.validate(commande);
+ 		Set<ConstraintViolation<Commande>> violations = validator.validate(commande);
 		if (violations.isEmpty()) {
 			commandeRepository.save(commande);
 			ligneCommandeRepository.saveAll(commande.getLignesCommande());

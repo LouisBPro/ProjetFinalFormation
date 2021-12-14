@@ -36,11 +36,9 @@ public class ClientRestController {
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.PersonneWithUser.class)
 	public Client byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
-		// if (cUD.getUser().getPersonne().getId().equals(id)){
-			return clientService.byId(id);
-		// } else {
-			// throw new ClientException();
-		// }
+		System.out.println(cUD);
+		return clientService.byId(id);
+
 	}
 
 	@PostMapping("")
