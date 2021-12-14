@@ -9,3 +9,6 @@ a {
 #map {
   filter: grayscale(100%) invert(92%) contrast(83%);
 }
+.card {
+  display: flex;
+}

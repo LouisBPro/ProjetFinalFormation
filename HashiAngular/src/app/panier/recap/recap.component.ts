@@ -30,6 +30,7 @@ export class RecapComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit(): void {
+    console.log("init");
     this.total = 0;
     this.ligneCarte.forEach((lc) => {
       this.quantites.push(this.panier.get(JSON.stringify(lc))!);
