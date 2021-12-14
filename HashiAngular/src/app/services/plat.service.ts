@@ -17,6 +17,11 @@ export class PlatService {
       "Access-Control-Allow-Origin": "*",
     });
   }
+  private get httpHeadersImage(): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: "Basic " + sessionStorage.getItem("token"),
+    });
+  }
   public allPlats(): Observable<Plat[]> {
     return this.http.get<Plat[]>(this.url, { headers: this.httpHeaders });
   }
@@ -47,13 +52,15 @@ export class PlatService {
   }
   public Upload(plat: Plat, selectedFile: any) {
     const uploadData = new FormData();
-    uploadData.append("myFile", selectedFile, selectedFile.name);
-    return this.http.post(
-      "http://localhost:8080/api/plat/update/" + plat.id,
-      uploadData,
-      {
-        headers: this.httpHeaders,
-      }
-    );
+    console.log(selectedFile);
+
+    uploadData.append("file", selectedFile, selectedFile.name);
+    console.log(uploadData.get("file"));
+    console.log(this.url + "/update/" + plat.id, uploadData, {
+      headers: this.httpHeaders,
+    });
+    return this.http.post<any>(this.url + "/update/" + plat.id, uploadData, {
+      headers: this.httpHeadersImage,
+    });
   }
 }

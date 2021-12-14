@@ -17,11 +17,5 @@ export class HomeComponent implements OnInit {
     public sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {
-    this.platService.allPlats().subscribe((plats) => {
-      this.plats = plats;
-    });
-  }
-
-
+  ngOnInit(): void {}
 }
