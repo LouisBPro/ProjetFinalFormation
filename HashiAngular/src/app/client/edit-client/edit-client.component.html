@@ -173,9 +173,16 @@
         <button *ngIf="edition" (click)="goAnnuler()" class="btn btn-warning">
           annuler
         </button>
+        <button
+          *ngIf="!edition"
+          (click)="delete()"
+          class="btn btn-danger float-end"
+        >
+          supprimer
+        </button>
       </div>
     </div>
     <br />
-    <span> &nbsp; &nbsp;*Champs obligatoires</span>
+    <span *ngIf="edition"> &nbsp; &nbsp;*Champs obligatoires</span>
   </div>
 </form>

@@ -161,4 +161,11 @@ export class EditClientComponent implements OnInit {
       ? { checkNotEquals: true }
       : null;
   }
+
+  delete() {
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/home']);
+    this.clientService.delete(this.client.id!);
+  }
 }

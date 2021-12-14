@@ -14,7 +14,7 @@ export class ClientService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic ' + btoa('client:client'),
+      Authorization: 'Basic' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
     });
   }
@@ -26,7 +26,7 @@ export class ClientService {
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete<Client[]>(`${ClientService.URL}/${id}`, {
+    return this.http.delete<Client>(`${ClientService.URL}/${id}`, {
       headers: this.httpHeaders,
     });
   }
