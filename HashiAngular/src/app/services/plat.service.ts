@@ -45,7 +45,6 @@ export class PlatService {
       nom: plat.nom,
       description: plat.description,
       prix: plat.prix,
-      photo: plat.photo,
     };
     console.log(o);
     return this.http.post<Plat>(this.url, o, { headers: this.httpHeaders });
@@ -57,7 +56,7 @@ export class PlatService {
     uploadData.append("file", selectedFile, selectedFile.name);
     console.log(uploadData.get("file"));
     console.log(this.url + "/update/" + plat.id, uploadData, {
-      headers: this.httpHeaders,
+      headers: this.httpHeadersImage,
     });
     return this.http.post<any>(this.url + "/update/" + plat.id, uploadData, {
       headers: this.httpHeadersImage,

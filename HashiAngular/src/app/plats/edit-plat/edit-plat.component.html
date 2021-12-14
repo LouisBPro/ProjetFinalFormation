@@ -16,14 +16,20 @@
     <input type="number" [(ngModel)]="plat.prix" class="form-control" />
   </div>
 
-  <div>
+  <div class="form-group">
+    <img
+      [src]="
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'data:image/PNG;base64,' + plat.photo
+      )
+    "
+      width="200px"
+      *ngIf="plat.photo"
+    />
     <img [src]="imgURL" height="200" *ngIf="imgURL" />
-    <input type="file" (change)="onFileChanged($event)" text />
+    <input type="file" (change)="onFileChanged($event)" />
   </div>
-  <! — upload image — >
-  <input type="button" (click)="onUpload()" value="upload" />
-  {{ receivedImageData | json}}
-  <img [src]="convertedImage" />
+
   <div class="form-group">
     <button (click)="save()" class="btn btn-outline-success">
       enregistrer
