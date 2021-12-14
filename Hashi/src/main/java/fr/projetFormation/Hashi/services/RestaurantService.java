@@ -70,6 +70,12 @@ public class RestaurantService {
 		return restaurantRepository.findAll();
 	}
 
+	
+	// Tous les restaurants qui n'ont pas de gerant
+	public List<Restaurant> allAvailable() {
+		return restaurantRepository.findAllAvailable();
+	}
+
 	public Restaurant byIdWithLigneCarte(long id) {
 		return restaurantRepository.findByIdWithLigneCarte(id).orElseThrow(RestaurantException::new);
 	}
@@ -80,6 +86,11 @@ public class RestaurantService {
 
 	public List<Restaurant> byVilleOrCodePostal(String entry) {
 		return restaurantRepository.findByVilleOrCodePostal("%" + entry + "%");
+	}
+
+	public void removeGerant(Restaurant restaurant){
+		restaurant.setGerant(null);
+		restaurantRepository.save(restaurant);
 	}
 	// public Page<Commande> clientFirstPage(int size) {
 	// Pageable pageable = PageRequest.of(0, size);

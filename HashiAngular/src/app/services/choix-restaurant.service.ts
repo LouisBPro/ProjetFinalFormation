@@ -32,6 +32,12 @@ export class ChoixRestaurantService {
     });
   }
 
+  public allRestaurantAvailable(): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/available', {
+      headers: this.httpHeaders,
+    });
+  }
+
   public insert(restaurant: Restaurant): Observable<Restaurant> {
     const o = {
       nom: restaurant.nom,

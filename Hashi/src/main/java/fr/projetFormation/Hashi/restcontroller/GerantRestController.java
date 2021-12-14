@@ -1,5 +1,8 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
+import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.services.GerantService;
+import fr.projetFormation.Hashi.services.RestaurantService;
 import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
@@ -31,6 +36,8 @@ public class GerantRestController {
 
     @Autowired
     private GerantService gerantService;
+    @Autowired
+    private RestaurantService restaurantService;
 
     @GetMapping("/{id}")
     @JsonView(JsonViews.PersonneWithUser.class)
@@ -40,8 +47,8 @@ public class GerantRestController {
     }
 
     @GetMapping("/local")
-    @JsonView(JsonViews.PersonneWithUser.class)
-    public Gerant byId(@AuthenticationPrincipal CustomUserDetails cUD) {
+    @JsonView(JsonViews.GerantAvecRestaurantsEtUser.class)
+    public Gerant local(@AuthenticationPrincipal CustomUserDetails cUD) {
         return gerantService.byId(cUD.getUser().getPersonne().getId());
     }
 
@@ -53,12 +60,34 @@ public class GerantRestController {
     }
 
     @PutMapping("/local")
-    @JsonView(JsonViews.class)
+    @JsonView(JsonViews.Common.class)
     public Gerant update(@Valid @RequestBody Gerant gerant, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
         Gerant gerantEnBase = gerantService.byId(cUD.getUser().getPersonne().getId());
         gerantEnBase.setNom(gerant.getNom());
         gerantEnBase.setPrenom(gerant.getPrenom());
         gerantEnBase.setEmail(gerant.getEmail());
+        return gerantService.update(gerantEnBase);
+    }
+
+    // @PutMapping("/restaurants/manages")
+    // @JsonView(JsonViews.Common.class)
+    // public Gerant updateRestaurantsManages(@Valid @RequestBody Gerant gerant, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+    //     Gerant gerantEnBase = gerantService.byId(cUD.getUser().getPersonne().getId());
+    //     gerantEnBase.setRestaurants(gerant.getRestaurants());
+    //     return gerantService.update(gerantEnBase);
+    // }
+
+    @PutMapping("/restaurants/manages/{id}")
+    @JsonView(JsonViews.Common.class)
+    public Gerant updateRestaurantsManages(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD){
+        Gerant gerantEnBase = gerantService.byId(cUD.getUser().getPersonne().getId());
+        Set<Restaurant> restaurantsManages = gerantEnBase.getRestaurants();
+        Restaurant nouveauRestaurant = restaurantService.byId(id);
+        if (nouveauRestaurant.getGerant() == null){
+            nouveauRestaurant.setGerant(gerantEnBase);
+            restaurantsManages.add(nouveauRestaurant);
+            gerantEnBase.setRestaurants(restaurantsManages);
+        }
         return gerantService.update(gerantEnBase);
     }
 

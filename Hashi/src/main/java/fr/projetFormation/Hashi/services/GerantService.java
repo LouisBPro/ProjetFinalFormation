@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.projetFormation.Hashi.entities.Gerant;
+import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.entities.Role;
 import fr.projetFormation.Hashi.entities.User;
 import fr.projetFormation.Hashi.exceptions.ClientException;
@@ -28,6 +29,8 @@ public class GerantService {
 	private UserRepository userRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private RestaurantService restaurantService;
 
 	public Gerant create(Gerant gerant) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -49,14 +52,14 @@ public class GerantService {
 		return gerantRepository.save(gerant);
 	}
 
-	public void delete(Gerant gerant) {
-		Gerant gerantEnBase = gerantRepository.findById(gerant.getId()).orElseThrow(GerantException::new);
-		gerantRepository.delete(gerantEnBase);
-		userRepository.delete(gerantEnBase.getUser());
-	}
 
 	public void delete(Long id) {
-		delete(gerantRepository.findById(id).orElseThrow(GerantException::new));
+		Gerant gerantEnBase = gerantRepository.findById(id).orElseThrow(GerantException::new);
+		for (Restaurant restaurant : gerantEnBase.getRestaurants()){
+			restaurantService.removeGerant(restaurant);
+		}
+		gerantRepository.delete(gerantEnBase);
+		userRepository.delete(gerantEnBase.getUser());
 	}
 
 	public Gerant byId(Long id) {

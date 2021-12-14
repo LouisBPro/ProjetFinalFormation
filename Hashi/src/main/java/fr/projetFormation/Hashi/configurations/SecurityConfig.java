@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/commande/**").hasAnyRole("CLIENT") // pour qu'un client commande
 					.antMatchers(HttpMethod.POST, "/api/restaurant/**").hasAnyRole("GERANT") // Creation de restaurant
 					// GET
+					.antMatchers(HttpMethod.GET, "/api/restaurant/available").hasAnyRole("GERANT")
 					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour voir les restaurants sans être authentifié
 					.antMatchers(HttpMethod.GET, "/api/user/{login}").permitAll() // pour vérifier que le login est dispo
 					.antMatchers(HttpMethod.GET, "/api/client/local").hasAnyRole("CLIENT")// pour qu'un client voit ses infos
@@ -53,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.PUT, "/api/client/local").hasAnyRole("CLIENT") // pour qu'un client se update
 					.antMatchers(HttpMethod.PUT, "/api/cuisinier/local").hasAnyRole("CUISINIER") // pour qu'un client se update
 					.antMatchers(HttpMethod.PUT, "/api/gerant/local").hasAnyRole("GERANT") // pour qu'un client se update
+					.antMatchers(HttpMethod.PUT, "/api/gerant/restaurants/manages/{id}").hasAnyRole("GERANT") // pour qu'un client se update
 					// DELETE
 					.antMatchers(HttpMethod.DELETE, "/api/client/local").hasAnyRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "/api/cuisinier/local").hasAnyRole("CUISINIER")

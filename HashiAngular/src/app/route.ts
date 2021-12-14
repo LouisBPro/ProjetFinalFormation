@@ -1,8 +1,7 @@
 import { CommandesRestaurantComponent } from './commandes-restaurant/commandes-restaurant.component';
 import { DetailsCommandesRestaurantComponent } from './details-commandes-restaurant/details-commandes-restaurant.component';
+import { GetAvailableRestaurantGerantComponent } from './get-available-restaurant-gerant/get-available-restaurant-gerant.component';
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
-import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
-import { RecapComponent } from './panier/recap/recap.component';
 import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { InscriptionGeneraleComponent } from './inscription/inscription-generale/inscription-generale.component';
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
@@ -20,6 +19,8 @@ import { ValiderComponent } from './panier/valider/valider.component';
 import { DragDropComponent } from './plats/drag-drop/drag-drop.component';
 import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinier.component';
 import { GerantComponent } from "./choix-restaurant/gerant/gerant.component";
+import { RecapComponent } from './panier/recap/recap.component';
+import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 
 export const route: Routes = [
   { path: 'home', component: HomeComponent },
@@ -118,4 +119,9 @@ export const route: Routes = [
     component: GerantComponent,
     canActivate: [AuthService],
   },
+  {
+    component:GetAvailableRestaurantGerantComponent,
+    path: 'restaurants/manages',
+    canActivate:[AuthService],
+  }
 ];

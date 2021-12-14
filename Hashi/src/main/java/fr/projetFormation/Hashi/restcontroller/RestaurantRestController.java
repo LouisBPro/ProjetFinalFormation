@@ -64,6 +64,12 @@ public class RestaurantRestController {
         return restaurantService.all();
     }
 
+    @GetMapping("/available")
+	@JsonView(JsonViews.Common.class)
+	public List<Restaurant> allAvailable(){
+		return restaurantService.allAvailable();
+	}
+
     @PostMapping("")
     @JsonView(JsonViews.RestaurantAvecEmployes.class)
     public Restaurant create(@AuthenticationPrincipal CustomUserDetails cUD, @Valid @RequestBody Restaurant restaurant, BindingResult br) {

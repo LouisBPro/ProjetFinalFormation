@@ -21,4 +21,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     @Query("select r from Restaurant r where (r.adresse.ville LIKE :entry) OR (r.adresse.codePostal LIKE :entry)")
     List<Restaurant> findByVilleOrCodePostal(@Param("entry") String entry);
+
+    // tous les restaurants n'ayant pas de gerant
+	@Query("select r from Restaurant r where r.gerant=null")
+	List<Restaurant> findAllAvailable();
 }

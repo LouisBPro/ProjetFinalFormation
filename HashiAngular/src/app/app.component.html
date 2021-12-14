@@ -125,6 +125,15 @@
           data-bs-toggle="collapse"
           data-bs-target="#navbarText"
         >
+          <a routerLink="restaurants/manages" routerLinkActive="active" class="nav-link"
+            >Controler restaurants disponibles (gerant)</a
+          >
+        </li>
+        <li
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
           <button
             *ngIf="logged"
             (click)="getCompte()"

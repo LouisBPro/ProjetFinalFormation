@@ -14,4 +14,6 @@ public class JsonViews {
 	public static class UserWithPersonne extends Common{}
 
 	public static class PersonneWithUser extends Common{}
+
+	public static class GerantAvecRestaurantsEtUser extends PersonneWithUser{}
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Gerant } from '../model/gerant';
+import { Restaurant } from '../model/restaurant';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +65,13 @@ export class GerantService {
       restaurants: gerant.restaurants,
     };
     return this.http.put<Gerant>(`${GerantService.URL}/local`, o, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public manageNewRestaurantLocalGerant(idRestaurant: number): Observable<Gerant>{
+    const o = {};
+    return this.http.put<Gerant>(`${GerantService.URL}/restaurants/manages/${idRestaurant}`,o, {
       headers: this.httpHeaders,
     });
   }

@@ -31,6 +31,7 @@ import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant
 import { EditCuisinierComponent } from "./cuisinier/edit-cuisinier/edit-cuisinier.component";
 import { CommandesRestaurantComponent } from "./commandes-restaurant/commandes-restaurant.component";
 import { DetailsCommandesRestaurantComponent } from "./details-commandes-restaurant/details-commandes-restaurant.component";
+import { GetAvailableRestaurantGerantComponent } from './get-available-restaurant-gerant/get-available-restaurant-gerant.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DetailsCommandesRestaurantComponent } from "./details-commandes-restaur
     CommandesRestaurantComponent,
     DetailsCommandesRestaurantComponent,
     GerantComponent,
+    GetAvailableRestaurantGerantComponent
   ],
   imports: [
     BrowserModule,

@@ -8,11 +8,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "gerant")
 @SequenceGenerator(name = "seqGerant", sequenceName = "seq_gerant", initialValue = 200, allocationSize = 1)
 public class Gerant extends Personne {
     @OneToMany(mappedBy="gerant")
+    @JsonView(JsonViews.GerantAvecRestaurantsEtUser.class)
     private Set<Restaurant> restaurants = new HashSet<Restaurant>();
 
 
