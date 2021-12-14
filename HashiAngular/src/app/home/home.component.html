@@ -83,5 +83,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <app-choix-restaurant></app-choix-restaurant>
+  <div *ngIf="!roleGerant">
+    <app-choix-restaurant></app-choix-restaurant>
+  </div>
 </div>

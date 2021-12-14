@@ -1,0 +1,11 @@
+<div class="card m-5 p-5">
+  <div class="card-title">
+    <h2>Modification des plats a la carte des restaurants</h2>
+  </div>
+  <div>
+    <select id="resto" class="custom-select" [formControl]="selectControl">
+      <option [value]="null" selected="selected"> default value</option>
+      <option *ngFor="let r of restaurants" [value]="r.id">{{r.nom}}</option>
+    </select>
+  </div>
+</div>

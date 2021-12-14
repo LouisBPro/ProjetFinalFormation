@@ -1,3 +1,4 @@
+import { AppComponent } from "./../app.component";
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs";
@@ -18,4 +19,12 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  get roleGerant(): Boolean {
+    const role = sessionStorage.getItem("role");
+    if (role == "gerant") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -19,6 +19,7 @@ import { PanierComponent } from './panier/panier/panier.component';
 import { ValiderComponent } from './panier/valider/valider.component';
 import { DragDropComponent } from './plats/drag-drop/drag-drop.component';
 import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinier.component';
+import { GerantComponent } from "./choix-restaurant/gerant/gerant.component";
 
 export const route: Routes = [
   { path: 'home', component: HomeComponent },
@@ -109,7 +110,12 @@ export const route: Routes = [
     canActivate: [AuthService],
   },
   {
-    path: 'drag',
+    path: "gerant/drag/:id",
     component: DragDropComponent,
+  },
+  {
+    path: "gerant/cartes",
+    component: GerantComponent,
+    canActivate: [AuthService],
   },
 ];

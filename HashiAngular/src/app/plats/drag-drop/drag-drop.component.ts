@@ -1,3 +1,7 @@
+import { LigneCarte } from "src/app/model/ligne-carte";
+import { ChoixRestaurantService } from "src/app/services/choix-restaurant.service";
+import { ActivatedRoute } from "@angular/router";
+
 import { Component, OnInit } from "@angular/core";
 import {
   CdkDragDrop,
@@ -17,12 +21,29 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class DragDropComponent implements OnInit {
   plats: Plat[] = [];
   listrestau: Plat[] = [];
+  ligneCarte: LigneCarte[] = [];
   constructor(
+    private choixRestaurantService: ChoixRestaurantService,
     private platService: PlatService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      if (!!params["id"]) {
+        this.choixRestaurantService
+          .getPlatById(params["id"])
+          .subscribe((result) => {
+            this.ligneCarte = result;
+            for (let lc of this.ligneCarte) {
+              console.log(lc!.id!.plat!);
+              this.listrestau.push(lc!.id!.plat!);
+            }
+            console.log(result);
+          });
+      }
+    });
     this.platService.allPlats().subscribe((client) => {
       this.plats = client;
     });
