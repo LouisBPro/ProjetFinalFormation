@@ -11,6 +11,7 @@ import { PlatService } from "../services/plat.service";
 })
 export class PlatsComponent implements OnInit {
   plats: Observable<Plat[]> | undefined = undefined;
+
   constructor(
     private platService: PlatService,
     public sanitizer: DomSanitizer

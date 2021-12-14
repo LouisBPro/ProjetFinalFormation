@@ -1,0 +1,35 @@
+<p>drag-drop works!</p>
+
+<div class="example-container">
+  <h2>List des plats du restaurant</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="listrestau"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let item of listrestau" cdkDrag>
+      {{item.nom}} {{item.prix}}$
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Tout les plats</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="plats!"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let item of plats" cdkDrag>
+      {{item.nom}} {{item.prix}}$
+    </div>
+  </div>
+</div>
