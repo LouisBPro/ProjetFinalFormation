@@ -43,6 +43,12 @@ export class CuisinierService {
     );
   }
 
+  public allCuisinierAvailable(): Observable<Cuisinier[]>{
+    return this.http.get<Cuisinier[]>(`${CuisinierService.URL}/available`, {
+      headers: this.httpHeaders,
+    });
+  }
+
   public insert(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {
     const o = {
       prenom: cuisinier.prenom,

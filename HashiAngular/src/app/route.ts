@@ -1,3 +1,4 @@
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { RecapComponent } from './panier/recap/recap.component';
 import { InscriptionGeneraleComponent } from './inscription/inscription-generale/inscription-generale.component';

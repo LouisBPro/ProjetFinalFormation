@@ -23,6 +23,7 @@ import { ValiderComponent } from './panier/valider/valider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PanierComponent } from './panier/panier/panier.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
+import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant.component";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ParametresClientComponent } from './client/parametres-client/parametres
     PanierComponent,
     ParametresClientComponent,
     CommandesClientComponent,
+    CreateRestaurantComponent
   ],
   imports: [
     BrowserModule,

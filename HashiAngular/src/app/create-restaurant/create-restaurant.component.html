@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <br />
+  <form (ngSubmit)="save()" [formGroup]="_form">
+    <div
+      class="card mx-auto shadow p-3 mb-5"
+      style="width: 40%; line-height: 0.3cm"
+    >
+      <div class="card-body">
+        <h1 class="card-title text-center">Nouveau restaurant</h1>
+        <br />
+        <div class="form-group">
+          <input
+            class="form-control"
+            formControlName="nom"
+            placeholder="Nom*"
+          />
+          <div
+            *ngIf="form['nom'].dirty && form['nom'].invalid"
+            class="alert alert-danger"
+          >
+            Nom incorrect
+          </div>
+        </div>
+        <br />
+        <h5 class="card-text">Adresse:</h5>
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <input
+              class="form-control"
+              formControlName="numero"
+              placeholder="Numéro*"
+            />
+            <div
+              *ngIf="form['numero'].dirty && form['numero'].invalid"
+              class="alert alert-danger"
+            >
+              Numéro incorrect
+            </div>
+          </div>
+          <br />
+          <div class="col-sm-8 form-group">
+            <input
+              class="form-control"
+              formControlName="rue"
+              placeholder="Rue*"
+            />
+            <div
+              *ngIf="form['rue'].dirty && form['rue'].invalid"
+              class="alert alert-danger"
+            >
+              Rue incorrecte
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <input
+              class="form-control"
+              formControlName="codePostal"
+              placeholder="Code postal*"
+            />
+            <div
+              *ngIf="form['codePostal'].dirty && form['codePostal'].invalid"
+              class="alert alert-danger"
+            >
+              Code postal incorrect
+            </div>
+          </div>
+          <br />
+          <div class="col-sm-8 form-group">
+            <input
+              class="form-control"
+              formControlName="ville"
+              placeholder="Ville*"
+            />
+            <div
+              *ngIf="form['ville'].dirty && form['ville'].invalid"
+              class="alert alert-danger"
+            >
+              Ville incorrecte
+            </div>
+          </div>
+        </div>
+        <br />
+        <h5 class="card-text">Cuisiniers :</h5>
+        <div class="form-group">
+          <select class="form-control" formControlName="cuisiniers" multiple>
+            <option></option>
+            <option
+              *ngFor="let cuisinier of cuisiniersAvailable | async"
+              value="{{ cuisinier.id }}"
+            >
+              {{ cuisinier.prenom }} {{cuisinier.nom}}
+            </option>
+          </select>
+          <div
+            *ngIf="form['cuisiniers'].dirty && form['cuisiniers'].invalid"
+            class="alert alert-danger"
+          >
+            Cuisinier(s) incorrect(s)
+          </div>
+        </div>
+        <br />
+        <div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="_form.invalid"
+          >
+            enregistrer</button
+          >&nbsp;
+          <a
+            [routerLink]="['/inscription']"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >retour</a
+          >
+        </div>
+      </div>
+      <br />
+      <span> &nbsp; &nbsp;*Champs obligatoires</span>
+    </div>
+  </form>
+</div>

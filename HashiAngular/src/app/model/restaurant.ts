@@ -1,11 +1,16 @@
 import { LigneCarte } from "./ligne-carte";
 import { Adresse } from "src/app/model/adresse";
+import { Gerant } from "./gerant";
+import { Cuisinier } from "./cuisinier";
 export class Restaurant {
   constructor(
     private _adresse?: Adresse | undefined,
     private _ligneCarte?: LigneCarte | undefined,
     private _id?: number | undefined,
-    private _nom?: string | undefined // private _codePostal?: string | undefined, // private _numero?: number | undefined, // private _rue?: string | undefined, // private _ville?: string | undefined
+    private _nom?: string | undefined,
+    private _gerant?: Gerant | undefined,
+    private _cuisiniers?: Cuisinier[] | undefined
+    // private _codePostal?: string | undefined, // private _numero?: number | undefined, // private _rue?: string | undefined, // private _ville?: string | undefined
   ) {}
 
   /**
@@ -68,6 +73,26 @@ export class Restaurant {
    */
   public set ligneCarte(value: LigneCarte | undefined) {
     this._ligneCarte = value;
+  }
+
+  public get gerant(): Gerant | undefined {
+    return this._gerant;
+  }
+
+  public set gerant(value: Gerant | undefined) {
+    this._gerant = value;
+  }
+
+  public get cuisiniers(): Cuisinier[] | undefined {
+    return this._cuisiniers;
+  }
+
+  public set cuisiniers(value: Cuisinier[] | undefined) {
+    this._cuisiniers = value;
+  }
+
+  public addCuisinier(value : Cuisinier){
+    this.cuisiniers?.push(value);
   }
   // /**
   //  * Getter numero
