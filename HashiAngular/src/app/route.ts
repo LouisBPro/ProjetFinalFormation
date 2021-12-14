@@ -37,7 +37,7 @@ export const route: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'client/:client',
+    path: 'client',
     component: ParametresClientComponent,
     canActivate: [AuthService],
   },

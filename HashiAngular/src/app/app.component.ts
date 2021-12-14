@@ -1,16 +1,16 @@
-import { GerantService } from "./services/gerant.service";
-import { ClientService } from "./services/client.service";
-import { Client } from "./model/client";
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { GerantService } from './services/gerant.service';
+import { ClientService } from './services/client.service';
+import { Client } from './model/client';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "HashiAngular";
+  title = 'HashiAngular';
 
   constructor(
     private router: Router,
@@ -21,37 +21,37 @@ export class AppComponent {
   logout() {
     sessionStorage.clear();
     localStorage.clear();
-    this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
   }
 
   get logged(): boolean {
-    return !!sessionStorage.getItem("token") ? true : false;
+    return !!sessionStorage.getItem('token') ? true : false;
   }
 
   getClient() {
-    console.log(sessionStorage.getItem("id"));
-    this.router.navigate(["/client/" + sessionStorage.getItem("id")]);
+    console.log(sessionStorage.getItem('id'));
+    this.router.navigate(['/client']);
   }
 
   get roleGerant(): Boolean {
-    const role = sessionStorage.getItem("role");
-    if (role == "gerant") {
+    const role = sessionStorage.getItem('role');
+    if (role == 'gerant') {
       return true;
     } else {
       return false;
     }
   }
   get roleClient(): Boolean {
-    const role = sessionStorage.getItem("role");
-    if (role == "client") {
+    const role = sessionStorage.getItem('role');
+    if (role == 'client') {
       return true;
     } else {
       return false;
     }
   }
   get etatPanier(): Boolean {
-    const etat = localStorage.getItem("panier");
-    if (etat != "[]" && etat != null) {
+    const etat = localStorage.getItem('panier');
+    if (etat != '[]' && etat != null) {
       return true;
     } else {
       return false;
