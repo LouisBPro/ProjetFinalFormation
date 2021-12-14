@@ -1,3 +1,4 @@
+import { DomSanitizer } from "@angular/platform-browser";
 import { Plat } from "./../../model/plat";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -24,7 +25,8 @@ export class EditPlatComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private platService: PlatService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +41,14 @@ export class EditPlatComponent implements OnInit {
   }
   save() {
     if (!!this.plat.id) {
+      this.onUpload();
       this.platService.update(this.plat).subscribe((result) => {
         this.goList();
       });
     } else {
       this.platService.insert(this.plat).subscribe((result) => {
+        this.plat = result;
+        this.onUpload();
         this.goList();
       });
     }
@@ -64,14 +69,13 @@ export class EditPlatComponent implements OnInit {
     };
   }
   onUpload() {
-    this.platService.Upload(this.plat, this.selectedFile).subscribe(
-      (res) => {
+    this.platService.Upload(this.plat, this.selectedFile).subscribe({
+      next(res) {
         console.log(res);
-        this.receivedImageData = res;
-        // this.base64Data = this.receivedImageData.pic;
-        // this.convertedImage = "data:image/jpeg;base64," + this.base64Data;
       },
-      (err) => console.log("Error Occured duringng saving: " + err)
-    );
+      error(msg) {
+        console.log("Error : ", msg);
+      },
+    });
   }
 }

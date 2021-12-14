@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana"
+    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana;"
       ><img
         src="../../assets/images/back.jpg"
         alt=""
@@ -57,23 +57,15 @@
           <a
             class="nav-link"
             class="position-relative"
-            routerLink="/panier"
+            routerLink="panier/recap"
             routerLinkActive="active"
           >
             <img
               src="https://img.icons8.com/ios/30/ffffff/shopping-bag--v1.png"
             />
             <span
-              class="
-                position-absolute
-                top-0
-                start-100
-                translate-middle
-                p-2
-                bg-danger
-                border border-light
-                rounded-circle
-              "
+              *ngIf="etatPanier"
+              class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
             >
               <span class="visually-hidden">New alerts</span>
             </span>
