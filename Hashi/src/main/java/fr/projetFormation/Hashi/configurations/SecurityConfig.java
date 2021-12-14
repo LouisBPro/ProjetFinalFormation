@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					// GET
 					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour commander avant d'être authentifié
 					.antMatchers(HttpMethod.GET, "/api/user/{login}").permitAll() // pour vérifier que le login est dispo
-					.antMatchers(HttpMethod.GET, "/api/client/**").permitAll()// pour qu'un client voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/client/**").hasAnyRole("CLIENT")// pour qu'un client voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/gerant/**").hasAnyRole("GERANT")// pour qu'un gerant voit ses infos
 					// PUT
 					.antMatchers(HttpMethod.PUT, "/api/client/**").hasAnyRole("CLIENT") // pour qu'un client se update
 					.antMatchers(HttpMethod.GET, "/api/commande/**").permitAll()

@@ -14,9 +14,8 @@ export class ClientService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorisation: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic ' + btoa('client:client'),
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     });
   }
 

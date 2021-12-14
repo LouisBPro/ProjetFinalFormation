@@ -13,7 +13,7 @@ export class GerantService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorisation: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     });
