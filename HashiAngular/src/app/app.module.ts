@@ -28,6 +28,8 @@ import { EditGerantComponent } from './gerant/edit-gerant/edit-gerant.component'
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
 import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinier.component';
+import { CommandesRestaurantComponent } from './commandes-restaurant/commandes-restaurant.component';
+import { DetailsCommandesRestaurantComponent } from './details-commandes-restaurant/details-commandes-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinie
     ParametresGerantComponent,
     CreateRestaurantComponent,
     EditCuisinierComponent,
+    CommandesRestaurantComponent,
+    DetailsCommandesRestaurantComponent,
   ],
   imports: [
     BrowserModule,

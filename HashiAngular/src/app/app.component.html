@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana;"
+    <a class="navbar-brand" href="#" style="font-family: go3v2, Verdana"
       ><img
         src="../../assets/images/back.jpg"
         alt=""
@@ -66,7 +66,16 @@
             />
             <span
               *ngIf="etatPanier"
-              class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+              class="
+                position-absolute
+                top-0
+                start-100
+                translate-middle
+                p-2
+                bg-danger
+                border border-light
+                rounded-circle
+              "
             >
               <span class="visually-hidden">New alerts</span>
             </span>
@@ -96,12 +105,25 @@
           >
         </li>
         <li
+          *ngIf="roleGerant"
+          class="nav-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
+          <a
+            routerLink="/restaurants/detail"
+            routerLinkActive="active"
+            class="nav-link"
+            >Commandes Restaurants</a
+          >
+        </li>
+        <li
           class="nav-item"
           data-bs-toggle="collapse"
           data-bs-target="#navbarText"
         >
           <button
-            *ngIf="roleClient"
+            *ngIf="logged"
             (click)="getCompte()"
             class="btn btn-link nav-link"
           >

@@ -1,0 +1,19 @@
+<div class="card-group m-5 p-3">
+  <div class="card p-3" *ngFor="let r of restaurants | async">
+    <a
+      [routerLink]="['/detail', r.id]"
+      routerLinkActive="active"
+      style="text-decoration: none"
+    >
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ r.nom }}
+        </h5>
+        <p class="card-text">
+          {{ r.adresse!.numero }} {{ r.adresse!.rue }} {{ r.adresse!.ville }}
+          {{ r.adresse!.codePostal }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
