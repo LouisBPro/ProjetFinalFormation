@@ -69,8 +69,8 @@ export class EditClientComponent implements OnInit {
       passwordGroup: new FormGroup(
         {
           password: new FormControl('', [
-            // Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
-            // Validators.maxLength(30),
+            Validators.pattern(/^[a-zA-ZÀ-ÿ0-9]{5,}$/),
+            Validators.maxLength(30),
           ]),
           confirm: new FormControl(''),
         },

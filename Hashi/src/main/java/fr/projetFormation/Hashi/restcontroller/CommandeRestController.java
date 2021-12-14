@@ -45,13 +45,13 @@ public class CommandeRestController {
     private ClientService clientService;
 
     // avec lignes commande et client restaurant
-    @GetMapping("/local/{id}")
+    @GetMapping("/client/local/{id}")
     @JsonView(JsonViews.Common.class)
     public Commande byIdLocal(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
         Commande commande = commandeService.byId(id);
         // On ne renvoit que la commande si elle correspond au client connecté
-        if (commande.getClient().getId() == cUD.getUser().getPersonne().getId()){
-            return commandeService.byId(id);
+        if (commande.getClient().getId().equals(cUD.getUser().getPersonne().getId())){
+            return commande;
         }
         else{
             throw new CommandeException();

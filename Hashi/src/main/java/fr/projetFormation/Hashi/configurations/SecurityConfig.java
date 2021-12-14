@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.GET, "/api/client/local").hasAnyRole("CLIENT")// pour qu'un client voit ses infos
 					.antMatchers(HttpMethod.GET, "/api/cuisinier/local").hasAnyRole("CUISINIER")// pour qu'un cuisinier voit ses infos
 					.antMatchers(HttpMethod.GET, "/api/gerant/local").hasAnyRole("GERANT")// pour qu'un gerant voit ses infos
-					.antMatchers(HttpMethod.GET, "/api/commande/local").hasAnyRole("CLIENT")
-					.antMatchers(HttpMethod.GET, "/api/commande/local").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/commande/client/local/{id}").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/commande/client/local").hasAnyRole("CLIENT")
 					// .antMatchers(HttpMethod.GET, "/api/plat/allPlat").permitAll() Pour charger les plats des restaurants
 					// PUT
 					.antMatchers(HttpMethod.PUT, "/api/client/local").hasAnyRole("CLIENT") // pour qu'un client se update
@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.DELETE, "/api/cuisinier/local").hasAnyRole("CUISINIER")
 					.antMatchers(HttpMethod.DELETE, "/api/gerant/local").hasAnyRole("GERANT")
 					// ALL OTHER
+					.antMatchers("/api/plat/**").hasAnyRole("GERANT")
 					// .antMatchers("api/commande/**").hasAnyRole("ADMIN")
 					// .antMatchers("api/client/**").hasAnyRole("ADMIN")
 					// .antMatchers("api/gerant/**").hasAnyRole("ADMIN")

@@ -91,7 +91,7 @@ export class ClientService {
 
   public getCommandesByIdLocal(id: number): Observable<Commande> {
     return this.http.get<Commande>(
-      `http://localhost:8080/hashi/api/commande/local/${id}`,
+      `http://localhost:8080/hashi/api/commande/client/local/${id}`,
       {
         headers: this.httpHeaders,
       }

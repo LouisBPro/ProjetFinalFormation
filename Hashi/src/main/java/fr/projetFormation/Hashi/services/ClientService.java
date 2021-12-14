@@ -50,10 +50,10 @@ public class ClientService {
 		}
 	}
 
-	public Client update(Client client) {
+	public Client update(Client client, Boolean changePassword) {
 		User user = client.getUser();
 		User userEnBase = userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new);
-		if (user.getPassword() != "") {
+		if (changePassword){
 			userEnBase.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
 		userRepository.save(userEnBase);

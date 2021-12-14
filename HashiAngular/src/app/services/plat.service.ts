@@ -22,9 +22,11 @@ export class PlatService {
       Authorization: "Basic " + sessionStorage.getItem("token"),
     });
   }
+
   public allPlats(): Observable<Plat[]> {
     return this.http.get<Plat[]>(this.url, { headers: this.httpHeaders });
   }
+
   public delete(id: number): Observable<any> {
     return this.http.delete(this.url + "/" + id, { headers: this.httpHeaders });
   }

@@ -56,19 +56,23 @@ public class ClientRestController {
 	@PutMapping("/local")
 	@JsonView(JsonViews.Common.class)
 	public Client update(@Valid @RequestBody Client client, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+		boolean changePassword = false;
 		Client clientEnBase = clientService.byId(cUD.getUser().getPersonne().getId());
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
 		clientEnBase.setEmail(client.getEmail());
 		clientEnBase.getUser().setLogin(client.getUser().getLogin());
-		if (client.getUser().getPassword() != "") {
+		// Si on a un nouveau mdp
+		if (!client.getUser().getPassword().equals("")) {
 			clientEnBase.getUser().setPassword(client.getUser().getPassword());
+			changePassword = true;
 		}
+		// Sinon on garde l'ancien donc on y touche pas
 		clientEnBase.getAdresse().setNumero(client.getAdresse().getNumero());
 		clientEnBase.getAdresse().setRue(client.getAdresse().getRue());
 		clientEnBase.getAdresse().setCodePostal(client.getAdresse().getCodePostal());
 		clientEnBase.getAdresse().setVille(client.getAdresse().getVille());
-		return clientService.update(clientEnBase);
+		return clientService.update(clientEnBase, changePassword);
 	}
 
 	@DeleteMapping("/{id}")
