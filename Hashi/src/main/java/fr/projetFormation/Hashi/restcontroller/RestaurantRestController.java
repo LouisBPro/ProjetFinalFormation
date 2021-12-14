@@ -38,7 +38,7 @@ public class RestaurantRestController {
     private PlatService platService;
 
     @GetMapping("/{id}")
-    @JsonView(JsonViews.RestaurantAvecTout.class)
+    @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
     public Restaurant byId(@PathVariable("id") Long id) {
         return restaurantService.byId(id);
     }

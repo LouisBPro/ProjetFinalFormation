@@ -20,17 +20,15 @@ export class CommandesClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!!sessionStorage.getItem('id')) {
       this.clientService
-        .byId(sessionStorage.getItem('id') as unknown as number)
+        .local()
         .subscribe((c) => {
-          this.commandes = this.clientService.getCommandesByClient(c);
+          this.commandes = this.clientService.getCommandesByLocalClient();
         });
-    }
   }
 
   getDetails(id: number) {
-    this.clientService.getCommandesById(id).subscribe((o) => {
+    this.clientService.getCommandesByIdLocal(id).subscribe((o) => {
       this.commandeDetaillee = o;
       this.afficherDetails = true;
     });

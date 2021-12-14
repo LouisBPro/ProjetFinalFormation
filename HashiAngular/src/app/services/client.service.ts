@@ -26,8 +26,14 @@ export class ClientService {
     });
   }
 
-  public delete(id: number): Observable<any> {
-    return this.http.delete<Client>(`${ClientService.URL}/${id}`, {
+  public local(): Observable<any> {
+    return this.http.get<Client>(`${ClientService.URL}/local`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public deleteLocal(): Observable<any> {
+    return this.http.delete<Client[]>(`${ClientService.URL}/local`, {
       headers: this.httpHeaders,
     });
   }
@@ -54,7 +60,7 @@ export class ClientService {
     return this.http.post<Client>(ClientService.URL, o);
   }
 
-  public update(client: Client, password: string): Observable<Client> {
+  public updateLocal(client: Client, password: string): Observable<Client> {
     const o = {
       id: client.id,
       prenom: client.prenom,
@@ -69,23 +75,23 @@ export class ClientService {
       },
     };
     console.log(o);
-    return this.http.put<Client>(`${ClientService.URL}/${client.id}`, o, {
+    return this.http.put<Client>(`${ClientService.URL}/local`, o, {
       headers: this.httpHeaders,
     });
   }
 
-  public getCommandesByClient(client: Client): Observable<Commande[]> {
+  public getCommandesByLocalClient(): Observable<Commande[]> {
     return this.http.get<Commande[]>(
-      `http://localhost:8080/hashi/api/commande/client/${client.id}`,
+      `http://localhost:8080/hashi/api/commande/client/local`,
       {
         headers: this.httpHeaders,
       }
     );
   }
 
-  public getCommandesById(id: number): Observable<Commande> {
+  public getCommandesByIdLocal(id: number): Observable<Commande> {
     return this.http.get<Commande>(
-      `http://localhost:8080/hashi/api/commande/${id}`,
+      `http://localhost:8080/hashi/api/commande/local/${id}`,
       {
         headers: this.httpHeaders,
       }

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.projetFormation.Hashi.entities.Commande;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.Statut;
+import fr.projetFormation.Hashi.exceptions.CommandeException;
 import fr.projetFormation.Hashi.services.ClientService;
 import fr.projetFormation.Hashi.services.CommandeService;
 import fr.projetFormation.Hashi.services.RestaurantService;
@@ -44,10 +45,17 @@ public class CommandeRestController {
     private ClientService clientService;
 
     // avec lignes commande et client restaurant
-    @GetMapping("/{id}")
+    @GetMapping("/local/{id}")
     @JsonView(JsonViews.Common.class)
-    public Commande byId(@PathVariable("id") Long id) {
-        return commandeService.byId(id);
+    public Commande byIdLocal(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+        Commande commande = commandeService.byId(id);
+        // On ne renvoit que la commande si elle correspond au client connecté
+        if (commande.getClient().getId() == cUD.getUser().getPersonne().getId()){
+            return commandeService.byId(id);
+        }
+        else{
+            throw new CommandeException();
+        }
     }
 
     @GetMapping("/restaurant/{restaurantId}/{statut}")
@@ -87,10 +95,10 @@ public class CommandeRestController {
         return commandeService.byRestaurant(restaurantService.byId(restaurantId));
     }
 
-    @GetMapping("/client/{clientId}")
+    @GetMapping("/client/local")
     @JsonView(JsonViews.Common.class)
-    public List<Commande> byClientId(@PathVariable("clientId") Long clientId) {
-        return commandeService.byClientWithLigneCommande(clientService.byId(clientId));
+    public List<Commande> byClientId(@AuthenticationPrincipal CustomUserDetails cUD) {
+        return commandeService.byClientWithLigneCommande(clientService.byId(cUD.getUser().getPersonne().getId()));
     }
 
     @PostMapping("")
@@ -135,8 +143,6 @@ public class CommandeRestController {
         c.setStatut(s);
         return commandeService.save(c);
     }
-
-    // TODO ? removeOneLigneCommande(commande, plat)
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

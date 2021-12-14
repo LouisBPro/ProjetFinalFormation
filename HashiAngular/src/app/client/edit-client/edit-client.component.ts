@@ -88,9 +88,8 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!!sessionStorage.getItem('id')) {
       this.clientService
-        .byId(sessionStorage.getItem('id') as unknown as number)
+        .local()
         .subscribe((client) => {
           this.client = client;
           this.form['prenom'].setValue(this.client.prenom);
@@ -102,7 +101,6 @@ export class EditClientComponent implements OnInit {
           this.form['codePostal'].setValue(this.client.adresse!.codePostal);
           this.form['ville'].setValue(this.client.adresse!.ville);
         });
-    }
   }
 
   goEditer() {
@@ -121,7 +119,7 @@ export class EditClientComponent implements OnInit {
       password = this.form['passwordGroup'].get('password')!.value;
     }
     this.clientService
-      .update(
+      .updateLocal(
         new Client(
           this.client.id,
           this.form['prenom'].value,
@@ -163,7 +161,7 @@ export class EditClientComponent implements OnInit {
   }
 
   delete() {
-    this.clientService.delete(this.client.id!);
+    this.clientService.deleteLocal();
     // sessionStorage.clear();
     // localStorage.clear();
     // this.router.navigate(['/home']);

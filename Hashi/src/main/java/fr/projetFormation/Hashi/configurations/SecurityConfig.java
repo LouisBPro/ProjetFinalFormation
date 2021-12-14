@@ -37,16 +37,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/gerant/**").permitAll() // inscription
 					.antMatchers(HttpMethod.POST, "/api/commande/**").hasAnyRole("CLIENT") // pour qu'un client commande
 					// GET
-					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour commander avant d'être authentifié
+					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour voir les restaurants sans être authentifié
 					.antMatchers(HttpMethod.GET, "/api/user/{login}").permitAll() // pour vérifier que le login est dispo
-					.antMatchers(HttpMethod.GET, "/api/client/**").permitAll()// pour qu'un client voit ses infos
-					.antMatchers(HttpMethod.GET, "/api/gerant/**").hasAnyRole("GERANT")// pour qu'un gerant voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/client/local").hasAnyRole("CLIENT")// pour qu'un client voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/cuisinier/local").hasAnyRole("CUISINIER")// pour qu'un cuisinier voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/gerant/local").hasAnyRole("GERANT")// pour qu'un gerant voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/commande/local").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/commande/local").hasAnyRole("CLIENT")
+					// .antMatchers(HttpMethod.GET, "/api/plat/allPlat").permitAll() Pour charger les plats des restaurants
 					// PUT
-					.antMatchers(HttpMethod.PUT, "/api/client/**").hasAnyRole("CLIENT") // pour qu'un client se update
-					.antMatchers(HttpMethod.GET, "/api/commande/**").permitAll()
+					.antMatchers(HttpMethod.PUT, "/api/client/local").hasAnyRole("CLIENT") // pour qu'un client se update
+					.antMatchers(HttpMethod.PUT, "/api/cuisinier/local").hasAnyRole("CUISINIER") // pour qu'un client se update
+					.antMatchers(HttpMethod.PUT, "/api/gerant/local").hasAnyRole("GERANT") // pour qu'un client se update
+					// DELETE
+					.antMatchers(HttpMethod.DELETE, "/api/client/local").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE, "/api/cuisinier/local").hasAnyRole("CUISINIER")
+					.antMatchers(HttpMethod.DELETE, "/api/gerant/local").hasAnyRole("GERANT")
+					// ALL OTHER
+					// .antMatchers("api/commande/**").hasAnyRole("ADMIN")
+					// .antMatchers("api/client/**").hasAnyRole("ADMIN")
+					// .antMatchers("api/gerant/**").hasAnyRole("ADMIN")
+					// .antMatchers("api/cuisinier/**").hasAnyRole("ADMIN")
+					// FIN
 					.antMatchers("/api/auth").authenticated()
-					.antMatchers("/api/**").hasAnyRole("ADMIN","CLIENT","CUISINIER","GERANT")
-				.and()
+					.antMatchers("/api/**").hasAnyRole("ADMIN")
+					.and()
 				.httpBasic();
 	}
 

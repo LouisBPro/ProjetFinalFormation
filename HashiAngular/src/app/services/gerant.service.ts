@@ -25,8 +25,14 @@ export class GerantService {
     });
   }
 
-  public delete(id: number): Observable<any> {
-    return this.http.delete<Gerant[]>(`${GerantService.URL}/${id}`, {
+  public local(): Observable<any> {
+    return this.http.get<Gerant>(`${GerantService.URL}/local`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public deleteLocal(): Observable<any> {
+    return this.http.delete<Gerant[]>(`${GerantService.URL}/local `, {
       headers: this.httpHeaders,
     });
   }
@@ -48,7 +54,7 @@ export class GerantService {
     return this.http.post<Gerant>(GerantService.URL, o);
   }
 
-  public update(gerant: Gerant, password: string): Observable<Gerant> {
+  public updateLocal(gerant: Gerant, password: string): Observable<Gerant> {
     const o = {
       id: gerant.id,
       prenom: gerant.prenom,
@@ -58,7 +64,7 @@ export class GerantService {
       restaurants : gerant.restaurants
     };
     return this.http.put<Gerant>(
-      `${GerantService.URL}/${gerant.id}`,
+      `${GerantService.URL}/local`,
       o,
       {
         headers: this.httpHeaders,

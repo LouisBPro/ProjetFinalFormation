@@ -25,8 +25,14 @@ export class CuisinierService {
     });
   }
 
-  public delete(id: number): Observable<any> {
-    return this.http.delete<Cuisinier[]>(`${CuisinierService.URL}/${id}`, {
+  public local(): Observable<any> {
+    return this.http.get<Cuisinier>(`${CuisinierService.URL}/local`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public deleteLocal(): Observable<any> {
+    return this.http.delete<Cuisinier[]>(`${CuisinierService.URL}/local`, {
       headers: this.httpHeaders,
     });
   }
@@ -50,7 +56,7 @@ export class CuisinierService {
     });
   }
 
-  public update(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {
+  public updateLocal(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {
     const o = {
       id: cuisinier.id,
       prenom: cuisinier.prenom,
@@ -60,7 +66,7 @@ export class CuisinierService {
       restaurant : cuisinier.restaurant
     };
     return this.http.put<Cuisinier>(
-      `${CuisinierService.URL}/${cuisinier.id}`,
+      `${CuisinierService.URL}/local`,
       o,
       {
         headers: this.httpHeaders,

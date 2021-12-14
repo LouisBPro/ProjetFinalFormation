@@ -36,9 +36,14 @@ public class ClientRestController {
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.PersonneWithUser.class)
 	public Client byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
-		System.out.println(cUD);
 		return clientService.byId(id);
+	}
 
+	@GetMapping("/local")
+	@JsonView(JsonViews.PersonneWithUser.class)
+	public Client local(@AuthenticationPrincipal CustomUserDetails cUD) {
+		Client client = clientService.byId(cUD.getUser().getPersonne().getId());
+		return client;
 	}
 
 	@PostMapping("")
@@ -48,10 +53,10 @@ public class ClientRestController {
 		return clientService.create(client);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/local")
 	@JsonView(JsonViews.Common.class)
-	public Client update(@Valid @RequestBody Client client, BindingResult br, @PathVariable("id") Long id) {
-		Client clientEnBase = clientService.byId(id);
+	public Client update(@Valid @RequestBody Client client, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+		Client clientEnBase = clientService.byId(cUD.getUser().getPersonne().getId());
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
 		clientEnBase.setEmail(client.getEmail());
@@ -70,6 +75,12 @@ public class ClientRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
 		clientService.delete(id);
+	}
+
+	@DeleteMapping("/local")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+		clientService.delete(cUD.getUser().getPersonne().getId());
 	}
 
 }

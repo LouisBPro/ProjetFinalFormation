@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       (ok) => {
         this.showMessage = false;
         sessionStorage.setItem('token', btoa(this.login + ':' + this.password));
-        console.log(sessionStorage.getItem('token'));
         sessionStorage.setItem('login', this.login);
         sessionStorage.setItem('id', ok['personne']['id']);
 

@@ -23,9 +23,8 @@ export class ClientComponent implements OnInit {
   }
 
   initClient() {
-    if (!!sessionStorage.getItem('id')) {
       this.clientService
-        .byId(sessionStorage.getItem('id') as unknown as number)
+        .local()
         .subscribe((c) => {
           this.client = c;
           // this.client.login = JSON.stringify(c['user']['login']);
@@ -37,5 +36,4 @@ export class ClientComponent implements OnInit {
           // this.client.ville = JSON.stringify(c['adresse']['ville']);
         });
     }
-  }
 }

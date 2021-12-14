@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.entities.JsonViews;
 
 import fr.projetFormation.Hashi.services.CuisinierService;
+import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/cuisinier")
@@ -37,6 +39,12 @@ public class CuisinierRestController {
 		return cuisinierService.byId(id);
 	}
 
+	@GetMapping("/local")
+	@JsonView(JsonViews.Common.class)
+	public Cuisinier byId(@AuthenticationPrincipal CustomUserDetails cUD) {
+		return cuisinierService.byId(cUD.getUser().getPersonne().getId());
+	}
+
 	@PostMapping("")
 	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -44,10 +52,10 @@ public class CuisinierRestController {
 		return cuisinierService.create(cuisinier);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/local")
 	@JsonView(JsonViews.Common.class)
-	public Cuisinier update(@Valid @RequestBody Cuisinier cuisinier, BindingResult br, @PathVariable("id") Long id) {
-		Cuisinier cuisinierEnBase = cuisinierService.byId(id);
+	public Cuisinier update(@Valid @RequestBody Cuisinier cuisinier, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+		Cuisinier cuisinierEnBase = cuisinierService.byId(cUD.getUser().getPersonne().getId());
 		cuisinierEnBase.setNom(cuisinier.getNom());
 		cuisinierEnBase.setPrenom(cuisinier.getPrenom());
         cuisinierEnBase.setEmail(cuisinier.getEmail());
@@ -58,5 +66,11 @@ public class CuisinierRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
 		cuisinierService.delete(id);
+	}
+
+	@DeleteMapping("/local")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@AuthenticationPrincipal CustomUserDetails cUD) {
+		cuisinierService.delete(cUD.getUser().getPersonne().getId());
 	}
 }

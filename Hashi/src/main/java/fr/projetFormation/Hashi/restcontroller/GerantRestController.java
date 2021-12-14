@@ -39,6 +39,12 @@ public class GerantRestController {
         return gerantService.byId(id);
     }
 
+    @GetMapping("/local")
+    @JsonView(JsonViews.Common.class)
+    public Gerant byId(@AuthenticationPrincipal CustomUserDetails cUD) {
+        return gerantService.byId(cUD.getUser().getPersonne().getId());
+    }
+
     @PostMapping("")
     @JsonView(JsonViews.Common.class)
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -46,10 +52,10 @@ public class GerantRestController {
         return gerantService.create(gerant);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/local")
     @JsonView(JsonViews.class)
-    public Gerant update(@Valid @RequestBody Gerant gerant, BindingResult br, @PathVariable("id") Long id) {
-        Gerant gerantEnBase = gerantService.byId(id);
+    public Gerant update(@Valid @RequestBody Gerant gerant, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+        Gerant gerantEnBase = gerantService.byId(cUD.getUser().getPersonne().getId());
         gerantEnBase.setNom(gerant.getNom());
         gerantEnBase.setPrenom(gerant.getPrenom());
         gerantEnBase.setEmail(gerant.getEmail());
@@ -60,5 +66,11 @@ public class GerantRestController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) {
         gerantService.delete(id);
+    }
+
+    @DeleteMapping("/local")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@AuthenticationPrincipal CustomUserDetails cUD) {
+        gerantService.delete(cUD.getUser().getPersonne().getId());
     }
 }

@@ -22,7 +22,6 @@ export class AuthService implements CanActivate {
     const httpHeaders: HttpHeaders = new HttpHeaders({
       Authorization: 'Basic ' + btoa(login + ':' + password),
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     });
     return this.http.get('http://localhost:8080/hashi/api/auth', {
       headers: httpHeaders,
