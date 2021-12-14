@@ -1,5 +1,7 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,12 @@ public class CuisinierRestController {
 	@JsonView(JsonViews.Common.class)
 	public Cuisinier byId(@AuthenticationPrincipal CustomUserDetails cUD) {
 		return cuisinierService.byId(cUD.getUser().getPersonne().getId());
+	}
+
+	@GetMapping("/available")
+	@JsonView(JsonViews.Common.class)
+	public List<Cuisinier> allAvailable(){
+		return cuisinierService.allAvailable();
 	}
 
 	@PostMapping("")

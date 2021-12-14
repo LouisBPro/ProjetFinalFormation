@@ -25,6 +25,7 @@ import { PanierComponent } from './panier/panier/panier.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { EditGerantComponent } from './gerant/edit-gerant/edit-gerant.component';
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
+import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant.component";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres
     CommandesClientComponent,
     EditGerantComponent,
     ParametresGerantComponent,
+    CreateRestaurantComponent
   ],
   imports: [
     BrowserModule,

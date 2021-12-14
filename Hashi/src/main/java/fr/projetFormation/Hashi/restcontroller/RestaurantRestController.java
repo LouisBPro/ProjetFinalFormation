@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +22,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.projetFormation.Hashi.entities.Cuisinier;
+import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.LigneCarte;
 import fr.projetFormation.Hashi.entities.Restaurant;
+import fr.projetFormation.Hashi.services.CuisinierService;
+import fr.projetFormation.Hashi.services.GerantService;
 import fr.projetFormation.Hashi.services.PlatService;
 import fr.projetFormation.Hashi.services.RestaurantService;
+import fr.projetFormation.Hashi.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/restaurant")
@@ -36,6 +42,10 @@ public class RestaurantRestController {
     private RestaurantService restaurantService;
     @Autowired
     private PlatService platService;
+    @Autowired
+    private GerantService gerantService;
+    @Autowired
+    private CuisinierService cuisinierService;
 
     @GetMapping("/{id}")
     @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
@@ -56,11 +66,16 @@ public class RestaurantRestController {
 
     @PostMapping("")
     @JsonView(JsonViews.RestaurantAvecEmployes.class)
-    public Restaurant create(@Valid @RequestBody Restaurant restaurant, BindingResult br) {
+    public Restaurant create(@AuthenticationPrincipal CustomUserDetails cUD, @Valid @RequestBody Restaurant restaurant, BindingResult br) {
+        Gerant gerantConnecte = gerantService.byId(cUD.getUser().getPersonne().getId());
+        restaurant.setGerant(gerantConnecte);
+        Restaurant restau = restaurantService.save(restaurant);
         restaurant.getCuisiniers().forEach(c->{
-            c.setRestaurant(restaurant);
+            Cuisinier cuisinierEnBase = cuisinierService.byId(c.getId());
+            cuisinierEnBase.setRestaurant(restaurant);
+            cuisinierService.update(cuisinierEnBase);
         });
-        return restaurantService.save(restaurant);
+        return restau;
     }
 
     @PutMapping("/{id}")

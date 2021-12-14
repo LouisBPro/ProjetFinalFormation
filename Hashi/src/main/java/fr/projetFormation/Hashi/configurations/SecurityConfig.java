@@ -36,11 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/cuisinier/**").permitAll() // inscription
 					.antMatchers(HttpMethod.POST, "/api/gerant/**").permitAll() // inscription
 					.antMatchers(HttpMethod.POST, "/api/commande/**").hasAnyRole("CLIENT") // pour qu'un client commande
+					.antMatchers(HttpMethod.POST, "/api/restaurant/**").hasAnyRole("GERANT") // Creation de restaurant
 					// GET
 					.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll() // pour voir les restaurants sans être authentifié
 					.antMatchers(HttpMethod.GET, "/api/user/{login}").permitAll() // pour vérifier que le login est dispo
 					.antMatchers(HttpMethod.GET, "/api/client/local").hasAnyRole("CLIENT")// pour qu'un client voit ses infos
 					.antMatchers(HttpMethod.GET, "/api/cuisinier/local").hasAnyRole("CUISINIER")// pour qu'un cuisinier voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/cuisinier/available").hasAnyRole("GERANT")// pour qu'un cuisinier voit ses infos
+					.antMatchers(HttpMethod.GET, "/api/cuisinier/{id}").hasAnyRole("GERANT")// pour qu'un gerant puisse trouver les infos cuisiniers
 					.antMatchers(HttpMethod.GET, "/api/gerant/local").hasAnyRole("GERANT")// pour qu'un gerant voit ses infos
 					.antMatchers(HttpMethod.GET, "/api/commande/client/local/{id}").hasAnyRole("CLIENT")
 					.antMatchers(HttpMethod.GET, "/api/commande/client/local").hasAnyRole("CLIENT")

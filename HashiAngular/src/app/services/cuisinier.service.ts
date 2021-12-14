@@ -13,7 +13,7 @@ export class CuisinierService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     });
@@ -43,6 +43,12 @@ export class CuisinierService {
     );
   }
 
+  public allCuisinierAvailable(): Observable<Cuisinier[]>{
+    return this.http.get<Cuisinier[]>(`${CuisinierService.URL}/available`, {
+      headers: this.httpHeaders,
+    });
+  }
+
   public insert(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {
     const o = {
       prenom: cuisinier.prenom,
@@ -51,9 +57,7 @@ export class CuisinierService {
       user: { login: cuisinier.user!.login, password: password },
       restaurant : cuisinier.restaurant
     };
-    return this.http.post<Cuisinier>(CuisinierService.URL, o, {
-      headers: this.httpHeaders,
-    });
+    return this.http.post<Cuisinier>(CuisinierService.URL, o);
   }
 
   public updateLocal(cuisinier: Cuisinier, password: string): Observable<Cuisinier> {

@@ -1,6 +1,7 @@
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { RecapComponent } from './panier/recap/recap.component';
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 import { InscriptionGeneraleComponent } from './inscription/inscription-generale/inscription-generale.component';
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
 import { AuthService } from './services/auth.service';
@@ -12,7 +13,9 @@ import { EditPlatComponent } from './plats/edit-plat/edit-plat.component';
 import { InscriptionClientComponent } from './inscription/inscription-client/inscription-client.component';
 import { InscriptionGerantComponent } from './inscription/inscription-gerant/inscription-gerant.component';
 import { InscriptionCuisinierComponent } from './inscription/inscription-cuisinier/inscription-cuisinier.component';
+import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { PanierComponent } from './panier/panier/panier.component';
+import { RecapComponent } from './panier/recap/recap.component';
 import { ValiderComponent } from './panier/valider/valider.component';
 
 export const route: Routes = [
@@ -83,4 +86,9 @@ export const route: Routes = [
     component: EditPlatComponent,
     canActivate: [AuthService],
   },
+  {
+    path: 'restaurants/create',
+    component:CreateRestaurantComponent,
+    canActivate:[AuthService],
+  }
 ];

@@ -1,6 +1,7 @@
 package fr.projetFormation.Hashi.services;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -62,6 +63,11 @@ public class CuisinierService {
 
 	public Cuisinier byId(Long id) {
 		return cuisinierRepository.findById(id).orElseThrow(CuisinierException::new);
+	}
+	
+	// Tous les cuisiniers qui n'ont pas de restaurant
+	public List<Cuisinier> allAvailable() {
+		return cuisinierRepository.findAllAvailable();
 	}
 
 	// unnecessary
