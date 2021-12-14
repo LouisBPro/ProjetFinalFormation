@@ -14,8 +14,9 @@ export class ClientService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic' + sessionStorage.getItem('token'),
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     });
   }
 
@@ -50,9 +51,7 @@ export class ClientService {
         ville: client.adresse!.ville,
       },
     };
-    return this.http.post<Client>(ClientService.URL, o, {
-      headers: this.httpHeaders,
-    });
+    return this.http.post<Client>(ClientService.URL, o);
   }
 
   public update(client: Client, password: string): Observable<Client> {

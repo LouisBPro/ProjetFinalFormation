@@ -163,9 +163,9 @@ export class EditClientComponent implements OnInit {
   }
 
   delete() {
-    sessionStorage.clear();
-    localStorage.clear();
-    this.router.navigate(['/home']);
     this.clientService.delete(this.client.id!);
+    // sessionStorage.clear();
+    // localStorage.clear();
+    // this.router.navigate(['/home']);
   }
 }
