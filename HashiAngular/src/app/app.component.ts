@@ -33,6 +33,8 @@ export class AppComponent {
       this.router.navigate(['/client']);
     } else if (this.roleGerant) {
       this.router.navigate(['/gerant']);
+    } else {
+      this.router.navigate(['/cuisinier']);
     }
   }
 

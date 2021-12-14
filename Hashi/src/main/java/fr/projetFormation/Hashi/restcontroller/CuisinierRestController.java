@@ -36,13 +36,13 @@ public class CuisinierRestController {
 	private CuisinierService cuisinierService;
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.PersonneWithUser.class)
 	public Cuisinier byId(@PathVariable("id") Long id) {
 		return cuisinierService.byId(id);
 	}
 
 	@GetMapping("/local")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.PersonneWithUser.class)
 	public Cuisinier byId(@AuthenticationPrincipal CustomUserDetails cUD) {
 		return cuisinierService.byId(cUD.getUser().getPersonne().getId());
 	}

@@ -1,3 +1,4 @@
+import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinier.component';
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { RecapComponent } from './panier/recap/recap.component';
@@ -13,9 +14,7 @@ import { EditPlatComponent } from './plats/edit-plat/edit-plat.component';
 import { InscriptionClientComponent } from './inscription/inscription-client/inscription-client.component';
 import { InscriptionGerantComponent } from './inscription/inscription-gerant/inscription-gerant.component';
 import { InscriptionCuisinierComponent } from './inscription/inscription-cuisinier/inscription-cuisinier.component';
-import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { PanierComponent } from './panier/panier/panier.component';
-import { RecapComponent } from './panier/recap/recap.component';
 import { ValiderComponent } from './panier/valider/valider.component';
 
 export const route: Routes = [
@@ -45,6 +44,11 @@ export const route: Routes = [
   {
     path: 'gerant',
     component: ParametresGerantComponent,
+    canActivate: [AuthService],
+  },
+  {
+    path: 'cuisinier',
+    component: EditCuisinierComponent,
     canActivate: [AuthService],
   },
   { path: 'inscription', component: InscriptionGeneraleComponent },
@@ -88,7 +92,7 @@ export const route: Routes = [
   },
   {
     path: 'restaurants/create',
-    component:CreateRestaurantComponent,
-    canActivate:[AuthService],
-  }
+    component: CreateRestaurantComponent,
+    canActivate: [AuthService],
+  },
 ];

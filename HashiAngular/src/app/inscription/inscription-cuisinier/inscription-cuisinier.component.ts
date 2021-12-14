@@ -106,11 +106,11 @@ export class InscriptionCuisinierComponent implements OnInit {
       this.cuisinierService
         .insert(
           new Cuisinier(
-            new User(this.form['login'].value),
             undefined,
             this.form['prenom'].value,
             this.form['nom'].value,
             this.form['email'].value,
+            new User(this.form['login'].value)
           ),
           this.form['passwordGroup'].get('password')!.value
         )
@@ -164,11 +164,11 @@ export class InscriptionCuisinierComponent implements OnInit {
           this.cuisinierService
             .insert(
               new Cuisinier(
-                new User(this.form['login'].value),
                 undefined,
                 this.form['prenom'].value,
                 this.form['nom'].value,
                 this.form['email'].value,
+                new User(this.form['login'].value),
                 restau
               ),
               this.form['passwordGroup'].get('password')!.value

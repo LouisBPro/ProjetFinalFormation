@@ -2,11 +2,11 @@ import { Restaurant } from './restaurant';
 import { User } from './user';
 export class Cuisinier {
   constructor(
-    private _user?: User | undefined,
     private _id?: number | undefined,
     private _prenom?: string | undefined,
     private _nom?: string | undefined,
     private _email?: string | undefined,
+    private _user?: User | undefined,
     private _restaurant?: Restaurant | undefined
   ) {}
 
@@ -73,7 +73,6 @@ export class Cuisinier {
   public set email(value: string | undefined) {
     this._email = value;
   }
-
 
   /**
    * Getter user

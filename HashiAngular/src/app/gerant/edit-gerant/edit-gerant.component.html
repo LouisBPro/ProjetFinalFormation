@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" [formGroup]="_form">
+<form [formGroup]="_form">
   <div
     class="card mx-auto shadow p-3 mb-5"
     style="width: 60%; line-height: 0.3cm"
@@ -103,7 +103,7 @@
         </button>
         <button
           *ngIf="edition"
-          type="submit"
+          (click)="save()"
           class="btn btn-success"
           [disabled]="_form.invalid"
         >

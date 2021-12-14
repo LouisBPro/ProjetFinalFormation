@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
-import { ClientComponent } from './client/client/client.component';
 import { EditPlatComponent } from './plats/edit-plat/edit-plat.component';
 import { ChoixRestaurantComponent } from './choix-restaurant/choix-restaurant.component';
 import { ChoisirComponent } from './choix-restaurant/choisir/choisir.component';
@@ -25,7 +24,8 @@ import { PanierComponent } from './panier/panier/panier.component';
 import { ParametresClientComponent } from './client/parametres-client/parametres-client.component';
 import { EditGerantComponent } from './gerant/edit-gerant/edit-gerant.component';
 import { ParametresGerantComponent } from './gerant/parametres-gerant/parametres-gerant.component';
-import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant.component";
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
+import { EditCuisinierComponent } from './cuisinier/edit-cuisinier/edit-cuisinier.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant
     PlatsComponent,
     LoginComponent,
     EditClientComponent,
-    ClientComponent,
     EditPlatComponent,
     InscriptionGeneraleComponent,
     InscriptionGerantComponent,
@@ -49,7 +48,8 @@ import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant
     CommandesClientComponent,
     EditGerantComponent,
     ParametresGerantComponent,
-    CreateRestaurantComponent
+    CreateRestaurantComponent,
+    EditCuisinierComponent,
   ],
   imports: [
     BrowserModule,
