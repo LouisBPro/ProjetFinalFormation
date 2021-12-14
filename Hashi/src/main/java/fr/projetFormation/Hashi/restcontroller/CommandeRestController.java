@@ -44,6 +44,14 @@ public class CommandeRestController {
     @Autowired
     private ClientService clientService;
 
+    
+    @GetMapping("/{id}")
+    @JsonView(JsonViews.Common.class)
+    public Commande byId(@PathVariable("id") Long id, @AuthenticationPrincipal CustomUserDetails cUD) {
+        return commandeService.byId(id);
+        
+        
+    }
     // avec lignes commande et client restaurant
     @GetMapping("/client/local/{id}")
     @JsonView(JsonViews.Common.class)
