@@ -25,7 +25,6 @@ export class ChoisirComponent implements OnInit {
           .getPlatById(params["id"])
           .subscribe((result) => {
             this.ligneCarte = result;
-            console.log(result);
           });
       }
     });

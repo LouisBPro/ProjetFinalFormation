@@ -55,6 +55,16 @@ export class ChoixRestaurantService {
     });
   }
 
+  public updateCarteRestaurant(restaurant: Restaurant): Observable<Restaurant>{
+    const o = {
+      id:restaurant.id,
+      lignesCarte:restaurant.ligneCarte
+    };
+    return this.http.put<Restaurant>(this.url, o, {
+      headers: this.httpHeaders,
+    });
+  }
+
   public getCommandesByRestaurant(id: number) {
     return this.http.get<Commande[]>(
       'http://localhost:8080/hashi/api/commande/restaurant/' + id,

@@ -95,6 +95,16 @@ public class RestaurantRestController {
         restaurantEnBase.setNom(restaurant.getNom());
         return restaurantService.save(restaurantEnBase);
     }
+
+    @PutMapping("/carte/update")
+    @JsonView(JsonViews.RestaurantAvecTout.class)
+    public Restaurant updateCarte(@Valid @RequestBody Restaurant restaurant, BindingResult br) {
+        Restaurant restaurantEnBase = restaurantService.byId(restaurant.getId());
+        restaurantEnBase.setLignesCarte(restaurant.getLignesCarte());
+        return restaurantService.save(restaurantEnBase);
+    }
+
+
     @GetMapping("/ligneCarte/{restaurantId}")
     @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
     public Set<LigneCarte> byIdWithLigneCarte(@PathVariable("restaurantId") Long restaurantId) {

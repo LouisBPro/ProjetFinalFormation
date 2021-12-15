@@ -5,7 +5,7 @@ import { Cuisinier } from "./cuisinier";
 export class Restaurant {
   constructor(
     private _adresse?: Adresse | undefined,
-    private _ligneCarte?: LigneCarte | undefined,
+    private _ligneCarte?: LigneCarte[] | undefined,
     private _id?: number | undefined,
     private _nom?: string | undefined,
     private _gerant?: Gerant | undefined,
@@ -63,7 +63,7 @@ export class Restaurant {
    * Getter ligneCarte
    * @return {LigneCarte}
    */
-  public get ligneCarte(): LigneCarte | undefined {
+  public get ligneCarte(): LigneCarte[] | undefined {
     return this._ligneCarte;
   }
 
@@ -71,7 +71,7 @@ export class Restaurant {
    * Setter ligneCarte
    * @param {LigneCarte} value
    */
-  public set ligneCarte(value: LigneCarte | undefined) {
+  public set ligneCarte(value: LigneCarte[] | undefined) {
     this._ligneCarte = value;
   }
 
