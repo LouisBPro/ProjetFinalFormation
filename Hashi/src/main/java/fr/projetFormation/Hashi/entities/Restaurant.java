@@ -135,4 +135,8 @@ public class Restaurant {
 		cuisiniers.remove(cuisinier);
 	}
 
+	public void addLigneCarte(LigneCarte lc){
+		lignesCarte.add(lc);
+	}
+
 }

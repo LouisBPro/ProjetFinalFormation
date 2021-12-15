@@ -5,6 +5,7 @@ import { Restaurant } from "src/app/model/restaurant";
 import { Select } from "@material-ui/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { GerantService } from "src/app/services/gerant.service";
 
 @Component({
   selector: "app-gerant",
@@ -20,7 +21,8 @@ export class GerantComponent implements OnInit {
   constructor(
     private choixRestaurantService: ChoixRestaurantService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private gerantService : GerantService,
   ) {
     this.form = this.formBuilder.group({
       selectControl: [""],
@@ -28,10 +30,13 @@ export class GerantComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.choixRestaurantService.allRestaurant().subscribe((resto) => {
-      this.restaurants = resto;
-      console.log(this.restaurants);
-    });
+    this.gerantService.local().subscribe((gerant)=>{
+      this.restaurants = gerant.restaurants;
+    })
+    // this.choixRestaurantService.allRestaurant().subscribe((resto) => {
+    //   this.restaurants = resto;
+    //   console.log(this.restaurants);
+    // });
   }
   submit() {
     const stingifyvalue = JSON.stringify(this.form.value).split('":"');

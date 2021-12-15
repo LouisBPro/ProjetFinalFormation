@@ -1,5 +1,6 @@
 package fr.projetFormation.Hashi.restcontroller;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +27,7 @@ import fr.projetFormation.Hashi.entities.Cuisinier;
 import fr.projetFormation.Hashi.entities.Gerant;
 import fr.projetFormation.Hashi.entities.JsonViews;
 import fr.projetFormation.Hashi.entities.LigneCarte;
+import fr.projetFormation.Hashi.entities.LigneCartePk;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.services.CuisinierService;
 import fr.projetFormation.Hashi.services.GerantService;
@@ -96,11 +98,24 @@ public class RestaurantRestController {
         return restaurantService.save(restaurantEnBase);
     }
 
-    @PutMapping("/carte/update")
-    @JsonView(JsonViews.RestaurantAvecTout.class)
+    @PutMapping("carte/reset") 
+    @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
     public Restaurant updateCarte(@Valid @RequestBody Restaurant restaurant, BindingResult br) {
         Restaurant restaurantEnBase = restaurantService.byId(restaurant.getId());
-        restaurantEnBase.setLignesCarte(restaurant.getLignesCarte());
+        return restaurantService.resetCarte(restaurantEnBase);
+    }
+
+
+    @PutMapping("/carte/update/{id}")
+    @JsonView(JsonViews.RestaurantAvecLignesCarte.class)
+    public Restaurant updateCarte(@Valid @RequestBody Restaurant restaurant, BindingResult br, @PathVariable("id") Long id) {
+        Restaurant restaurantEnBase = restaurantService.byId(restaurant.getId());
+
+        LigneCarte lc = new LigneCarte();
+        lc.setDisponibilite(true);
+        LigneCartePk lcPk = new LigneCartePk(platService.byId(id), restaurant);
+        lc.setId(lcPk);
+        restaurantEnBase.addLigneCarte(lc);
         return restaurantService.save(restaurantEnBase);
     }
 

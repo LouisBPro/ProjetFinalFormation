@@ -55,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.PUT, "/api/cuisinier/local").hasAnyRole("CUISINIER") // pour qu'un client se update
 					.antMatchers(HttpMethod.PUT, "/api/gerant/local").hasAnyRole("GERANT") // pour qu'un client se update
 					.antMatchers(HttpMethod.PUT, "/api/gerant/restaurants/manages/{id}").hasAnyRole("GERANT") // pour qu'un client se update
-					.antMatchers(HttpMethod.PUT, "/api/restaurant/carte/update").hasAnyRole("GERANT") // pour modifier la carte d'un restaurant
+					.antMatchers(HttpMethod.PUT, "/api/restaurant/carte/update/{id}").hasAnyRole("GERANT") // pour modifier la carte d'un restaurant
+					.antMatchers(HttpMethod.PUT, "/api/restaurant/carte/reset").hasAnyRole("GERANT")
 					// DELETE
 					.antMatchers(HttpMethod.DELETE, "/api/client/local").hasAnyRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "/api/cuisinier/local").hasAnyRole("CUISINIER")

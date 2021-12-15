@@ -4,9 +4,6 @@
   </div>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <select id="resto" class="form-select" formControlName="selectControl">
-      <option [value]="null" selected="selected">
-        Selectionner un restaurant ci dessous</option
-      >
       <option *ngFor="let r of restaurants" [value]="r.id">{{r.nom}}</option>
     </select>
 

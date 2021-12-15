@@ -1,5 +1,6 @@
 package fr.projetFormation.Hashi.services;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import fr.projetFormation.Hashi.entities.LigneCarte;
 import fr.projetFormation.Hashi.entities.Plat;
 import fr.projetFormation.Hashi.entities.Restaurant;
 import fr.projetFormation.Hashi.exceptions.RestaurantException;
@@ -35,12 +36,20 @@ public class RestaurantService {
 	public Restaurant save(Restaurant restaurant) {
 		Set<ConstraintViolation<Restaurant>> violations = validator.validate(restaurant);
 		if (violations.isEmpty()) {
-			restaurantRepository.save(restaurant);
 			ligneCarteRepository.saveAll(restaurant.getLignesCarte());
+			restaurantRepository.save(restaurant);
 			return restaurant;
 		} else {
 			throw new RestaurantException();
 		}
+	}
+
+	public Restaurant resetCarte(Restaurant restaurant){
+		for (LigneCarte lc : restaurant.getLignesCarte()) {
+			ligneCarteRepository.delete(lc);
+		}
+		restaurant.setLignesCarte(new HashSet<LigneCarte>());
+		return restaurantRepository.save(restaurant);
 	}
 
 	public void delete(Restaurant restaurant) {

@@ -55,12 +55,27 @@ export class ChoixRestaurantService {
     });
   }
 
-  public updateCarteRestaurant(restaurant: Restaurant): Observable<Restaurant>{
+  public updateCarteRestaurant(restaurant: Restaurant, idPlat : number): Observable<Restaurant>{
     const o = {
-      id:restaurant.id,
-      lignesCarte:restaurant.ligneCarte
+      adresse: {
+      numero: restaurant.adresse!.numero,
+      rue: restaurant.adresse!.rue,
+      codePostal: restaurant.adresse!.codePostal,
+      ville: restaurant.adresse!.ville,
+      },
+      lignesCarte:restaurant.lignesCarte,
+      id:restaurant.id
     };
-    return this.http.put<Restaurant>(this.url+'/carte/update', o, {
+    return this.http.put<Restaurant>(this.url+'/carte/update/'+idPlat, o, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public resetCarteRestaurant(restaurant: Restaurant): Observable<Restaurant>{
+    const o = {
+      id:restaurant.id
+    };
+    return this.http.put<Restaurant>(this.url+'/carte/reset', o, {
       headers: this.httpHeaders,
     });
   }
