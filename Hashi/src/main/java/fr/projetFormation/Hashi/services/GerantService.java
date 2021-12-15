@@ -48,7 +48,13 @@ public class GerantService {
 		}
 	}
 
-	public Gerant update(Gerant gerant) {
+	public Gerant update(Gerant gerant, Boolean changePassword) {
+		User user = gerant.getUser();
+		User userEnBase = userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new);
+		if (changePassword){
+			userEnBase.setPassword(passwordEncoder.encode(user.getPassword()));
+		}
+		userRepository.save(userEnBase);
 		return gerantRepository.save(gerant);
 	}
 

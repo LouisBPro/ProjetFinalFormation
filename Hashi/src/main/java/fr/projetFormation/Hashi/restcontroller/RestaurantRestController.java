@@ -79,7 +79,7 @@ public class RestaurantRestController {
         restaurant.getCuisiniers().forEach(c->{
             Cuisinier cuisinierEnBase = cuisinierService.byId(c.getId());
             cuisinierEnBase.setRestaurant(restaurant);
-            cuisinierService.update(cuisinierEnBase);
+            cuisinierService.update(cuisinierEnBase, false);
         });
         return restau;
     }

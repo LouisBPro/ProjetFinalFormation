@@ -46,7 +46,13 @@ public class CuisinierService {
 		}
 	}
 
-	public Cuisinier update(Cuisinier cuisinier) {
+	public Cuisinier update(Cuisinier cuisinier, Boolean changePassword) {
+		User user = cuisinier.getUser();
+		User userEnBase = userRepository.findByLogin(user.getLogin()).orElseThrow(ClientException::new);
+		if (changePassword){
+			userEnBase.setPassword(passwordEncoder.encode(user.getPassword()));
+		}
+		userRepository.save(userEnBase);
 		return cuisinierRepository.save(cuisinier);
 	}
 

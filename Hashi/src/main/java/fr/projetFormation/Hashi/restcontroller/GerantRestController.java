@@ -62,11 +62,18 @@ public class GerantRestController {
     @PutMapping("/local")
     @JsonView(JsonViews.Common.class)
     public Gerant update(@Valid @RequestBody Gerant gerant, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+    	boolean changePassword = false;
         Gerant gerantEnBase = gerantService.byId(cUD.getUser().getPersonne().getId());
         gerantEnBase.setNom(gerant.getNom());
         gerantEnBase.setPrenom(gerant.getPrenom());
         gerantEnBase.setEmail(gerant.getEmail());
-        return gerantService.update(gerantEnBase);
+        gerantEnBase.getUser().setLogin(gerant.getUser().getLogin());
+		// Si on a un nouveau mdp
+		if (!gerant.getUser().getPassword().equals("")) {
+			gerantEnBase.getUser().setPassword(gerant.getUser().getPassword());
+			changePassword = true;
+		}
+        return gerantService.update(gerantEnBase, changePassword);
     }
 
     // @PutMapping("/restaurants/manages")
@@ -88,7 +95,7 @@ public class GerantRestController {
             restaurantsManages.add(nouveauRestaurant);
             gerantEnBase.setRestaurants(restaurantsManages);
         }
-        return gerantService.update(gerantEnBase);
+        return gerantService.update(gerantEnBase, false);
     }
 
     @DeleteMapping("/{id}")

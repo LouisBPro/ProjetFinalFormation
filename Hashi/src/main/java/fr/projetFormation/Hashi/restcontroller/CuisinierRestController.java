@@ -63,11 +63,18 @@ public class CuisinierRestController {
 	@PutMapping("/local")
 	@JsonView(JsonViews.Common.class)
 	public Cuisinier update(@Valid @RequestBody Cuisinier cuisinier, BindingResult br, @AuthenticationPrincipal CustomUserDetails cUD) {
+		boolean changePassword = false;
 		Cuisinier cuisinierEnBase = cuisinierService.byId(cUD.getUser().getPersonne().getId());
 		cuisinierEnBase.setNom(cuisinier.getNom());
 		cuisinierEnBase.setPrenom(cuisinier.getPrenom());
         cuisinierEnBase.setEmail(cuisinier.getEmail());
-		return cuisinierService.create(cuisinierEnBase);
+        cuisinierEnBase.getUser().setLogin(cuisinier.getUser().getLogin());
+		// Si on a un nouveau mdp
+		if (!cuisinier.getUser().getPassword().equals("")) {
+			cuisinierEnBase.getUser().setPassword(cuisinier.getUser().getPassword());
+			changePassword = true;
+		}
+		return cuisinierService.update(cuisinierEnBase, changePassword);
 	}
 
 	@DeleteMapping("/{id}")
