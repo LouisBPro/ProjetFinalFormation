@@ -60,7 +60,7 @@ export class ChoixRestaurantService {
       id:restaurant.id,
       lignesCarte:restaurant.ligneCarte
     };
-    return this.http.put<Restaurant>(this.url, o, {
+    return this.http.put<Restaurant>(this.url+'/carte/update', o, {
       headers: this.httpHeaders,
     });
   }
