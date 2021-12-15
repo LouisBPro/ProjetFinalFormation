@@ -91,20 +91,31 @@ export class DragDropComponent implements OnInit {
   save() {
     console.log(this.listrestau);
 
-    let carte = new LigneCarte();
-    let cartepk = new LigneCartePk();
-    let resto = new Restaurant();
     this.choixRestaurantService
       .getById(this.RestaurantId)
       .subscribe((Resto) => {
+        let carte = new LigneCarte();
+        let cartepk = new LigneCartePk();
+        let resto = new Restaurant();
         resto = Resto;
+        for (const plat of this.listrestau) {
+          cartepk.plat = plat;
+
+          carte.disponibilite = true;
+          carte.id = cartepk;
+
+          this.ligneCarte.push(carte);
+        }
+        resto.ligneCarte = this.ligneCarte;
+        this.choixRestaurantService.updateCarteRestaurant(resto).subscribe(
+          (log) => {
+            console.log("ok");
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        console.log("carte resto modif");
       });
-    for (const plat of this.listrestau) {
-      cartepk.plat = plat;
-      cartepk.restaurant = resto;
-      carte.disponibilite = true;
-      carte.id = cartepk;
-      this.ligneCarte.push(carte);
-    }
   }
 }
