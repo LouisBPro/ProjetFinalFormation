@@ -1,52 +1,49 @@
-<div class="container mt-3">
-  <div class="card shadow p-5">
-    <table class="table align-middle">
-      <thead>
-        <th>Nom</th>
-        <th>Description</th>
-        <th>Prix</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of plats | async">
-          <td style="font-family: Coco-Light">{{ p.nom }}</td>
-          <td style="font-family: Coco-Light">{{ p.description }}</td>
-          <td style="text-align: center">{{ p.prix }}</td>
-          <td>
-            <img
-              [src]="
+<div class="card shadow m-5 p-5">
+  <table class="table align-middle">
+    <thead>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Prix</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of plats | async">
+        <td style="font-family: Coco-Light;">{{ p.nom }}</td>
+        <td style="font-family: Coco-Light;">{{ p.description }}</td>
+        <td style="text-align: center;">{{ p.prix }}</td>
+        <td>
+          <img
+            [src]="
                 sanitizer.bypassSecurityTrustResourceUrl(
                   'data:image/PNG;base64,' + p.photo
                 )
               "
-              width="200px"
-              *ngIf="p.photo"
-            />
-          </td>
-          <td>
+            width="200px"
+            *ngIf="p.photo"
+          />
+        </td>
+        <td>
+          <div class="btn-group">
             <a
               [routerLink]="['/plats', 'edit', p.id]"
               routerLinkActive="active"
-              class="btn btn-outline-info"
+              class="btn btn-outline-dark"
               >editer</a
             >
-          </td>
-          <td>
             <button (click)="delete(p.id)" class="btn btn-outline-danger">
               supprimer
             </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <a
-      [routerLink]="['/plats', 'edit']"
-      routerLinkActive="active"
-      class="btn btn-link"
-      >ajouter un plat</a
-    >
-  </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a
+    [routerLink]="['/plats', 'edit']"
+    routerLinkActive="active"
+    class="btn btn-dark"
+    >ajouter un plat</a
+  >
 </div>

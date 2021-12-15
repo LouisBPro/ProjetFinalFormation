@@ -41,20 +41,25 @@ export class EditPlatComponent implements OnInit {
   }
   save() {
     if (!!this.plat.id) {
-      this.onUpload();
       this.platService.update(this.plat).subscribe((result) => {
         this.goList();
       });
     } else {
       this.platService.insert(this.plat).subscribe((result) => {
         this.plat = result;
-        this.onUpload();
-        this.goList();
+        this.goListUpload();
       });
     }
   }
 
   goList() {
+    this.router.navigate(["/plats"]);
+  }
+  goListUpload() {
+    if (!!this.imgURL) {
+      this.onUpload();
+    }
+
     this.router.navigate(["/plats"]);
   }
   public onFileChanged(event: any) {

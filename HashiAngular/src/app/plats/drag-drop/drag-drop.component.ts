@@ -1,4 +1,6 @@
-import { LigneCarte } from "src/app/model/ligne-carte";
+import { Restaurant } from "src/app/model/restaurant";
+import { LigneCarte } from "./../../model/ligne-carte";
+
 import { ChoixRestaurantService } from "src/app/services/choix-restaurant.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -22,6 +24,7 @@ export class DragDropComponent implements OnInit {
   plats: Plat[] = [];
   listrestau: Plat[] = [];
   ligneCarte: LigneCarte[] = [];
+  RestaurantId: number | undefined;
   constructor(
     private choixRestaurantService: ChoixRestaurantService,
     private platService: PlatService,
@@ -32,6 +35,7 @@ export class DragDropComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (!!params["id"]) {
+        this.RestaurantId = params["id"];
         this.choixRestaurantService
           .getPlatById(params["id"])
           .subscribe((result) => {
@@ -46,7 +50,26 @@ export class DragDropComponent implements OnInit {
     });
     this.platService.allPlats().subscribe((client) => {
       this.plats = client;
+      this.unique();
     });
+  }
+  unique() {
+    let index1 = 0;
+    for (const item of this.plats) {
+      console.log(index1, item.id);
+      for (const el of this.listrestau) {
+        console.log("item.id", item.id, "el.id", el.id);
+        if (item.id == el.id) {
+          this.plats.splice(index1, 1);
+          console.log("spliced");
+          if (index1 > 0) {
+            index1 -= 1;
+          }
+        }
+        console.log(index1);
+      }
+      index1 += 1;
+    }
   }
   drop(event: CdkDragDrop<Plat[]>) {
     if (event.previousContainer === event.container) {
@@ -63,5 +86,8 @@ export class DragDropComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+  save() {
+    console.log(this.listrestau);
   }
 }
