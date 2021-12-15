@@ -1,3 +1,4 @@
+import { LigneCartePk } from "./../../model/ligne-carte-pk";
 import { Restaurant } from "src/app/model/restaurant";
 import { LigneCarte } from "./../../model/ligne-carte";
 
@@ -24,7 +25,7 @@ export class DragDropComponent implements OnInit {
   plats: Plat[] = [];
   listrestau: Plat[] = [];
   ligneCarte: LigneCarte[] = [];
-  RestaurantId: number | undefined;
+  RestaurantId: number = 0;
   constructor(
     private choixRestaurantService: ChoixRestaurantService,
     private platService: PlatService,
@@ -54,21 +55,21 @@ export class DragDropComponent implements OnInit {
     });
   }
   unique() {
-    let index1 = 0;
+    let index1 = [];
+    let index2 = [];
     for (const item of this.plats) {
-      console.log(index1, item.id);
-      for (const el of this.listrestau) {
-        console.log("item.id", item.id, "el.id", el.id);
-        if (item.id == el.id) {
-          this.plats.splice(index1, 1);
-          console.log("spliced");
-          if (index1 > 0) {
-            index1 -= 1;
-          }
-        }
-        console.log(index1);
+      index1.push(item.id);
+    }
+    for (const item of this.listrestau) {
+      index2.push(item.id);
+    }
+    for (const i of index2) {
+      console.log("i", i);
+      console.log(index1.indexOf(i));
+      if (index1.indexOf(i) != -1) {
+        this.plats.splice(index1.indexOf(i), 1);
       }
-      index1 += 1;
+      index1.splice(index1.indexOf(i), 1);
     }
   }
   drop(event: CdkDragDrop<Plat[]>) {
@@ -89,5 +90,21 @@ export class DragDropComponent implements OnInit {
   }
   save() {
     console.log(this.listrestau);
+
+    let carte = new LigneCarte();
+    let cartepk = new LigneCartePk();
+    let resto = new Restaurant();
+    this.choixRestaurantService
+      .getById(this.RestaurantId)
+      .subscribe((Resto) => {
+        resto = Resto;
+      });
+    for (const plat of this.listrestau) {
+      cartepk.plat = plat;
+      cartepk.restaurant = resto;
+      carte.disponibilite = true;
+      carte.id = cartepk;
+      this.ligneCarte.push(carte);
+    }
   }
 }

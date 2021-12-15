@@ -2,7 +2,10 @@ import { Plat } from "./plat";
 import { Restaurant } from "./restaurant";
 
 export class LigneCartePk {
-  constructor(private _plat?: Plat | undefined, private _restaurant?: Restaurant | undefined) {}
+  constructor(
+    private _plat?: Plat | undefined,
+    private _restaurant?: Restaurant | undefined
+  ) {}
   /**
    * Getter plat
    * @return {Plat }
